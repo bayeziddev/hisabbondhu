@@ -85,6 +85,10 @@ jobs:
       - name: Build debug APK
         run: ./gradlew --no-daemon assembleDebug
 
+      - name: Verify release build (R8 + lint, unsigned — no keystore secret yet)
+        if: env.HAS_SIGNING != 'true'
+        run: ./gradlew --no-daemon bundleRelease
+
       - name: Build signed release AAB + APK
         if: env.HAS_SIGNING == 'true'
         env:

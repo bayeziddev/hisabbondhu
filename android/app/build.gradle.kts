@@ -17,7 +17,7 @@ val apiBaseUrl = (env("API_BASE_URL") ?: (findProperty("apiBaseUrl") as String?)
     .let { if (it.endsWith("/")) it else "$it/" }
 val websiteUrl = (env("WEBSITE_URL") ?: "https://bayeziddev.github.io/hisabbondhu/")
     .let { if (it.endsWith("/")) it else "$it/" }
-val supportEmail = env("SUPPORT_EMAIL") ?: "support@hisabbondhu.com"
+val supportEmailValue = env("SUPPORT_EMAIL") ?: "support@hisabbondhu.com"
 
 // Release signing (upload key). Provided only in CI from GitHub secrets.
 val signingStoreFile = env("SIGNING_STORE_FILE")
@@ -42,7 +42,7 @@ android {
 
         buildConfigField("String", "API_BASE_URL", "\"$apiBaseUrl\"")
         buildConfigField("String", "WEBSITE_URL", "\"$websiteUrl\"")
-        buildConfigField("String", "SUPPORT_EMAIL", "\"$supportEmail\"")
+        buildConfigField("String", "SUPPORT_EMAIL", "\"$supportEmailValue\"")
     }
 
     signingConfigs {
@@ -159,6 +159,9 @@ abstract class CopyLegalPagesTask : DefaultTask() {
     @get:OutputDirectory
     abstract val outputDir: DirectoryProperty
 
+    @get:Input
+    abstract val supportEmail: Property<String>
+
     @TaskAction
     fun copyPages() {
         val out = outputDir.get().asFile
@@ -169,12 +172,17 @@ abstract class CopyLegalPagesTask : DefaultTask() {
             File(site, name).takeIf { it.exists() }?.copyTo(File(legal, name), overwrite = true)
         }
         File(site, "assets").takeIf { it.exists() }?.copyRecursively(File(legal, "assets"), overwrite = true)
+        val email = supportEmail.get()
+        legal.walkTopDown().filter { it.isFile && (it.extension == "html" || it.extension == "js") }.forEach { f ->
+            f.writeText(f.readText().replace("support@hisabbondhu.com", email))
+        }
     }
 }
 
 val copyLegalPages = tasks.register<CopyLegalPagesTask>("copyLegalPages") {
     websiteDir.set(rootProject.file("../website"))
     outputDir.set(layout.buildDirectory.dir("generated/legalAssets"))
+    supportEmail.set(supportEmailValue)
 }
 
 androidComponents {

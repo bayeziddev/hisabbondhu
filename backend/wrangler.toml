@@ -1,0 +1,46 @@
+# HisabBondhu API — Cloudflare Workers + D1 + R2 + Queues
+# The GitHub Action (.github/workflows/backend.yml) creates the D1 database, R2 bucket and queue
+# automatically and fills in database_id. For manual setup see docs/SETUP.md.
+name = "hisabbondhu-api"
+main = "src/index.ts"
+compatibility_date = "2025-11-01"
+workers_dev = true
+
+[observability]
+enabled = true
+
+[vars]
+APP_ENV = "production"
+# Websites allowed to call the API from a browser (contact + data-deletion forms).
+ALLOWED_ORIGINS = "https://bayeziddev.github.io"
+# bulksmsbd | sslwireless | webhook | log   ("log" sends nothing — development only)
+SMS_PROVIDER = "bulksmsbd"
+OTP_DEV_MODE = "false"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "hisabbondhu"
+database_id = "__D1_DATABASE_ID__"
+migrations_dir = "migrations"
+
+[[r2_buckets]]
+binding = "FILES"
+bucket_name = "hisabbondhu-files"
+
+[[queues.producers]]
+binding = "JOBS"
+queue = "hisabbondhu-jobs"
+
+[[queues.consumers]]
+queue = "hisabbondhu-jobs"
+max_batch_size = 10
+max_retries = 5
+
+[[ratelimits]]
+name = "API_LIMITER"
+namespace_id = "1001"
+simple = { limit = 120, period = 60 }
+
+[triggers]
+# 21:17 UTC = 03:17 in Bangladesh — daily cleanup + Sunday R2 snapshots
+crons = ["17 21 * * *"]
