@@ -1,0 +1,29 @@
+# OS / IDE
+.DS_Store
+.idea/
+*.iml
+.vscode/
+
+# Android / Gradle
+.gradle/
+**/build/
+local.properties
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+dist/
+
+# Signing — NEVER commit keystores or passwords
+*.jks
+*.keystore
+*.p12
+keystore.properties
+signing.properties
+
+# Node / Cloudflare
+node_modules/
+.wrangler/
+.dev.vars
+*.log
