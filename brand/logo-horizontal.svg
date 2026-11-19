@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" width="1040" height="240"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0CA678"/><stop offset="1" stop-color="#065F46"/></linearGradient></defs>
+  <style>@font-face{font-family:HS;src:url(fonts/hind_siliguri_bold.ttf)} @font-face{font-family:HSR;src:url(fonts/hind_siliguri_regular.ttf)}</style>
+  <g transform="translate(6 6)"><rect width="108" height="108" rx="26" fill="url(#g)"/>
+  <g transform="translate(54 54) scale(1.45) translate(-54 -54)">
+  <path fill="#000" fill-opacity="0.2" d="M41,33H67A5,5 0 0 1 72,38V72A5,5 0 0 1 67,77H41A5,5 0 0 1 36,72V38A5,5 0 0 1 41,33Z"/>
+  <path fill="#fff" d="M40,31H66A5,5 0 0 1 71,36V70A5,5 0 0 1 66,75H40A5,5 0 0 1 35,70V36A5,5 0 0 1 40,31Z"/>
+  <path fill="#C3FAE8" d="M40,31H43V75H40A5,5 0 0 1 35,70V36A5,5 0 0 1 40,31Z"/>
+  <g fill="#087F5B"><circle cx="39" cy="40" r="1.4"/><circle cx="39" cy="48" r="1.4"/><circle cx="39" cy="56" r="1.4"/><circle cx="39" cy="64" r="1.4"/></g>
+  <path stroke="#12B886" stroke-width="3.2" stroke-linecap="round" fill="none" d="M48,41H65M48,49H65M48,57H57"/>
+  <circle cx="67" cy="67" r="11" fill="#1971C2" stroke="#fff" stroke-width="2.5"/>
+  <path stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M61.8,67.4L65.4,71L72.4,63.6"/></g></g>
+  <text x="134" y="68" font-family="HS, 'Hind Siliguri', 'Noto Sans Bengali', sans-serif" font-weight="700" font-size="52" fill="#087F5B">হিসাববন্ধু</text>
+  <text x="136" y="100" font-family="HSR, 'Hind Siliguri', sans-serif" font-size="22" fill="#495057">HisabBondhu · দোকানের হিসাব, সবসময় হাতের কাছে</text>
+</svg>

@@ -1,0 +1,7 @@
+# Local development only — copy to .dev.vars (git-ignored)
+APP_ENV=development
+OTP_DEV_MODE=true
+SMS_PROVIDER=log
+JWT_SECRET=change-me-local-dev-secret-0123456789abcdef
+OTP_PEPPER=change-me-local-pepper-0123456789
+ALLOWED_ORIGINS=http://localhost:8080
