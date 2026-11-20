@@ -152,12 +152,9 @@ dependencies {
     testImplementation(libs.kotlinx.coroutines.test)
 
     // Screenshot tour (android/tools/screenshot-tour.sh) — runs on emulators in CI
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     androidTestImplementation(libs.androidx.test.runner)
     androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.androidx.test.espresso)
-    debugImplementation(libs.androidx.compose.ui.test.manifest)
+    androidTestImplementation(libs.androidx.test.uiautomator)
 }
 
 // ---- Bundle the website's legal pages into the APK so they are readable offline ----
