@@ -31,8 +31,6 @@ val hasReleaseSigning = signingStoreFile != null && file(signingStoreFile).exist
 android {
     namespace = "com.hisabbondhu.app"
     compileSdk = 36
-    // CI passes the NDK already installed on the runner (used only to package native debug symbols).
-    env("ANDROID_NDK_VERSION")?.let { ndkVersion = it }
 
     defaultConfig {
         // Play Store package name (fixed forever once the Play Console app exists).
@@ -73,8 +71,6 @@ android {
                 "proguard-rules.pro",
             )
             if (hasReleaseSigning) signingConfig = signingConfigs.getByName("release")
-            // Put native debug symbols (androidx .so files) in the AAB so Play can read crashes/ANRs.
-            ndk { debugSymbolLevel = "FULL" }
         }
         debug {
             applicationIdSuffix = ".debug"

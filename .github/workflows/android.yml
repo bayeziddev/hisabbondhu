@@ -79,17 +79,6 @@ jobs:
             echo "HAS_SIGNING=false" >> "$GITHUB_ENV"
           fi
 
-      - name: Use the runner's NDK (native debug symbols for Play)
-        run: |
-          ndk="${ANDROID_NDK_HOME:-${ANDROID_NDK_LATEST_HOME:-}}"
-          if [ -n "$ndk" ] && [ -f "$ndk/source.properties" ]; then
-            ver=$(sed -n 's/^Pkg.Revision *= *//p' "$ndk/source.properties" | tr -d '[:space:]')
-            echo "ANDROID_NDK_VERSION=$ver" >> "$GITHUB_ENV"
-            echo "Using NDK $ver at $ndk"
-          else
-            echo "::warning::No NDK found on the runner; the Android Gradle plugin will use its default NDK"
-          fi
-
       - name: Unit tests
         run: ./gradlew --no-daemon --stacktrace testDebugUnitTest
 
@@ -114,16 +103,6 @@ jobs:
           cp app/build/outputs/apk/debug/app-debug.apk "../dist/HisabBondhu-${VERSION_NAME}-debug.apk"
           if [ "$HAS_SIGNING" = "true" ]; then
             cp app/build/outputs/bundle/release/app-release.aab "../dist/HisabBondhu-${VERSION_NAME}-release.aab"
-            syms=$(unzip -l app/build/outputs/bundle/release/app-release.aab | grep -c 'BUNDLE-METADATA/com.android.tools.build.debugsymbols/' || true)
-            echo "Native debug symbol files in AAB: $syms"
-            [ "$syms" -gt 0 ] || echo "::warning title=No native debug symbols::Play Console will warn about missing debug symbols"
-            echo "--- native libs and their symbol sections"
-            readelf="$(ls -d "${ANDROID_NDK_HOME:-/nonexistent}"/toolchains/llvm/prebuilt/*/bin/llvm-readelf 2>/dev/null | head -1)"
-            find app/build/intermediates -path '*merged_native_libs/release*' -name '*.so' | while read -r so; do
-              echo "$so: $( ([ -n "$readelf" ] && "$readelf" -S "$so" || readelf -S "$so") 2>/dev/null | grep -oE '\.(symtab|debug_info|dynsym)' | sort -u | tr '\n' ' ')"
-            done
-            echo "--- extracted debug metadata"
-            find app/build/intermediates -path '*native_debug_metadata*' -type f | head -20
             cp app/build/outputs/apk/release/app-release.apk "../dist/HisabBondhu-${VERSION_NAME}-release.apk"
             cp app/build/outputs/mapping/release/mapping.txt "../dist/mapping-${VERSION_NAME}.txt" || true
           fi
