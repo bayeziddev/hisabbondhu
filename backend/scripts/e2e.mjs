@@ -1,7 +1,9 @@
 // End-to-end test against a running Worker (local `wrangler dev` with OTP_DEV_MODE=true).
 // Usage: API=http://127.0.0.1:8787 node scripts/e2e.mjs
 const API = process.env.API || 'http://127.0.0.1:8787';
-const phone = '01712' + String(Math.floor(Math.random() * 1e6)).padStart(6, '0');
+const rnd = () => String(Math.floor(Math.random() * 1e9));
+const email = `owner${rnd()}@example.com`;
+const ADMIN = process.env.ADMIN_TOKEN || 'local-admin-token-0123456789abcdef';
 let failures = 0;
 
 async function call(method, path, body, token) {
@@ -24,25 +26,35 @@ const t0 = Date.now();
 const health = await call('GET', '/v1/health');
 check('health', health.status === 200 && health.json.db === true, health);
 
-const bad = await call('POST', '/v1/auth/request-otp', { phone: '12345' });
-check('invalid phone rejected', bad.status === 422 && bad.json.error === 'invalid_phone', bad);
+const bad = await call('POST', '/v1/auth/request-otp', { email: 'not-an-email' });
+check('invalid email rejected', bad.status === 422 && bad.json.error === 'invalid_email', bad);
 
-const otp = await call('POST', '/v1/auth/request-otp', { phone });
+const otp = await call('POST', '/v1/auth/request-otp', { email: email.toUpperCase() });
 check('request otp', otp.status === 200 && /^\d{6}$/.test(otp.json.dev_code), otp);
-const again = await call('POST', '/v1/auth/request-otp', { phone });
+const again = await call('POST', '/v1/auth/request-otp', { email });
 check('resend throttled', again.status === 429, again);
 
-const wrong = await call('POST', '/v1/auth/verify-otp', { phone, code: otp.json.dev_code === '000000' ? '111111' : '000000', device_id: 'dev-e2e-0001' });
+const wrong = await call('POST', '/v1/auth/verify-otp', { email, code: otp.json.dev_code === '000000' ? '111111' : '000000', device_id: 'dev-e2e-0001' });
 check('wrong code rejected', wrong.status === 400 && wrong.json.error === 'invalid_code', wrong);
 
-const ver = await call('POST', '/v1/auth/verify-otp', { phone, code: otp.json.dev_code, device_id: 'dev-e2e-0001', device_name: 'e2e' });
-check('verify otp', ver.status === 200 && ver.json.access_token && ver.json.refresh_token, ver);
-const reuse = await call('POST', '/v1/auth/verify-otp', { phone, code: otp.json.dev_code });
+const ver = await call('POST', '/v1/auth/verify-otp', { email, code: otp.json.dev_code, device_id: 'dev-e2e-0001', device_name: 'e2e' });
+check('verify otp creates account', ver.status === 200 && ver.json.access_token && ver.json.new_user === true && ver.json.user.email === email, ver);
+check('new account needs profile', ver.json.user?.profile_complete === false, ver.json.user);
+const reuse = await call('POST', '/v1/auth/verify-otp', { email, code: otp.json.dev_code });
 check('otp single-use', reuse.status === 400, reuse);
 let token = ver.json.access_token;
 let refresh = ver.json.refresh_token;
 
 check('auth required', (await call('GET', '/v1/account')).status === 401);
+
+const badProfile = await call('PUT', '/v1/account/profile', { name: 'Rahim', phone: '123' }, token);
+check('profile rejects bad phone', badProfile.status === 422 && badProfile.json.error === 'invalid_phone', badProfile);
+const prof = await call('PUT', '/v1/account/profile', { name: 'রহিম উদ্দিন', phone: '01712345678', marketing_opt_in: true }, token);
+check('profile saved', prof.status === 200 && prof.json.user.profile_complete === true && prof.json.user.phone === '+8801712345678' && prof.json.user.phone_verified === false, prof);
+const potp = await call('POST', '/v1/account/phone/request-otp', null, token);
+check('phone OTP (system ready)', potp.status === 200 && /^\d{6}$/.test(potp.json.dev_code), potp);
+const pver = await call('POST', '/v1/account/phone/verify', { code: potp.json.dev_code }, token);
+check('phone verified', pver.status === 200 && pver.json.user.phone_verified === true, pver);
 
 const bizId = uuid();
 const link = await call('POST', '/v1/businesses/link', { id: bizId, name: 'করিম স্টোর', updated_at: t0 }, token);
@@ -76,9 +88,9 @@ const pull2 = await call('POST', `/v1/businesses/${bizId}/sync/pull`, { cursors:
 check('cursor pull returns nothing new', pull2.json.transactions.length === 0 && pull2.json.parties.length === 0, pull2.json);
 
 // Tenant isolation: a second user must not see business 1
-const phone2 = '01912' + String(Math.floor(Math.random() * 1e6)).padStart(6, '0');
-const o2 = await call('POST', '/v1/auth/request-otp', { phone: phone2 });
-const v2 = await call('POST', '/v1/auth/verify-otp', { phone: phone2, code: o2.json.dev_code });
+const email2 = `other${rnd()}@example.com`;
+const o2 = await call('POST', '/v1/auth/request-otp', { email: email2 });
+const v2 = await call('POST', '/v1/auth/verify-otp', { email: email2, code: o2.json.dev_code });
 const spy = await call('POST', `/v1/businesses/${bizId}/sync/pull`, { cursors: {} }, v2.json.access_token);
 check('tenant isolation (pull)', spy.status === 404, spy);
 const spyPush = await call('POST', `/v1/businesses/${bizId}/sync/push`, { device_id: 'evil-device-01', parties: [] }, v2.json.access_token);
@@ -98,6 +110,11 @@ check('session revoked after reuse', afterReuse.status === 401, afterReuse);
 await new Promise((r) => setTimeout(r, 10));
 const contact = await call('POST', '/v1/public/contact', { name: 'Test', subject: 'Hello', message: 'This is a test message', source: 'e2e' });
 check('contact form', contact.status === 200 && contact.json.ok, contact);
+
+const leadsNoAuth = await call('GET', '/v1/admin/leads');
+check('admin needs token', leadsNoAuth.status === 401 || leadsNoAuth.status === 404, leadsNoAuth);
+const leads = await call('GET', '/v1/admin/leads', null, ADMIN);
+check('admin leads list', leads.status === 200 && leads.json.leads.some((l) => l.email === email && l.shop_name === 'করিম স্টোর'), leads.json?.count);
 
 const v2token = v2.json.access_token;
 const exp = await call('GET', '/v1/account/export', null, v2token);

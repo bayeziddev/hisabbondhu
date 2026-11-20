@@ -3,23 +3,30 @@
 -- Money = INTEGER paisa, quantity = INTEGER milli-units, time = INTEGER epoch milliseconds (UTC).
 
 CREATE TABLE IF NOT EXISTS users (
-  id            TEXT PRIMARY KEY,
-  phone         TEXT NOT NULL UNIQUE,          -- +8801XXXXXXXXX
-  created_at    INTEGER NOT NULL,
-  last_login_at INTEGER
+  id                TEXT PRIMARY KEY,
+  email             TEXT NOT NULL UNIQUE,      -- lower-case; verified with an email OTP at login
+  phone             TEXT,                      -- +8801XXXXXXXXX, required in profile (SMS verification later)
+  name              TEXT,
+  phone_verified_at INTEGER,
+  marketing_opt_in  INTEGER NOT NULL DEFAULT 0,
+  created_at        INTEGER NOT NULL,
+  last_login_at     INTEGER
 );
+CREATE INDEX IF NOT EXISTS idx_users_phone ON users(phone);
+CREATE INDEX IF NOT EXISTS idx_users_created ON users(created_at);
 
 CREATE TABLE IF NOT EXISTS otp_codes (
   id          INTEGER PRIMARY KEY AUTOINCREMENT,
-  phone       TEXT NOT NULL,
-  code_hash   TEXT NOT NULL,                   -- SHA-256(pepper:phone:code), never the code itself
+  channel     TEXT NOT NULL DEFAULT 'email' CHECK (channel IN ('email','sms')),
+  target      TEXT NOT NULL,                   -- email address or +880 phone
+  code_hash   TEXT NOT NULL,                   -- SHA-256(pepper:target:code), never the code itself
   ip          TEXT,
   attempts    INTEGER NOT NULL DEFAULT 0,
   consumed    INTEGER NOT NULL DEFAULT 0,
   created_at  INTEGER NOT NULL,
   expires_at  INTEGER NOT NULL
 );
-CREATE INDEX IF NOT EXISTS idx_otp_phone ON otp_codes(phone, created_at);
+CREATE INDEX IF NOT EXISTS idx_otp_target ON otp_codes(target, created_at);
 CREATE INDEX IF NOT EXISTS idx_otp_ip ON otp_codes(ip, created_at);
 
 CREATE TABLE IF NOT EXISTS sessions (
@@ -153,10 +160,10 @@ CREATE TABLE IF NOT EXISTS support_messages (
 );
 CREATE INDEX IF NOT EXISTS idx_support_ip ON support_messages(ip, created_at);
 
--- Proof that a deletion happened, without keeping personal data (only a salted hash).
+-- Proof that a deletion happened, without keeping personal data (only a salted hash of the email).
 CREATE TABLE IF NOT EXISTS deletion_log (
   id           TEXT PRIMARY KEY,
-  phone_hash   TEXT NOT NULL,
+  email_hash   TEXT NOT NULL,
   source       TEXT NOT NULL,
   businesses   INTEGER NOT NULL DEFAULT 0,
   requested_at INTEGER NOT NULL,

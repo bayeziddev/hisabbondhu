@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { randomOtp, safeEqual, sha256Hex, signJwt, verifyJwt } from '../src/lib/crypto';
 import { maskPhone, normalizeBdPhone } from '../src/lib/phone';
+import { maskEmail, normalizeEmail } from '../src/lib/email';
 import { contactSchema, partySchema, txSchema } from '../src/lib/validate';
 
 describe('phone', () => {
@@ -11,6 +12,17 @@ describe('phone', () => {
     expect(normalizeBdPhone('01212345678')).toBeNull();
     expect(normalizeBdPhone(42)).toBeNull();
     expect(maskPhone('+8801712345678')).toBe('+88017•••••678');
+  });
+});
+
+describe('email', () => {
+  it('normalises and validates emails', () => {
+    expect(normalizeEmail('  Shop.Owner@Gmail.COM ')).toBe('shop.owner@gmail.com');
+    expect(normalizeEmail('no-at-sign')).toBeNull();
+    expect(normalizeEmail('a@b')).toBeNull();
+    expect(normalizeEmail('a b@c.com')).toBeNull();
+    expect(normalizeEmail(5)).toBeNull();
+    expect(maskEmail('karim@example.com')).toBe('ka•••@example.com');
   });
 });
 
