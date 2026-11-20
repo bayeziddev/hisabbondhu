@@ -45,11 +45,13 @@ class SyncEngine(
     private suspend fun syncLocked(): SyncOutcome {
         val auth = settings.currentAuth()
         if (!auth.loggedIn) return SyncOutcome.NotLoggedIn
-        val business = settings.currentBusiness() ?: return SyncOutcome.NotLoggedIn
+        if (settings.currentBusiness() == null) return SyncOutcome.NotLoggedIn
         return try {
+            ensureBusinessLinked()
             pushBusinessIfDirty()
-            push(business.id)
-            pull(business.id)
+            val businessId = settings.currentBusiness()!!.id
+            push(businessId)
+            pull(businessId)
             settings.setSyncResult(Dates.now(), null)
             SyncOutcome.Success
         } catch (e: SessionExpiredException) {
@@ -64,6 +66,18 @@ class SyncEngine(
             settings.setSyncResult(null, "network")
             SyncOutcome.Failure("network", retryable = true)
         }
+    }
+
+    /** A shop created while offline is attached to the account on the first successful sync. */
+    private suspend fun ensureBusinessLinked() {
+        if (settings.isBusinessLinked()) return
+        val local = settings.currentBusiness() ?: return
+        val server = network.api.linkBusiness(local.toDto())
+        if (server.id != local.id) {
+            settings.saveBusiness(server.toProfile(), dirty = false)
+            db.dao().markAllPartiesPending(); db.dao().markAllProductsPending(); db.dao().markAllTxPending()
+        }
+        settings.setBusinessLinked(true)
     }
 
     private suspend fun pushBusinessIfDirty() {

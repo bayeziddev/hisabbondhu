@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class OtpRequest(val phone: String)
+data class OtpRequest(val email: String)
 
 @Serializable
 data class OtpRequestResponse(
@@ -17,7 +17,7 @@ data class OtpRequestResponse(
 
 @Serializable
 data class VerifyOtpRequest(
-    val phone: String,
+    val email: String,
     val code: String,
     @SerialName("device_id") val deviceId: String,
     @SerialName("device_name") val deviceName: String,
@@ -31,11 +31,33 @@ data class AuthResponse(
     @SerialName("access_token") val accessToken: String,
     @SerialName("refresh_token") val refreshToken: String,
     @SerialName("expires_in") val expiresIn: Int = 900,
-    val user: UserDto? = null,
+    @SerialName("new_user") val newUser: Boolean = false,
+    val user: UserDto,
 )
 
 @Serializable
-data class UserDto(val id: String, val phone: String)
+data class UserDto(
+    val id: String,
+    val email: String,
+    val phone: String? = null,
+    val name: String? = null,
+    @SerialName("phone_verified") val phoneVerified: Boolean = false,
+    @SerialName("marketing_opt_in") val marketingOptIn: Boolean = false,
+    @SerialName("profile_complete") val profileComplete: Boolean = false,
+)
+
+@Serializable
+data class ProfileRequest(
+    val name: String,
+    val phone: String,
+    @SerialName("marketing_opt_in") val marketingOptIn: Boolean,
+)
+
+@Serializable
+data class UserResponse(val user: UserDto)
+
+@Serializable
+data class BusinessListResponse(val businesses: List<BusinessDto> = emptyList())
 
 @Serializable
 data class OkResponse(val ok: Boolean = true)

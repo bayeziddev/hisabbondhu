@@ -17,7 +17,8 @@ val apiBaseUrl = (env("API_BASE_URL") ?: (findProperty("apiBaseUrl") as String?)
     .let { if (it.endsWith("/")) it else "$it/" }
 val websiteUrl = (env("WEBSITE_URL") ?: "https://bayeziddev.github.io/hisabbondhu/")
     .let { if (it.endsWith("/")) it else "$it/" }
-val supportEmailValue = env("SUPPORT_EMAIL") ?: "support@hisabbondhu.com"
+val supportEmailValue = env("SUPPORT_EMAIL") ?: "support@sayadbayezid.com"
+val supportWhatsApp = (env("SUPPORT_WHATSAPP") ?: "8801519601517").filter { it.isDigit() }
 
 // Release signing (upload key). Provided only in CI from GitHub secrets.
 val signingStoreFile = env("SIGNING_STORE_FILE")
@@ -43,6 +44,7 @@ android {
         buildConfigField("String", "API_BASE_URL", "\"$apiBaseUrl\"")
         buildConfigField("String", "WEBSITE_URL", "\"$websiteUrl\"")
         buildConfigField("String", "SUPPORT_EMAIL", "\"$supportEmailValue\"")
+        buildConfigField("String", "SUPPORT_WHATSAPP", "\"$supportWhatsApp\"")
     }
 
     signingConfigs {
@@ -174,7 +176,7 @@ abstract class CopyLegalPagesTask : DefaultTask() {
         File(site, "assets").takeIf { it.exists() }?.copyRecursively(File(legal, "assets"), overwrite = true)
         val email = supportEmail.get()
         legal.walkTopDown().filter { it.isFile && (it.extension == "html" || it.extension == "js") }.forEach { f ->
-            f.writeText(f.readText().replace("support@hisabbondhu.com", email))
+            f.writeText(f.readText().replace("support@sayadbayezid.com", email))
         }
     }
 }

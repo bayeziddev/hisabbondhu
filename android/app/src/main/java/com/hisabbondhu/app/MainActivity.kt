@@ -27,9 +27,15 @@ class MainActivity : AppCompatActivity() {
         splash.setKeepOnScreenCondition { !ready }
 
         val container = (application as HisabApp).container
-        val startFlow = combine(container.settings.languageChosen, container.settings.onboardingDone) { lang, done ->
+        val startFlow = combine(
+            container.settings.languageChosen,
+            container.settings.auth,
+            container.settings.onboardingDone,
+        ) { lang, auth, done ->
             when {
                 !lang -> StartState.Language
+                !auth.loggedIn -> StartState.Auth
+                !auth.profileComplete -> StartState.Profile
                 !done -> StartState.Setup
                 else -> StartState.Main
             }

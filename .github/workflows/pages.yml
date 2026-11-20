@@ -33,7 +33,7 @@ jobs:
           rsync -a --exclude tools website/ _site/
           if [ -n "$API_BASE_URL" ]; then sed -i "s#__API_BASE__#${API_BASE_URL%/}#" _site/assets/config.js; fi
           if [ -n "$SUPPORT_EMAIL" ]; then
-            grep -rl "support@hisabbondhu.com" _site | xargs sed -i "s/support@hisabbondhu.com/${SUPPORT_EMAIL}/g"
+            grep -rl "support@sayadbayezid.com" _site | xargs sed -i "s/support@sayadbayezid.com/${SUPPORT_EMAIL}/g"
           fi
           touch _site/.nojekyll
       - uses: actions/upload-pages-artifact@v3

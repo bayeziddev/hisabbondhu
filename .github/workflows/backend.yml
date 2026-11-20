@@ -35,7 +35,7 @@ jobs:
       - run: npm test
       - name: End-to-end test on a local Worker + local D1
         run: |
-          printf 'APP_ENV=development\nOTP_DEV_MODE=true\nSMS_PROVIDER=log\nJWT_SECRET=%s\nOTP_PEPPER=%s\n' "$(openssl rand -hex 32)" "$(openssl rand -hex 32)" > .dev.vars
+          printf 'APP_ENV=development\nOTP_DEV_MODE=true\nEMAIL_PROVIDER=log\nSMS_PROVIDER=log\nPHONE_OTP_ENABLED=true\nADMIN_TOKEN=local-admin-token-0123456789abcdef\nJWT_SECRET=%s\nOTP_PEPPER=%s\n' "$(openssl rand -hex 32)" "$(openssl rand -hex 32)" > .dev.vars
           npx wrangler d1 migrations apply hisabbondhu --local
           npx wrangler dev --local --port 8787 --ip 127.0.0.1 > wrangler-dev.log 2>&1 &
           for i in $(seq 1 60); do curl -sf http://127.0.0.1:8787/v1/health >/dev/null && break; sleep 1; done
@@ -105,6 +105,7 @@ jobs:
           ARGS=""
           [ -n "${{ vars.ALLOWED_ORIGINS }}" ] && ARGS="$ARGS --var ALLOWED_ORIGINS:${{ vars.ALLOWED_ORIGINS }}"
           [ -n "${{ vars.SMS_PROVIDER }}" ] && ARGS="$ARGS --var SMS_PROVIDER:${{ vars.SMS_PROVIDER }}"
+          [ -n "${{ vars.PHONE_OTP_ENABLED }}" ] && ARGS="$ARGS --var PHONE_OTP_ENABLED:${{ vars.PHONE_OTP_ENABLED }}"
           npx wrangler deploy $ARGS | tee deploy.log
           URL=$(grep -oE 'https://[a-zA-Z0-9.-]+\.workers\.dev' deploy.log | head -1)
           echo "url=$URL" >> "$GITHUB_OUTPUT"
@@ -116,14 +117,16 @@ jobs:
           SMS_API_KEY: ${{ secrets.SMS_API_KEY }}
           SMS_SENDER_ID: ${{ secrets.SMS_SENDER_ID }}
           SMS_API_URL: ${{ secrets.SMS_API_URL }}
-          REVIEW_PHONE: ${{ secrets.REVIEW_PHONE }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          ADMIN_TOKEN: ${{ secrets.ADMIN_TOKEN }}
+          REVIEW_EMAIL: ${{ secrets.REVIEW_EMAIL }}
           REVIEW_OTP: ${{ secrets.REVIEW_OTP }}
           SUPPORT_WEBHOOK_URL: ${{ secrets.SUPPORT_WEBHOOK_URL }}
         run: |
-          if [ -z "$JWT_SECRET" ] || [ -z "$OTP_PEPPER" ]; then
-            echo "::error::JWT_SECRET and OTP_PEPPER secrets are required."; exit 1
+          if [ -z "$JWT_SECRET" ] || [ -z "$OTP_PEPPER" ] || [ -z "$RESEND_API_KEY" ]; then
+            echo "::error::JWT_SECRET, OTP_PEPPER and RESEND_API_KEY secrets are required."; exit 1
           fi
-          jq -n 'env | with_entries(select(.key | IN("JWT_SECRET","OTP_PEPPER","SMS_API_KEY","SMS_SENDER_ID","SMS_API_URL","REVIEW_PHONE","REVIEW_OTP","SUPPORT_WEBHOOK_URL"))) | with_entries(select(.value != ""))' > "$RUNNER_TEMP/secrets.json"
+          jq -n 'env | with_entries(select(.key | IN("JWT_SECRET","OTP_PEPPER","RESEND_API_KEY","ADMIN_TOKEN","SMS_API_KEY","SMS_SENDER_ID","SMS_API_URL","REVIEW_EMAIL","REVIEW_OTP","SUPPORT_WEBHOOK_URL"))) | with_entries(select(.value != ""))' > "$RUNNER_TEMP/secrets.json"
           npx wrangler secret bulk "$RUNNER_TEMP/secrets.json"
           rm -f "$RUNNER_TEMP/secrets.json"
 

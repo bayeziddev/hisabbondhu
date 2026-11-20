@@ -16,6 +16,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Chat
 import androidx.compose.material.icons.rounded.Email
 import androidx.compose.material.icons.rounded.Public
 import androidx.compose.material3.Button
@@ -70,6 +71,10 @@ fun ContactScreen(nav: NavHostController) {
         ) {
             Text(stringResource(R.string.contact_intro), style = MaterialTheme.typography.bodyMedium)
             SectionCard(contentPadding = PaddingValues(vertical = 8.dp)) {
+                NavRow(Icons.Rounded.Chat, stringResource(R.string.whatsapp_us), "+" + BuildConfig.SUPPORT_WHATSAPP, tint = androidx.compose.ui.graphics.Color(0xFF25D366)) {
+                    Share.whatsApp(context, BuildConfig.SUPPORT_WHATSAPP, context.getString(R.string.whatsapp_greeting))
+                }
+                RowDivider()
                 NavRow(Icons.Rounded.Email, stringResource(R.string.email_us), BuildConfig.SUPPORT_EMAIL) {
                     Share.email(context, BuildConfig.SUPPORT_EMAIL, emailSubject)
                 }

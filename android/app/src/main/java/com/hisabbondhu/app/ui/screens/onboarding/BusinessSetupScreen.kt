@@ -98,9 +98,12 @@ fun BusinessSetupScreen(editMode: Boolean = false, onDone: () -> Unit = {}) {
                 openingCashPaisa = Money.parseToPaisa(cash) ?: 0,
                 updatedAt = maxOf(Dates.now(), (existing?.updatedAt ?: 0) + 1),
             )
-            container.settings.saveBusiness(profile, dirty = true)
-            container.settings.setOnboardingDone()
-            if (container.settings.currentAuth().loggedIn) container.scheduler.requestSync()
+            if (editMode) {
+                container.settings.saveBusiness(profile, dirty = true)
+                container.scheduler.requestSync()
+            } else {
+                container.auth.createBusiness(profile) // links the shop to the account (or on next sync if offline)
+            }
             onDone()
         }
     }

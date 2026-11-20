@@ -37,9 +37,10 @@ import com.hisabbondhu.app.ui.screens.more.AccountScreen
 import com.hisabbondhu.app.ui.screens.more.ContactScreen
 import com.hisabbondhu.app.ui.screens.more.DeleteDataScreen
 import com.hisabbondhu.app.ui.screens.more.LegalScreen
-import com.hisabbondhu.app.ui.screens.more.LoginScreen
 import com.hisabbondhu.app.ui.screens.more.MoreScreen
+import com.hisabbondhu.app.ui.screens.onboarding.AuthScreen
 import com.hisabbondhu.app.ui.screens.onboarding.BusinessSetupScreen
+import com.hisabbondhu.app.ui.screens.onboarding.ProfileScreen
 import com.hisabbondhu.app.ui.screens.onboarding.LanguageScreen
 import com.hisabbondhu.app.ui.screens.parties.PartiesScreen
 import com.hisabbondhu.app.ui.screens.parties.PartyDetailScreen
@@ -52,7 +53,7 @@ import com.hisabbondhu.app.ui.screens.tx.TransactionsScreen
 import com.hisabbondhu.app.ui.screens.tx.TxDetailScreen
 import com.hisabbondhu.app.ui.screens.tx.TxEntryScreen
 
-enum class StartState { Language, Setup, Main }
+enum class StartState { Language, Auth, Profile, Setup, Main }
 
 object Routes {
     const val HOME = "home"
@@ -86,7 +87,7 @@ object Routes {
     const val TRANSACTIONS = "transactions"
     const val BUSINESS = "business"
     const val ACCOUNT = "account"
-    const val LOGIN = "login"
+    const val PROFILE = "profile"
     const val CONTACT = "contact"
     const val DELETE = "deleteData"
     const val LEGAL = "legal/{page}"
@@ -107,6 +108,8 @@ private val tabs = listOf(
 fun AppRoot(container: AppContainer, start: StartState) {
     when (start) {
         StartState.Language -> LanguageScreen()
+        StartState.Auth -> AuthScreen()
+        StartState.Profile -> ProfileScreen()
         StartState.Setup -> BusinessSetupScreen()
         StartState.Main -> MainNav()
     }
@@ -183,7 +186,7 @@ private fun MainNav() {
 
             composable(Routes.BUSINESS) { BusinessSetupScreen(editMode = true, onDone = { nav.popBackStack() }) }
             composable(Routes.ACCOUNT) { AccountScreen(nav) }
-            composable(Routes.LOGIN) { LoginScreen(nav) }
+            composable(Routes.PROFILE) { ProfileScreen(editMode = true, onDone = { nav.popBackStack() }) }
             composable(Routes.CONTACT) { ContactScreen(nav) }
             composable(Routes.DELETE) { DeleteDataScreen(nav) }
             composable(Routes.LEGAL, listOf(navArgument("page") { type = NavType.StringType })) {

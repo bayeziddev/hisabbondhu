@@ -2,6 +2,7 @@ package com.hisabbondhu.app.data.remote
 
 import com.hisabbondhu.app.data.remote.dto.AuthResponse
 import com.hisabbondhu.app.data.remote.dto.BusinessDto
+import com.hisabbondhu.app.data.remote.dto.BusinessListResponse
 import com.hisabbondhu.app.data.remote.dto.ContactRequest
 import com.hisabbondhu.app.data.remote.dto.OkResponse
 import com.hisabbondhu.app.data.remote.dto.OtpRequest
@@ -9,11 +10,14 @@ import com.hisabbondhu.app.data.remote.dto.OtpRequestResponse
 import com.hisabbondhu.app.data.remote.dto.PullRequest
 import com.hisabbondhu.app.data.remote.dto.PullResponse
 import com.hisabbondhu.app.data.remote.dto.PushRequest
+import com.hisabbondhu.app.data.remote.dto.ProfileRequest
 import com.hisabbondhu.app.data.remote.dto.PushResponse
 import com.hisabbondhu.app.data.remote.dto.RefreshRequest
+import com.hisabbondhu.app.data.remote.dto.UserResponse
 import com.hisabbondhu.app.data.remote.dto.VerifyOtpRequest
 import retrofit2.http.Body
 import retrofit2.http.DELETE
+import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.PUT
@@ -28,6 +32,12 @@ interface HisabApi {
 
     @POST("v1/auth/logout")
     suspend fun logout(@Body body: RefreshRequest): OkResponse
+
+    @PUT("v1/account/profile")
+    suspend fun updateProfile(@Body body: ProfileRequest): UserResponse
+
+    @GET("v1/businesses")
+    suspend fun businesses(): BusinessListResponse
 
     @POST("v1/businesses/link")
     suspend fun linkBusiness(@Body body: BusinessDto): BusinessDto
