@@ -33,7 +33,9 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.hisabbondhu.app"
+        // Play Store package name (fixed forever once the Play Console app exists).
+        // The Kotlin code package stays `com.hisabbondhu.app` (namespace above).
+        applicationId = "com.hisabbondhu.myapp"
         minSdk = 24
         targetSdk = 36
         versionCode = ciVersionCode ?: 1

@@ -78,8 +78,16 @@ jobs:
       - name: Commit raw screenshots
         run: |
           mkdir -p brand/play-store/raw
-          find raw -name '*.png' -exec cp {} brand/play-store/raw/ \;
-          find raw -name 'logcat-*.txt' -exec sh -c 'cp "$1" "brand/play-store/raw/$(basename $(dirname "$1"))-$(basename "$1")"' _ {} \;
+          # Only take a device/language whose tour reached every screen; otherwise keep the previous images.
+          find raw -name 'logcat-*.txt' | while read -r log; do
+            dir=$(dirname "$log"); name=$(basename "$dir"); lang=$(basename "$log" .txt); lang=${lang#logcat-}
+            if grep -q "not found:" "$log"; then
+              echo "::warning title=Screenshot tour incomplete::$name/$lang missed steps; keeping the previous screenshots"
+              continue
+            fi
+            find "$dir" -maxdepth 1 -name "*_${lang}_*.png" -exec cp {} brand/play-store/raw/ \;
+            cp "$log" "brand/play-store/raw/${name}-logcat-${lang}.txt"
+          done
           ls -la brand/play-store/raw
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

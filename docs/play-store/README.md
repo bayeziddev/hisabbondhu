@@ -1,6 +1,6 @@
 # Google Play Console — everything in one place
 
-Package: `com.hisabbondhu.app` · Category: **Business** · Free · Default language: **Bengali (bn-BD)** + English (en-US)
+Package: `com.hisabbondhu.myapp` · Category: **Business** · Free · Default language: **Bengali (bn-BD)** + English (en-US)
 
 ## 1. Graphics (Store presence → Main store listing)
 | Play field | Size | File |

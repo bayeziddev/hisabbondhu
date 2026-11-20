@@ -1,6 +1,7 @@
 package com.hisabbondhu.app
 
 import android.content.Intent
+import android.os.SystemClock
 import android.util.Log
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -32,16 +33,35 @@ class ScreenshotTour {
 
     private fun log(msg: String) = Log.i("ScreenshotTour", msg)
 
+    /** Emulators sometimes show "<app> isn't responding" for the launcher; it would cover the app. */
+    private fun dismissSystemDialogs() {
+        val dialog = device.findObject(By.textContains("responding"))
+            ?: device.findObject(By.textContains("keeps stopping"))
+            ?: return
+        log("dismissing system dialog: ${dialog.text}")
+        (device.findObject(By.text("Wait")) ?: device.findObject(By.text("Close app")))?.click()
+        device.waitForIdle(1_000)
+    }
+
     private fun shot(name: String) {
         device.waitForIdle(3_000)
         Thread.sleep(1_200)
+        dismissSystemDialogs()
         val f = File(out, "${prefix}_${lang}_$name.png")
         val ok = device.takeScreenshot(f)
         log("shot $name ok=$ok")
     }
 
-    private fun find(tag: String, timeout: Long = 20_000): UiObject2? =
-        device.wait(Until.findObject(By.res(tag)), timeout).also { if (it == null) log("not found: $tag") }
+    private fun find(tag: String, timeout: Long = 20_000): UiObject2? {
+        val end = SystemClock.uptimeMillis() + timeout
+        do {
+            dismissSystemDialogs()
+            val wait = (end - SystemClock.uptimeMillis()).coerceIn(0, 3_000)
+            device.wait(Until.findObject(By.res(tag)), wait)?.let { return it }
+        } while (SystemClock.uptimeMillis() < end)
+        log("not found: $tag")
+        return null
+    }
 
     private fun tap(tag: String, timeout: Long = 20_000): Boolean {
         val o = find(tag, timeout) ?: return false

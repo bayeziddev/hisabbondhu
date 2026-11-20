@@ -4,7 +4,7 @@
 set -uo pipefail
 NAME="${1:-phone}"
 LANGS="${2:-bn}"
-PKG=com.hisabbondhu.app.debug
+PKG=com.hisabbondhu.myapp.debug
 APK=android/app/build/outputs/apk/debug/app-debug.apk
 TEST_APK=android/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
 OUT="screenshots/$NAME"
@@ -16,6 +16,9 @@ adb install -r -g "$TEST_APK"
 
 # No on-screen keyboard in screenshots (text is entered through accessibility).
 for ime in $(adb shell ime list -s); do adb shell ime disable "$ime" >/dev/null 2>&1 || true; done
+
+# Don't let system crash/ANR dialogs (e.g. a slow launcher) cover the app.
+adb shell settings put global hide_error_dialogs 1 >/dev/null 2>&1 || true
 
 # Clean, realistic status bar
 adb shell settings put global sysui_demo_allowed 1 || true
