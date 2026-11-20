@@ -34,6 +34,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -158,7 +159,7 @@ fun BusinessSetupScreen(editMode: Boolean = false, onDone: () -> Unit = {}) {
                 supportingText = if (nameError) { { Text(stringResource(R.string.error_required)) } } else null,
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Words),
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().testTag("setup_name"),
             )
             Spacer(Modifier.height(10.dp))
             OutlinedTextField(

@@ -52,6 +52,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
@@ -235,7 +236,7 @@ fun TxEntryScreen(nav: NavHostController) {
                     label = stringResource(amountLabel(type)),
                     big = true,
                     isError = vm.error == Reason.AMOUNT_REQUIRED,
-                    modifier = Modifier.focusRequester(amountFocus),
+                    modifier = Modifier.focusRequester(amountFocus).testTag("amount"),
                     imeAction = ImeAction.Done,
                 )
             }

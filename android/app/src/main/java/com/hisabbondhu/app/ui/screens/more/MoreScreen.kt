@@ -134,7 +134,7 @@ fun MoreScreen(nav: NavHostController) {
             }
             item {
                 SectionCard(title = stringResource(R.string.section_help_legal), contentPadding = PaddingValues(vertical = 8.dp)) {
-                    NavRow(Icons.Rounded.SupportAgent, stringResource(R.string.contact_us), stringResource(R.string.contact_us_desc)) { nav.navigate(Routes.CONTACT) }
+                    NavRow(Icons.Rounded.SupportAgent, stringResource(R.string.contact_us), stringResource(R.string.contact_us_desc), tag = "nav_contact") { nav.navigate(Routes.CONTACT) }
                     RowDivider()
                     NavRow(Icons.Rounded.Chat, stringResource(R.string.whatsapp_us), "+" + BuildConfig.SUPPORT_WHATSAPP, tint = androidx.compose.ui.graphics.Color(0xFF25D366)) {
                         Share.whatsApp(context, BuildConfig.SUPPORT_WHATSAPP, context.getString(R.string.whatsapp_greeting))

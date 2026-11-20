@@ -35,6 +35,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -102,7 +103,7 @@ fun HomeScreen(nav: NavHostController) {
                     Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 4.dp),
                     horizontalArrangement = Arrangement.spacedBy(10.dp),
                 ) {
-                    QuickAction(TxType.SALE.icon(), stringResource(R.string.action_sale), mc.sale, Modifier.weight(1f)) {
+                    QuickAction(TxType.SALE.icon(), stringResource(R.string.action_sale), mc.sale, Modifier.weight(1f).testTag("qa_sale")) {
                         nav.navigate(Routes.txNew(TxType.SALE))
                     }
                     QuickAction(TxType.PAYMENT_IN.icon(), stringResource(R.string.action_payment_in), mc.paymentIn, Modifier.weight(1f)) {

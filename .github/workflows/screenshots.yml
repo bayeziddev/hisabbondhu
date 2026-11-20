@@ -1,0 +1,61 @@
+name: Screenshots — phone & tablets (emulator)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, 'claude/**' ]
+    paths: [ 'android/**', '.github/workflows/screenshots.yml' ]
+
+concurrency:
+  group: screenshots-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tour:
+    name: ${{ matrix.name }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: phone        # 1080 x 1920 (Play phone screenshots)
+            profile: pixel_2
+            langs: "bn en"
+          - name: tablet7      # 7-inch tablet, 1200 x 1920 portrait
+            profile: "Nexus 7 2013"
+            langs: "bn"
+          - name: tablet10     # 10-inch tablet, 2560 x 1600 landscape
+            profile: "Nexus 10"
+            langs: "bn"
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Build app + tour APKs
+        working-directory: android
+        run: ./gradlew --no-daemon assembleDebug assembleDebugAndroidTest
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Run screenshot tour on emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          target: google_apis
+          arch: x86_64
+          profile: ${{ matrix.profile }}
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -no-snapshot
+          script: bash android/tools/screenshot-tour.sh ${{ matrix.name }} "${{ matrix.langs }}"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: screenshots-${{ matrix.name }}
+          path: screenshots/
+          retention-days: 30

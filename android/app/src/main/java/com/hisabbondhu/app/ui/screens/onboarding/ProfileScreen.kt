@@ -36,6 +36,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
@@ -135,7 +136,7 @@ fun ProfileScreen(editMode: Boolean = false, onDone: () -> Unit = {}) {
                 singleLine = true,
                 isError = error == "name_required",
                 keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Words),
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().testTag("profile_name"),
             )
             Spacer(Modifier.height(10.dp))
             OutlinedTextField(
@@ -149,7 +150,7 @@ fun ProfileScreen(editMode: Boolean = false, onDone: () -> Unit = {}) {
                 isError = error == "invalid_phone",
                 supportingText = { Text(stringResource(R.string.phone_not_verified_note)) },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().testTag("profile_phone"),
             )
             Spacer(Modifier.height(6.dp))
             Row(
