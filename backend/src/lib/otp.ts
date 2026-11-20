@@ -10,16 +10,22 @@ const MAX_ATTEMPTS = 5;
 
 export const otpHash = (pepper: string, target: string, code: string) => sha256Hex(`${pepper}:${target}:${code}`);
 
-/** Rate-limits, stores a hashed code and returns the plain code (to be sent by email/SMS). */
+/**
+ * Rate-limits, stores a hashed code and returns the plain code (to be sent by email/SMS).
+ * A fixed code (the Google Play reviewer account) skips the per-address limits so several
+ * reviewers can sign in back to back; the per-IP limit and the attempt limit still apply.
+ */
 export async function createOtp(env: Env, channel: 'email' | 'sms', target: string, ip: string, fixedCode?: string): Promise<string> {
   const db = env.DB;
   const t = Date.now();
-  const recent = await db
-    .prepare('SELECT COUNT(*) AS n, MAX(created_at) AS last FROM otp_codes WHERE target = ? AND created_at > ?')
-    .bind(target, t - 3600_000)
-    .first<{ n: number; last: number | null }>();
-  if (recent?.last && t - recent.last < RESEND_AFTER_S * 1000) fail(429, 'rate_limited', 'Please wait before requesting another code');
-  if (recent && recent.n >= MAX_PER_TARGET_HOUR) fail(429, 'rate_limited');
+  if (fixedCode === undefined) {
+    const recent = await db
+      .prepare('SELECT COUNT(*) AS n, MAX(created_at) AS last FROM otp_codes WHERE target = ? AND created_at > ?')
+      .bind(target, t - 3600_000)
+      .first<{ n: number; last: number | null }>();
+    if (recent?.last && t - recent.last < RESEND_AFTER_S * 1000) fail(429, 'rate_limited', 'Please wait before requesting another code');
+    if (recent && recent.n >= MAX_PER_TARGET_HOUR) fail(429, 'rate_limited');
+  }
   const byIp = await db
     .prepare('SELECT COUNT(*) AS n FROM otp_codes WHERE ip = ? AND created_at > ?')
     .bind(ip, t - 3600_000)
