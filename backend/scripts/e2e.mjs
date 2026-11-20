@@ -45,6 +45,20 @@ check('otp single-use', reuse.status === 400, reuse);
 let token = ver.json.access_token;
 let refresh = ver.json.refresh_token;
 
+// Google Play reviewer account: fixed code, no email sent, never throttled per address.
+const REVIEW_EMAIL = process.env.REVIEW_EMAIL || 'play.review@example.com';
+const REVIEW_OTP = process.env.REVIEW_OTP || '246810';
+const r1req = await call('POST', '/v1/auth/request-otp', { email: REVIEW_EMAIL });
+check('review: request code', r1req.status === 200, r1req);
+const r2req = await call('POST', '/v1/auth/request-otp', { email: REVIEW_EMAIL });
+check('review: second reviewer not throttled', r2req.status === 200, r2req);
+const rWrong = await call('POST', '/v1/auth/verify-otp', { email: REVIEW_EMAIL, code: REVIEW_OTP === '000000' ? '111111' : '000000' });
+check('review: wrong code rejected', rWrong.status === 400 && rWrong.json.error === 'invalid_code', rWrong);
+const rv1 = await call('POST', '/v1/auth/verify-otp', { email: REVIEW_EMAIL, code: REVIEW_OTP, device_name: 'reviewer 1' });
+check('review: fixed code signs in', rv1.status === 200 && !!rv1.json.access_token && rv1.json.user.email === REVIEW_EMAIL, rv1);
+const rv2 = await call('POST', '/v1/auth/verify-otp', { email: REVIEW_EMAIL, code: REVIEW_OTP, device_name: 'reviewer 2' });
+check('review: second reviewer signs in', rv2.status === 200 && !!rv2.json.access_token && rv2.json.new_user === false, rv2);
+
 check('auth required', (await call('GET', '/v1/account')).status === 401);
 
 const badProfile = await call('PUT', '/v1/account/profile', { name: 'Rahim', phone: '123' }, token);
