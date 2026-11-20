@@ -14,7 +14,7 @@ Time needed: about 1–2 hours (plus Google's review time).
 `versionCode` = the workflow run number, so every build can be uploaded to Play without editing code.
 
 ## Step 2 — Cloudflare backend (online backup & sync)
-The app works fully **offline without this**. You need it for login, backup, multi-phone sync and web data deletion.
+Required: every shop signs in once (email code). After that the app works offline and syncs when online.
 
 1. Create a free Cloudflare account → note the **Account ID**.
 2. Create an **API token** (permissions listed in [`SECRETS.md`](SECRETS.md#2-cloudflare-backend-deploys-the-api-automatically)).
@@ -29,13 +29,22 @@ The app works fully **offline without this**. You need it for login, backup, mul
 > **Queues** need a plan that includes them. If not available, the workflow deploys without the queue and the
 > Worker does background jobs inline — nothing else changes.
 
-### SMS gateway for OTP (Bangladesh)
-Pick one, get an API key + approved sender ID (masking), then set `SMS_PROVIDER` variable and SMS secrets:
-- **BulkSMSBD** → `SMS_PROVIDER=bulksmsbd`
-- **SSL Wireless** → `SMS_PROVIDER=sslwireless`
-- Any other gateway → put a tiny relay in front and use `SMS_PROVIDER=webhook` + `SMS_API_URL`
+### Email login codes with Resend (free tier)
+1. Sign up at resend.com → **Domains → Add domain** → `sayadbayezid.com` → add the shown DNS records (SPF/DKIM) at your domain DNS → wait for **Verified**.
+2. **API Keys → Create API key** (Sending access) → save as GitHub secret `RESEND_API_KEY`.
+3. Codes are sent from `HisabBondhu <info@sayadbayezid.com>`; replies go to `support@sayadbayezid.com` (change in `backend/wrangler.toml`).
+4. Add `REVIEW_EMAIL` + `REVIEW_OTP` secrets so Google reviewers can sign in without a real inbox.
 
-Until SMS is configured, login will fail with “sms_failed” (offline use is unaffected).
+### SMS phone verification (later, when you start earning)
+Already built. Get a BulkSMSBD or SSL Wireless API key + sender ID, add `SMS_API_KEY`/`SMS_SENDER_ID`, set variables
+`SMS_PROVIDER=bulksmsbd` and `PHONE_OTP_ENABLED=true`, re-run the Backend workflow.
+
+### Your leads (every shop that signs up)
+```bash
+curl -H "Authorization: Bearer $ADMIN_TOKEN" "https://<your-api>.workers.dev/v1/admin/leads?format=csv" -o leads.csv
+```
+Columns: name, email, phone, marketing opt-in, shop name/type/address, sign-up & last-active dates, number of entries.
+Only send promotions to rows with `marketing_opt_in = yes`.
 
 ## Step 3 — Website (Privacy Policy, Terms, Data deletion, Contact)
 1. GitHub → **Settings → Pages → Build and deployment → Source: GitHub Actions**.
@@ -44,8 +53,7 @@ Until SMS is configured, login will fail with “sms_failed” (offline use is u
    - Privacy Policy: `https://bayeziddev.github.io/hisabbondhu/privacy.html`
    - Data deletion: `https://bayeziddev.github.io/hisabbondhu/data-deletion.html`
    - Terms: `…/terms.html` · Your rights: `…/your-rights.html` · Contact: `…/contact.html`
-4. **Important:** the support email is a placeholder (`support@hisabbondhu.com`). Set the `SUPPORT_EMAIL` variable to
-   an inbox you own (or buy the `hisabbondhu.com` domain), then re-run the website and Android workflows.
+4. Support contact is set to `support@sayadbayezid.com` and WhatsApp `+8801519601517` everywhere (app, website, policies).
 
 ## Step 4 — Google Play Console
 Follow [`play-store/release-checklist.md`](play-store/release-checklist.md). Copy-paste texts are in

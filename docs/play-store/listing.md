@@ -8,10 +8,10 @@ Default language: **Bengali – bn-BD** · Add translation: **English (United St
 | Short description (≤80) | ইন্টারনেট ছাড়াই দোকানের বিক্রি, বাকি, খরচ ও স্টকের সহজ বাংলা হিসাব খাতা | Offline Bangla shop ledger: sales, dues (baki), expenses & stock in one app |
 
 - **Category:** Business · **Tags:** Accounting, Business, Inventory management, Productivity
-- **Contact email:** your support email · **Website:** https://bayeziddev.github.io/hisabbondhu/
+- **Contact email:** support@sayadbayezid.com · **Phone:** +8801519601517 · **Website:** https://bayeziddev.github.io/hisabbondhu/
 - **Privacy policy:** https://bayeziddev.github.io/hisabbondhu/privacy.html
 - **Graphics:** app icon `brand/play-store/icon-512.png`, feature graphic `brand/play-store/feature-graphic-1024x500.png`
-- **Phone screenshots:** 4–8 images (1080×1920 or 1080×2400) taken from the release APK: Dashboard, Sale entry, Customer ledger, Reports, Offline banner, Bangla message share.
+- **Screenshots:** ready in `brand/play-store/screenshots/` (phone 1080×1920, 7-inch 1080×1920, 10-inch & Chromebook 1920×1080) — real app captures from the emulator tour.
 
 ## Full description — Bangla
 ```
@@ -48,12 +48,15 @@ Default language: **Bengali – bn-BD** · Add translation: **English (United St
 ✅ নির্ভুল ও বিশ্বাসযোগ্য
 টাকা পয়সা পর্যন্ত নির্ভুল হিসাব। ভুল হলে হিসাব মুছে না ফেলে বাতিল করা হয়, তাই ইতিহাস সবসময় পরিষ্কার।
 
+✅ নিজের নিরাপদ অ্যাকাউন্ট
+প্রতিটি দোকানের আলাদা অ্যাকাউন্ট — ইমেইলে আসা কোড দিয়ে প্রবেশ, কোনো পাসওয়ার্ড মনে রাখতে হবে না। ফোন হারালেও নতুন ফোনে প্রবেশ করলেই সব হিসাব ফিরে আসবে।
+
 ✅ আপনার তথ্য আপনার
-লগইন ঐচ্ছিক। কোনো বিজ্ঞাপন নেই, আপনার তথ্য বিক্রি করা হয় না। যেকোনো সময় ডেটা এক্সপোর্ট বা স্থায়ীভাবে মুছে ফেলতে পারবেন।
+কোনো বিজ্ঞাপন নেই, আপনার তথ্য বিক্রি করা হয় না। যেকোনো সময় ডেটা এক্সপোর্ট বা স্থায়ীভাবে মুছে ফেলতে পারবেন।
 
 মুদি দোকান, জেনারেল স্টোর, ফার্মেসি, রেস্টুরেন্ট, কাপড়ের দোকান, মোবাইল-ইলেকট্রনিক্স, পাইকারি ও সার্ভিস ব্যবসার জন্য উপযোগী।
 
-প্রশ্ন বা পরামর্শ? অ্যাপের “যোগাযোগ করুন” থেকে লিখুন।
+প্রশ্ন বা পরামর্শ? WhatsApp: +880 1519-601517 · ইমেইল: support@sayadbayezid.com
 ```
 
 ## Full description — English
@@ -91,10 +94,13 @@ Every entry is saved on your phone first. When you're online it backs up and syn
 ✅ Accurate and trustworthy
 Money is calculated to the paisa. Mistakes are cancelled with a reversal instead of being deleted, so your history stays clean.
 
+✅ Your own secure account
+Every shop gets its own account — sign in with a code sent to your email, no password to remember. Lost your phone? Sign in on a new one and all your records come back.
+
 ✅ Your data is yours
-Login is optional. No ads, we never sell your data, and you can export or permanently delete it at any time.
+No ads, we never sell your data, and you can export or permanently delete it at any time.
 
 Great for grocery shops, general stores, pharmacies, restaurants, fashion, mobile & electronics, wholesale and service businesses.
 
-Questions or ideas? Use “Contact us” inside the app.
+Questions or ideas? WhatsApp: +880 1519-601517 · Email: support@sayadbayezid.com
 ```

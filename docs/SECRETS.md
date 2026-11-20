@@ -31,11 +31,11 @@ base64 -w0 hisabbondhu-upload.jks   # macOS: base64 -i hisabbondhu-upload.jks
 | `CLOUDFLARE_ACCOUNT_ID` | ✅ | Cloudflare dashboard → Workers & Pages → right sidebar “Account ID” |
 | `JWT_SECRET` | ✅ | Random 48+ byte string — signs login tokens (`openssl rand -base64 48`) |
 | `OTP_PEPPER` | ✅ | Random 32+ byte hex — hashes OTP codes (`openssl rand -hex 32`) |
-| `SMS_API_KEY` | ✅ for real SMS | API key from your SMS gateway (BulkSMSBD / SSL Wireless) |
-| `SMS_SENDER_ID` | ✅ for real SMS | Approved sender ID / masking name from the gateway |
-| `SMS_API_URL` | only for `webhook` provider | Your SMS relay URL |
-| `REVIEW_PHONE` | optional | Test number for Google Play reviewers (no SMS is sent to it), e.g. a SIM you own |
-| `REVIEW_OTP` | optional | Fixed 6-digit code for `REVIEW_PHONE` |
+| `RESEND_API_KEY` | ✅ | resend.com → API Keys → Create (permission: Sending access). Login codes are emailed from `info@sayadbayezid.com` |
+| `ADMIN_TOKEN` | ✅ | Random 32+ char string — protects `/v1/admin/leads` (download your shop leads as CSV) |
+| `REVIEW_EMAIL` | ✅ for Play review | Test email for Google reviewers, e.g. `play.review@sayadbayezid.com` (no email is sent to it) |
+| `REVIEW_OTP` | ✅ for Play review | Fixed 6-digit code for `REVIEW_EMAIL` |
+| `SMS_API_KEY`, `SMS_SENDER_ID`, `SMS_API_URL` | later | Only when you turn on SMS phone verification (`PHONE_OTP_ENABLED=true`) |
 | `SUPPORT_WEBHOOK_URL` | optional | Slack/Discord webhook to get contact-form messages instantly |
 
 > Changing `JWT_SECRET` logs everyone out. Changing `OTP_PEPPER` only invalidates codes sent in the last 5 minutes.
@@ -48,6 +48,8 @@ base64 -w0 hisabbondhu-upload.jks   # macOS: base64 -i hisabbondhu-upload.jks
 |---|---|---|
 | `API_BASE_URL` | `https://hisabbondhu-api.<your-subdomain>.workers.dev/` | Android build + website forms |
 | `WEBSITE_URL` | `https://bayeziddev.github.io/hisabbondhu/` | Android build (legal links) |
-| `SUPPORT_EMAIL` | `support@yourdomain.com` | Android build + website |
+| `SUPPORT_EMAIL` | `support@sayadbayezid.com` (already the default) | Android build + website |
 | `ALLOWED_ORIGINS` | `https://bayeziddev.github.io` | API CORS for website forms |
-| `SMS_PROVIDER` | `bulksmsbd` or `sslwireless` | API |
+| `SMS_PROVIDER` | `bulksmsbd` or `sslwireless` (later) | API |
+| `PHONE_OTP_ENABLED` | `false` now, `true` when SMS is paid for | API |
+| `SUPPORT_WHATSAPP` | `8801519601517` | Android build (Contact screen) |
