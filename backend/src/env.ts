@@ -9,7 +9,7 @@ export type Job =
 
 export interface Env {
   DB: D1Database;
-  FILES: R2Bucket;
+  FILES?: R2Bucket;             // optional: R2 needs activation (payment method) in Cloudflare
   JOBS?: Queue<Job>;
   API_LIMITER?: RateLimiter;
 

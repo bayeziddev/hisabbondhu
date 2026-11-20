@@ -84,8 +84,16 @@ jobs:
           echo "D1 database id: $ID"
           sed -i "s/__D1_DATABASE_ID__/$ID/" wrangler.toml
 
-      - name: Create R2 bucket (if missing)
-        run: npx wrangler r2 bucket create hisabbondhu-files || echo "bucket exists"
+      - name: R2 bucket (optional — needs R2 activated in Cloudflare)
+        run: |
+          if npx wrangler r2 bucket list 2>/dev/null | grep -q "hisabbondhu-files"; then
+            echo "R2 bucket exists"
+          elif npx wrangler r2 bucket create hisabbondhu-files; then
+            echo "R2 bucket created"
+          else
+            echo "::warning title=R2 not available::R2 is not activated on this Cloudflare account (it needs a payment method, even for the free tier). Deploying without file storage — D1's automatic 30-day backups still protect your data."
+            sed -i '/^\[\[r2_buckets\]\]/,/^$/d' wrangler.toml
+          fi
 
       - name: Create queue (if missing)
         run: |
@@ -101,13 +109,15 @@ jobs:
 
       - name: Deploy Worker
         id: deploy
+        shell: bash
         run: |
+          set -euo pipefail   # a failed deploy must fail the job (it was hidden by "| tee" before)
           ARGS=""
           [ -n "${{ vars.ALLOWED_ORIGINS }}" ] && ARGS="$ARGS --var ALLOWED_ORIGINS:${{ vars.ALLOWED_ORIGINS }}"
           [ -n "${{ vars.SMS_PROVIDER }}" ] && ARGS="$ARGS --var SMS_PROVIDER:${{ vars.SMS_PROVIDER }}"
           [ -n "${{ vars.PHONE_OTP_ENABLED }}" ] && ARGS="$ARGS --var PHONE_OTP_ENABLED:${{ vars.PHONE_OTP_ENABLED }}"
-          npx wrangler deploy $ARGS | tee deploy.log
-          URL=$(grep -oE 'https://[a-zA-Z0-9.-]+\.workers\.dev' deploy.log | head -1)
+          npx wrangler deploy $ARGS 2>&1 | tee deploy.log
+          URL=$(grep -oE 'https://[a-zA-Z0-9.-]+\.workers\.dev' deploy.log | head -1 || true)
           echo "url=$URL" >> "$GITHUB_OUTPUT"
 
       - name: Upload Worker secrets
@@ -133,7 +143,9 @@ jobs:
       - name: Smoke test
         run: |
           URL="${{ steps.deploy.outputs.url }}"
-          if [ -n "$URL" ]; then
+          if [ -z "$URL" ]; then
+            echo "::warning::No workers.dev URL in the deploy output. Enable it: Cloudflare → Workers → hisabbondhu-api → Settings → Domains & Routes → workers.dev → Enable."
+          else
             sleep 5
             curl -sf "$URL/v1/health" | tee /dev/stderr | grep -q '"ok":true'
             echo "### API deployed: $URL" >> "$GITHUB_STEP_SUMMARY"
