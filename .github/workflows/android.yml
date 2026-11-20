@@ -117,6 +117,13 @@ jobs:
             syms=$(unzip -l app/build/outputs/bundle/release/app-release.aab | grep -c 'BUNDLE-METADATA/com.android.tools.build.debugsymbols/' || true)
             echo "Native debug symbol files in AAB: $syms"
             [ "$syms" -gt 0 ] || echo "::warning title=No native debug symbols::Play Console will warn about missing debug symbols"
+            echo "--- native libs and their symbol sections"
+            readelf="$(ls -d "${ANDROID_NDK_HOME:-/nonexistent}"/toolchains/llvm/prebuilt/*/bin/llvm-readelf 2>/dev/null | head -1)"
+            find app/build/intermediates -path '*merged_native_libs/release*' -name '*.so' | while read -r so; do
+              echo "$so: $( ([ -n "$readelf" ] && "$readelf" -S "$so" || readelf -S "$so") 2>/dev/null | grep -oE '\.(symtab|debug_info|dynsym)' | sort -u | tr '\n' ' ')"
+            done
+            echo "--- extracted debug metadata"
+            find app/build/intermediates -path '*native_debug_metadata*' -type f | head -20
             cp app/build/outputs/apk/release/app-release.apk "../dist/HisabBondhu-${VERSION_NAME}-release.apk"
             cp app/build/outputs/mapping/release/mapping.txt "../dist/mapping-${VERSION_NAME}.txt" || true
           fi
