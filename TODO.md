@@ -61,7 +61,7 @@ Legend: `[x]` done in repo · `[ ]` pending · 👤 = needs the owner (you) to d
 - [x] Cron cleanup of expired OTP/sessions
 - [x] Unit tests (vitest) + end-to-end tests on local Worker/D1 (28 checks)
 - [ ] 👤 Add Cloudflare secrets, then run the **Backend** workflow — it creates D1 / R2 / Queue and deploys automatically (see `docs/SETUP.md`)
-- [ ] 👤 Choose SMS gateway for OTP (e.g. BulkSMSBD / SSL Wireless) and add API key
+- [ ] 👤 Verify `sayadbayezid.com` in Resend and add `RESEND_API_KEY` (SMS gateway later, when earning)
 
 ## 3. Website (GitHub Pages) — Google Play required URLs
 - [x] Home / landing page
@@ -88,7 +88,10 @@ Legend: `[x]` done in repo · `[ ]` pending · 👤 = needs the owner (you) to d
 - [x] Release checklist — `docs/play-store/release-checklist.md`
 - [ ] 👤 Create Play Console app, enable **Play App Signing**, upload AAB to Internal testing
 - [ ] 👤 Closed testing with 12+ testers for 14 days (required for new personal developer accounts)
-- [ ] 👤 Phone screenshots (min 2, 1080×1920) taken from the built app
+- [x] Phone / 7" / 10" / Chromebook screenshots captured from the real app on emulators (`brand/play-store/screenshots/`)
+- [x] Data safety CSV for import (`docs/play-store/data-safety/hisabbondhu-data-safety.csv`)
+- [x] Email OTP login (Resend) + required profile (name, mobile) — SMS verification ready for later
+- [ ] Tablet-optimised layout (centered content / navigation rail on 10")
 
 ## 6. Phase 2+ (after MVP)
 - [ ] PDF invoice, barcode scanner, thermal printer
