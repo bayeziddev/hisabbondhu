@@ -3,5 +3,5 @@ window.HISAB_CONFIG = {
   apiBase: "__API_BASE__",
   supportEmail: "support@sayadbayezid.com",
   whatsapp: "8801519601517",
-  playUrl: "https://play.google.com/store/apps/details?id=com.hisabbondhu.app"
+  playUrl: "https://play.google.com/store/apps/details?id=com.hisabbondhu.myapp"
 };

@@ -4,7 +4,7 @@
 set -uo pipefail
 NAME="${1:-phone}"
 LANGS="${2:-bn}"
-PKG=com.hisabbondhu.app.debug
+PKG=com.hisabbondhu.myapp.debug
 APK=android/app/build/outputs/apk/debug/app-debug.apk
 TEST_APK=android/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
 OUT="screenshots/$NAME"
