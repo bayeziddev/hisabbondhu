@@ -1,31 +1,37 @@
 --------- beginning of main
-11-20 07:02:54.459  3310  3836 I TestRunner: run started: 1 tests
-11-20 07:02:54.460  3310  3836 I TestRunner: started: tour(com.hisabbondhu.app.ScreenshotTour)
-11-20 07:02:57.764  3310  3836 I ScreenshotTour: step language
-11-20 07:02:59.850  3310  3836 I ScreenshotTour: shot 01_language ok=true
-11-20 07:03:02.688  3310  3836 I ScreenshotTour: step signin
-11-20 07:03:05.222  3310  3836 I ScreenshotTour: shot 02_signin ok=true
-11-20 07:03:05.222  3310  3836 I ScreenshotTour: step profile
-11-20 07:03:07.382  3310  3836 I ScreenshotTour: shot 03_profile ok=true
-11-20 07:03:07.382  3310  3836 I ScreenshotTour: step setup
-11-20 07:03:09.179  3310  3836 I ScreenshotTour: shot 04_setup ok=true
-11-20 07:03:09.180  3310  3836 I ScreenshotTour: step home
-11-20 07:03:13.657  3310  3836 I ScreenshotTour: shot 05_home ok=true
-11-20 07:03:13.657  3310  3836 I ScreenshotTour: step sale
-11-20 07:03:15.974  3310  3836 I ScreenshotTour: shot 06_sale_entry ok=true
-11-20 07:03:17.633  3310  3836 I ScreenshotTour: step customers
-11-20 07:03:19.606  3310  3836 I ScreenshotTour: shot 07_customers ok=true
-11-20 07:03:22.400  3310  3836 I ScreenshotTour: shot 08_customer_ledger ok=true
-11-20 07:03:24.052  3310  3836 I ScreenshotTour: step stock
-11-20 07:03:25.801  3310  3836 I ScreenshotTour: shot 09_stock ok=true
-11-20 07:03:25.802  3310  3836 I ScreenshotTour: step reports
-11-20 07:03:27.361  3310  3836 I ScreenshotTour: shot 10_reports ok=true
-11-20 07:03:27.362  3310  3836 I ScreenshotTour: step more
-11-20 07:03:29.516  3310  3836 I ScreenshotTour: shot 11_more ok=true
-11-20 07:03:29.516  3310  3836 I ScreenshotTour: step contact
-11-20 07:03:32.618  3310  3836 I ScreenshotTour: shot 12_contact ok=true
-11-20 07:03:34.261  3310  3836 I ScreenshotTour: step dark
-11-20 07:03:40.141  3310  3836 I ScreenshotTour: shot 13_home_dark ok=true
-11-20 07:03:40.199  3310  3836 I ScreenshotTour: tour finished
-11-20 07:03:40.199  3310  3836 I TestRunner: finished: tour(com.hisabbondhu.app.ScreenshotTour)
-11-20 07:03:40.257  3310  3836 I TestRunner: run finished: ১ tests, ০ failed, ০ ignored
+11-20 07:20:21.975  3830  4243 I TestRunner: run started: 1 tests
+11-20 07:20:22.010  3830  4243 I TestRunner: started: tour(com.hisabbondhu.app.ScreenshotTour)
+11-20 07:20:53.012  3830  4243 I ScreenshotTour: step language
+11-20 07:21:23.087  3830  4243 I ScreenshotTour: not found: lang_start
+11-20 07:21:24.858  3830  4243 I ScreenshotTour: shot 01_language ok=true
+11-20 07:21:44.872  3830  4243 I ScreenshotTour: not found: lang_start
+11-20 07:21:47.372  3830  4243 I ScreenshotTour: step signin
+11-20 07:22:07.375  3830  4243 I ScreenshotTour: not found: auth_email
+11-20 07:22:08.720  3830  4243 I ScreenshotTour: shot 02_signin ok=true
+11-20 07:22:08.720  3830  4243 I ScreenshotTour: step profile
+11-20 07:22:28.829  3830  4243 I ScreenshotTour: not found: profile_name
+11-20 07:22:48.893  3830  4243 I ScreenshotTour: not found: profile_phone
+11-20 07:22:50.230  3830  4243 I ScreenshotTour: shot 03_profile ok=true
+11-20 07:22:50.230  3830  4243 I ScreenshotTour: step setup
+11-20 07:23:10.303  3830  4243 I ScreenshotTour: not found: setup_name
+11-20 07:23:11.642  3830  4243 I ScreenshotTour: shot 04_setup ok=true
+11-20 07:23:11.642  3830  4243 I ScreenshotTour: step home
+11-20 07:23:41.723  3830  4243 I ScreenshotTour: not found: qa_sale
+11-20 07:23:44.561  3830  4243 I ScreenshotTour: shot 05_home ok=true
+11-20 07:23:44.561  3830  4243 I ScreenshotTour: step sale
+11-20 07:24:04.605  3830  4243 I ScreenshotTour: not found: qa_sale
+11-20 07:24:04.605  3830  4243 I ScreenshotTour: step customers
+11-20 07:24:24.605  3830  4243 I ScreenshotTour: not found: tab_parties
+11-20 07:24:24.605  3830  4243 I ScreenshotTour: step stock
+11-20 07:24:44.698  3830  4243 I ScreenshotTour: not found: tab_products
+11-20 07:24:44.698  3830  4243 I ScreenshotTour: step reports
+11-20 07:25:04.725  3830  4243 I ScreenshotTour: not found: tab_reports
+11-20 07:25:04.725  3830  4243 I ScreenshotTour: step more
+11-20 07:25:24.728  3830  4243 I ScreenshotTour: not found: tab_more
+11-20 07:25:24.728  3830  4243 I ScreenshotTour: step contact
+11-20 07:25:44.730  3830  4243 I ScreenshotTour: not found: nav_contact
+11-20 07:25:44.730  3830  4243 I ScreenshotTour: step dark
+11-20 07:26:07.907  3830  4243 I ScreenshotTour: not found: tab_home
+11-20 07:26:07.988  3830  4243 I ScreenshotTour: tour finished
+11-20 07:26:07.989  3830  4243 I TestRunner: finished: tour(com.hisabbondhu.app.ScreenshotTour)
+11-20 07:26:07.992  3830  4243 I TestRunner: run finished: 1 tests, 0 failed, 0 ignored
