@@ -20,6 +20,7 @@
       a.textContent = cfg.supportEmail; a.href = 'mailto:' + cfg.supportEmail;
     });
     document.querySelectorAll('[data-play]').forEach(function (a) { a.href = cfg.playUrl; });
+    if (cfg.whatsapp) document.querySelectorAll('[data-whatsapp]').forEach(function (a) { a.href = 'https://wa.me/' + cfg.whatsapp; });
     var y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
   });
   window.hbApi = function (path, opts) {

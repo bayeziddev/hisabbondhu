@@ -55,7 +55,8 @@ FOOT = """
   <span>© <span id="year">2026</span> HisabBondhu · হিসাববন্ধু</span>
   <a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms</a><a href="your-rights.html">Your rights</a>
   <a href="data-deletion.html">Delete account &amp; data</a><a href="contact.html">Contact</a>
-  <a data-email href="mailto:support@hisabbondhu.com">support@hisabbondhu.com</a>
+  <a data-email href="mailto:support@sayadbayezid.com">support@sayadbayezid.com</a>
+  <a data-whatsapp href="https://wa.me/8801519601517">WhatsApp +880 1519-601517</a>
 </div></footer>
 </body>
 </html>
@@ -71,7 +72,8 @@ def page(fname, title, desc, active, body):
 def bi(bn, en):
     return f'<div class="i18n" lang="bn">{bn}</div>\n<div class="i18n" lang="en">{en}</div>'
 
-EMAIL = '<a data-email href="mailto:support@hisabbondhu.com">support@hisabbondhu.com</a>'
+EMAIL = '<a data-email href="mailto:support@sayadbayezid.com">support@sayadbayezid.com</a>'
+WA = '<a data-whatsapp href="https://wa.me/8801519601517">+880 1519-601517</a>'
 
 # ---------------------------------------------------------------- index
 page("index.html", "হিসাববন্ধু — দোকানের হিসাব, সবসময় হাতের কাছে | HisabBondhu",
@@ -97,7 +99,7 @@ page("index.html", "হিসাববন্ধু — দোকানের হ
   <h2>কেন হিসাববন্ধু?</h2>
   <ul>
     <li><b>অফলাইন-ফার্স্ট:</b> ইন্টারনেট না থাকলেও বিক্রি, বাকি, খরচ সব লিখুন। হিসাব আগে ফোনে সংরক্ষিত হয়।</li>
-    <li><b>নিজে থেকে sync:</b> লগইন করলে নেট এলেই ব্যাকআপ — অ্যাপ বন্ধ থাকলেও। ফোন হারালেও হিসাব হারাবে না।</li>
+    <li><b>নিজের অ্যাকাউন্ট ও নিজে থেকে ব্যাকআপ:</b> প্রতিটি দোকানের আলাদা অ্যাকাউন্ট (ইমেইল কোড দিয়ে প্রবেশ)। নেট এলেই ব্যাকআপ — ফোন হারালেও হিসাব হারাবে না।</li>
     <li><b>বাকির খাতা:</b> প্রতিটি কাস্টমার ও সাপ্লায়ারের পাবো/দেবো, রিমাইন্ডার, WhatsApp/SMS-এ বাংলা মেসেজ, PDF স্টেটমেন্ট।</li>
     <li><b>স্টক:</b> বিক্রি ও কেনায় স্টক নিজে থেকে কমে-বাড়ে, কম স্টকের সতর্কতা।</li>
     <li><b>রিপোর্ট:</b> আজকের বিক্রি, নগদ আদায়, খরচ, আনুমানিক লাভ; Excel (CSV) ও সম্পূর্ণ ব্যাকআপ ফাইল।</li>
@@ -107,7 +109,7 @@ page("index.html", "হিসাববন্ধু — দোকানের হ
   <h2>Why HisabBondhu?</h2>
   <ul>
     <li><b>Offline-first:</b> record sales, dues and expenses with no internet. Every entry is saved on the phone first.</li>
-    <li><b>Automatic sync:</b> once you log in, data backs up whenever you're online — even if the app is closed.</li>
+    <li><b>Your own account, automatic backup:</b> every shop gets its own account (sign in with an email code). Data backs up whenever you're online — even if the app is closed.</li>
     <li><b>Credit ledger:</b> what each customer and supplier owes, reminders, Bangla WhatsApp/SMS messages, PDF statements.</li>
     <li><b>Stock:</b> stock goes down with sales and up with purchases automatically, with low-stock alerts.</li>
     <li><b>Reports:</b> today's sales, cash collected, expenses, estimated profit; Excel (CSV) export and full backup file.</li>
@@ -124,8 +126,8 @@ PRIV_BN = f"""
 <p>এই নীতিতে বলা হয়েছে <b>হিসাববন্ধু</b> (“আমরা”) Android অ্যাপ, ওয়েবসাইট ও সার্ভার (একত্রে “সেবা”) কী তথ্য সংগ্রহ করে, কেন করে, কীভাবে সুরক্ষিত রাখে এবং আপনার কী কী অধিকার আছে।
 প্রশ্ন থাকলে যোগাযোগ করুন: {EMAIL}</p>
 
-<div class="note"><b>সংক্ষেপে:</b> লগইন না করলে আপনার সব হিসাব শুধু আপনার ফোনেই থাকে — আমরা দেখতে পাই না।
-লগইন করলে ব্যাকআপ ও sync-এর জন্য হিসাব আমাদের সার্ভারে নিরাপদে রাখা হয়। আমরা বিজ্ঞাপন দেখাই না, তথ্য বিক্রি করি না, কোনো অ্যানালিটিক্স বা ট্র্যাকিং SDK ব্যবহার করি না।</div>
+<div class="note"><b>সংক্ষেপে:</b> প্রতিটি দোকানের একটি অ্যাকাউন্ট থাকে (ইমেইল কোড দিয়ে প্রবেশ)। হিসাব আগে আপনার ফোনে সংরক্ষিত হয় এবং ইন্টারনেট পেলে ব্যাকআপ ও sync-এর জন্য আমাদের সার্ভারে নিরাপদে রাখা হয়।
+আমরা বিজ্ঞাপন দেখাই না, তথ্য বিক্রি করি না, কোনো অ্যানালিটিক্স বা ট্র্যাকিং SDK ব্যবহার করি না। প্রচারমূলক বার্তা শুধু আপনি সম্মতি দিলে পাঠানো হয়।</div>
 
 <h2>১. আমরা কোন তথ্য সংগ্রহ করি</h2>
 <table>
@@ -133,8 +135,9 @@ PRIV_BN = f"""
 <tr><td>দোকানের তথ্য (নাম, মালিকের নাম, মোবাইল, ঠিকানা, ব্যবসার ধরন, শুরুর ক্যাশ)</td><td>আপনি লিখলে</td><td>অ্যাপ চালানো, স্টেটমেন্ট ও মেসেজে দোকানের নাম দেখানো</td></tr>
 <tr><td>আপনার কাস্টমার ও সাপ্লায়ারের নাম, মোবাইল, ঠিকানা, নোট</td><td>আপনি লিখলে বা ফোনবুক থেকে একজনকে বাছাই করলে</td><td>বাকির খাতা ও মেসেজ পাঠানো</td></tr>
 <tr><td>পণ্য, দাম, স্টক এবং লেনদেন (বিক্রি, কেনা, খরচ, টাকা আদান-প্রদান)</td><td>আপনি লিখলে</td><td>হিসাব, স্টক ও রিপোর্ট তৈরি</td></tr>
-<tr><td>মোবাইল নম্বর ও এককালীন কোড (OTP)</td><td>লগইন করলে</td><td>পরিচয় যাচাই। OTP শুধু হ্যাশ করে রাখা হয় এবং ২৪ ঘণ্টার মধ্যে মুছে যায়</td></tr>
-<tr><td>ডিভাইসের আইডি (অ্যাপের তৈরি র‍্যান্ডম আইডি) ও ডিভাইসের মডেলের নাম</td><td>লগইন ও sync করলে</td><td>কোন ফোন থেকে হিসাব এসেছে বোঝা, লগইন করা ডিভাইস দেখানো, ডুপ্লিকেট রোধ</td></tr>
+<tr><td>অ্যাকাউন্টের তথ্য: ইমেইল ঠিকানা, আপনার নাম, মোবাইল নম্বর</td><td>অ্যাকাউন্ট খোলার সময় (আবশ্যক)</td><td>অ্যাকাউন্ট তৈরি ও প্রবেশ, সাপোর্ট, অ্যাকাউন্ট-সংক্রান্ত জরুরি বার্তা; আপনি সম্মতি দিলে নতুন সুবিধা ও অফারের খবর (ইমেইল/WhatsApp)</td></tr>
+<tr><td>এককালীন লগইন কোড (OTP)</td><td>প্রবেশ করার সময়</td><td>ইমেইলে পাঠিয়ে পরিচয় যাচাই। কোড শুধু হ্যাশ করে রাখা হয় এবং ২৪ ঘণ্টার মধ্যে মুছে যায়। এখন মোবাইলে কোনো SMS পাঠানো হয় না</td></tr>
+<tr><td>ডিভাইসের আইডি (অ্যাপের তৈরি র‍্যান্ডম আইডি) ও ডিভাইসের মডেলের নাম</td><td>প্রবেশ ও sync করলে</td><td>কোন ফোন থেকে হিসাব এসেছে বোঝা, লগইন করা ডিভাইস দেখানো, ডুপ্লিকেট রোধ</td></tr>
 <tr><td>IP ঠিকানা ও প্রযুক্তিগত লগ</td><td>সার্ভারে অনুরোধ এলে</td><td>নিরাপত্তা, অপব্যবহার ও স্প্যাম রোধ (রেট লিমিট), সমস্যা সমাধান</td></tr>
 <tr><td>আপনার পাঠানো মেসেজ (নাম, মোবাইল/ইমেইল, বিষয়, মেসেজ)</td><td>যোগাযোগ ফর্ম ব্যবহার করলে</td><td>আপনার প্রশ্নের উত্তর দেওয়া</td></tr>
 </table>
@@ -143,15 +146,16 @@ PRIV_BN = f"""
 
 <h2>২. তথ্য কোথায় থাকে</h2>
 <ul>
-<li><b>লগইন ছাড়া:</b> সব তথ্য শুধু আপনার ফোনের অ্যাপের প্রাইভেট স্টোরেজে থাকে। Android-এর ক্লাউড ব্যাকআপ থেকেও এই ডেটা বাদ রাখা হয়েছে।</li>
-<li><b>লগইন করলে:</b> তথ্য HTTPS (এনক্রিপ্টেড সংযোগ) দিয়ে Cloudflare-এর সার্ভারে (Workers, D1 ডেটাবেস, R2 স্টোরেজ) সংরক্ষিত হয়, যেখানে ডেটা স্টোরেজেও এনক্রিপ্টেড থাকে। Cloudflare-এর নেটওয়ার্ক বিশ্বব্যাপী, তাই তথ্য বাংলাদেশের বাইরের ডেটা সেন্টারেও প্রক্রিয়া হতে পারে।</li>
+<li><b>ফোনে:</b> সব তথ্য প্রথমে আপনার ফোনের অ্যাপের প্রাইভেট স্টোরেজে থাকে, তাই ইন্টারনেট ছাড়াও অ্যাপ চলে। Android-এর ক্লাউড ব্যাকআপ থেকে এই ডেটা বাদ রাখা হয়েছে।</li>
+<li><b>আমাদের সার্ভারে:</b> ইন্টারনেট পেলে তথ্য HTTPS (এনক্রিপ্টেড সংযোগ) দিয়ে Cloudflare-এর সার্ভারে (Workers, D1 ডেটাবেস, R2 স্টোরেজ) সংরক্ষিত হয়, যেখানে ডেটা স্টোরেজেও এনক্রিপ্টেড থাকে। Cloudflare-এর নেটওয়ার্ক বিশ্বব্যাপী, তাই তথ্য বাংলাদেশের বাইরের ডেটা সেন্টারেও প্রক্রিয়া হতে পারে।</li>
 </ul>
 
 <h2>৩. তথ্য কার সাথে শেয়ার করা হয়</h2>
 <p>আমরা কারো কাছে আপনার তথ্য <b>বিক্রি করি না</b> এবং বিজ্ঞাপনের জন্য ব্যবহার করি না। শুধু সেবা চালাতে প্রয়োজনীয় এই প্রতিষ্ঠানগুলো সীমিত তথ্য প্রক্রিয়া করে:</p>
 <ul>
 <li><b>Cloudflare, Inc.</b> — সার্ভার, ডেটাবেস ও ফাইল স্টোরেজ।</li>
-<li><b>SMS গেটওয়ে প্রদানকারী (বাংলাদেশ)</b> — শুধু আপনার মোবাইল নম্বর ও OTP মেসেজ, কোড পাঠানোর জন্য।</li>
+<li><b>Resend (ইমেইল পাঠানোর সেবা)</b> — শুধু আপনার ইমেইল ঠিকানা ও লগইন কোডের ইমেইল, কোড পাঠানোর জন্য।</li>
+<li><b>SMS গেটওয়ে (ভবিষ্যতে, চালু হলে)</b> — মোবাইল নম্বর যাচাইয়ের কোড পাঠাতে শুধু নম্বর ও কোড। বর্তমানে কোনো SMS পাঠানো হয় না।</li>
 <li><b>Google Play</b> — অ্যাপ বিতরণ ও আপডেট (Google-এর নিজস্ব নীতি প্রযোজ্য)।</li>
 </ul>
 <p>আইন অনুযায়ী বাধ্য হলে (যেমন আদালতের বৈধ আদেশ) বা প্রতারণা/নিরাপত্তা ঝুঁকি ঠেকাতে প্রয়োজনীয় সর্বনিম্ন তথ্য প্রকাশ করা হতে পারে।
@@ -173,7 +177,7 @@ PRIV_BN = f"""
 <h2>৬. কতদিন রাখা হয়</h2>
 <table>
 <tr><th>তথ্য</th><th>সময়</th></tr>
-<tr><td>ব্যবসার হিসাব (লগইন করা অবস্থায়)</td><td>যতদিন অ্যাকাউন্ট থাকে, বা আপনি মুছে ফেলা পর্যন্ত</td></tr>
+<tr><td>অ্যাকাউন্ট ও ব্যবসার হিসাব</td><td>যতদিন অ্যাকাউন্ট থাকে, বা আপনি মুছে ফেলা পর্যন্ত</td></tr>
 <tr><td>OTP কোড (হ্যাশ)</td><td>সর্বোচ্চ ২৪ ঘণ্টা</td></tr>
 <tr><td>লগইন সেশন</td><td>শেষ ব্যবহারের পর ৬০ দিন; লগআউট বা বাতিলের ৩০ দিন পর মুছে যায়</td></tr>
 <tr><td>নিরাপত্তা/অডিট লগ</td><td>১২ মাস</td></tr>
@@ -196,7 +200,7 @@ PRIV_BN = f"""
 <p>নীতিতে বড় পরিবর্তন হলে অ্যাপ বা ওয়েবসাইটে জানানো হবে এবং কার্যকর তারিখ হালনাগাদ করা হবে।</p>
 
 <h2>১১. যোগাযোগ</h2>
-<p>হিসাববন্ধু, ঢাকা, বাংলাদেশ · ইমেইল: {EMAIL} · <a href="contact.html">যোগাযোগ ফর্ম</a></p>
+<p>হিসাববন্ধু, ঢাকা, বাংলাদেশ · ইমেইল: {EMAIL} · WhatsApp: {WA} · <a href="contact.html">যোগাযোগ ফর্ম</a></p>
 """
 
 PRIV_EN = f"""
@@ -205,8 +209,8 @@ PRIV_EN = f"""
 <p>This policy explains what information <b>HisabBondhu</b> (“we”, “us”) collects through its Android app, website and servers (together, the “Service”),
 why we collect it, how we protect it, and the rights you have. Questions: {EMAIL}</p>
 
-<div class="note"><b>In short:</b> if you don't log in, all your records stay only on your phone — we cannot see them.
-If you log in, your records are stored securely on our servers for backup and sync. We show no ads, never sell data, and use no analytics or tracking SDKs.</div>
+<div class="note"><b>In short:</b> every shop has an account (sign in with an emailed code). Records are saved on your phone first and, when online, stored securely on our servers for backup and sync.
+We show no ads, never sell data, and use no analytics or tracking SDKs. Promotional messages are sent only if you opt in.</div>
 
 <h2>1. Information we collect</h2>
 <table>
@@ -214,7 +218,8 @@ If you log in, your records are stored securely on our servers for backup and sy
 <tr><td>Business details (shop name, owner name, mobile, address, business type, opening cash)</td><td>When you enter them</td><td>To run the app and show your shop name on statements and messages</td></tr>
 <tr><td>Names, mobile numbers, addresses and notes of your customers and suppliers</td><td>When you type them or pick one contact</td><td>Credit ledger and messages you choose to send</td></tr>
 <tr><td>Products, prices, stock and transactions (sales, purchases, expenses, payments)</td><td>When you enter them</td><td>Accounting, stock and reports</td></tr>
-<tr><td>Mobile number and one-time code (OTP)</td><td>When you log in</td><td>Verifying your identity. OTPs are stored only as hashes and deleted within 24 hours</td></tr>
+<tr><td>Account details: email address, your name, mobile number</td><td>When you create the account (required)</td><td>Creating and signing in to your account, support, important account messages; news about features and offers by email/WhatsApp only if you opt in</td></tr>
+<tr><td>One-time login code (OTP)</td><td>When you sign in</td><td>Verifying your identity by email. Codes are stored only as hashes and deleted within 24 hours. No SMS is sent to your mobile at present</td></tr>
 <tr><td>Device ID (a random ID created by the app) and device model name</td><td>When you log in and sync</td><td>Knowing which phone sent an entry, listing logged-in devices, preventing duplicates</td></tr>
 <tr><td>IP address and technical logs</td><td>When the server receives a request</td><td>Security, abuse and spam prevention (rate limiting), troubleshooting</td></tr>
 <tr><td>Messages you send us (name, mobile/email, subject, message)</td><td>When you use the contact form</td><td>Replying to you</td></tr>
@@ -224,15 +229,16 @@ When you add a customer from contacts, Android's system picker gives the app onl
 
 <h2>2. Where your data is stored</h2>
 <ul>
-<li><b>Without login:</b> everything stays in the app's private storage on your phone. This data is also excluded from Android cloud backup.</li>
-<li><b>With login:</b> data is sent over HTTPS and stored on Cloudflare infrastructure (Workers, D1 database, R2 storage), encrypted at rest. Cloudflare operates a global network, so data may be processed in data centres outside Bangladesh.</li>
+<li><b>On your phone:</b> everything is first stored in the app's private storage, so the app works without internet. This data is excluded from Android cloud backup.</li>
+<li><b>On our servers:</b> when online, data is sent over HTTPS and stored on Cloudflare infrastructure (Workers, D1 database, R2 storage), encrypted at rest. Cloudflare operates a global network, so data may be processed in data centres outside Bangladesh.</li>
 </ul>
 
 <h2>3. Sharing</h2>
 <p>We <b>do not sell</b> your information or use it for advertising. Only these providers process limited data to run the Service:</p>
 <ul>
 <li><b>Cloudflare, Inc.</b> — hosting, database and file storage.</li>
-<li><b>SMS gateway provider (Bangladesh)</b> — only your mobile number and the OTP message, to deliver the code.</li>
+<li><b>Resend (email delivery)</b> — only your email address and the login-code email, to deliver the code.</li>
+<li><b>SMS gateway (future, when enabled)</b> — only your number and a verification code. No SMS is sent at present.</li>
 <li><b>Google Play</b> — app distribution and updates (Google's own policy applies).</li>
 </ul>
 <p>We may disclose the minimum necessary information if required by law (e.g. a valid court order) or to prevent fraud or a security threat.
@@ -255,7 +261,7 @@ Please keep it with their permission and send only necessary messages — no spa
 <h2>6. Retention</h2>
 <table>
 <tr><th>Data</th><th>Kept for</th></tr>
-<tr><td>Business records (logged-in users)</td><td>As long as the account exists, or until you delete them</td></tr>
+<tr><td>Account and business records</td><td>As long as the account exists, or until you delete them</td></tr>
 <tr><td>OTP codes (hashed)</td><td>Up to 24 hours</td></tr>
 <tr><td>Login sessions</td><td>60 days after last use; removed 30 days after logout/revocation</td></tr>
 <tr><td>Security/audit logs</td><td>12 months</td></tr>
@@ -279,7 +285,7 @@ Server data is deleted immediately; automatic backup copies expire within 30 day
 <p>If we make material changes, we will announce them in the app or on this website and update the effective date.</p>
 
 <h2>11. Contact</h2>
-<p>HisabBondhu, Dhaka, Bangladesh · Email: {EMAIL} · <a href="contact.html">Contact form</a></p>
+<p>HisabBondhu, Dhaka, Bangladesh · Email: {EMAIL} · WhatsApp: {WA} · <a href="contact.html">Contact form</a></p>
 """
 page("privacy.html", "গোপনীয়তা নীতি · Privacy Policy — হিসাববন্ধু", "HisabBondhu privacy policy", "privacy",
      f'<article class="doc">{bi(PRIV_BN, PRIV_EN)}</article>')
@@ -294,7 +300,8 @@ TERMS_BN = f"""
 <h2>২. যোগ্যতা ও অ্যাকাউন্ট</h2>
 <ul>
 <li>সেবা ব্যবহারে আপনার বয়স কমপক্ষে ১৮ বছর বা আইনগতভাবে চুক্তি করার যোগ্যতা থাকতে হবে।</li>
-<li>লগইন ঐচ্ছিক; লগইন করলে মোবাইল নম্বর ও OTP দিয়ে যাচাই হবে। আপনার ফোন ও OTP গোপন রাখার দায়িত্ব আপনার।</li>
+<li>সেবা ব্যবহারে একটি অ্যাকাউন্ট লাগবে — ইমেইলে পাঠানো এককালীন কোড দিয়ে প্রবেশ করতে হয় এবং আপনার নাম ও মোবাইল নম্বর দিতে হয়। প্রতিটি দোকানের জন্য আলাদা অ্যাকাউন্ট ব্যবহার করুন।</li>
+<li>আপনার ইমেইল ও ফোন নিরাপদ রাখা এবং কোড কাউকে না দেওয়ার দায়িত্ব আপনার।</li>
 <li>অ্যাকাউন্টে সন্দেহজনক কিছু দেখলে সঙ্গে সঙ্গে আমাদের জানান।</li>
 </ul>
 <h2>৩. আপনার তথ্য, আপনার মালিকানা</h2>
@@ -304,7 +311,7 @@ TERMS_BN = f"""
 <li>সঠিক তথ্য লেখা এবং হিসাব নিয়মিত যাচাই করা।</li>
 <li>কাস্টমার/সাপ্লায়ারের তথ্য রাখার আগে তাদের সম্মতি নেওয়া; মেসেজ ও রিমাইন্ডার ভদ্রভাবে ও প্রয়োজন অনুযায়ী পাঠানো — স্প্যাম বা হয়রানি নিষেধ।</li>
 <li>বেআইনি কাজ, প্রতারণা, অন্যের অ্যাকাউন্টে প্রবেশের চেষ্টা, সার্ভারে আক্রমণ বা অপব্যবহার না করা।</li>
-<li>লগইন না করলে তথ্য শুধু ফোনে থাকে — ফোন হারালে বা অ্যাপ মুছলে তথ্য হারাতে পারে। নিয়মিত ব্যাকআপ (লগইন বা এক্সপোর্ট) রাখার পরামর্শ দেওয়া হচ্ছে।</li>
+<li>ইন্টারনেট ছাড়া লেখা হিসাব ব্যাকআপ হওয়ার আগে ফোন হারালে বা অ্যাপ মুছলে সেই অংশ হারাতে পারে — মাঝে মাঝে ইন্টারনেট চালু রাখুন।</li>
 </ul>
 <h2>৫. আর্থিক বা আইনি পরামর্শ নয়</h2>
 <p>হিসাববন্ধু একটি রেকর্ড রাখার টুল। আনুমানিক লাভসহ সব হিসাব আপনার দেওয়া তথ্যের ওপর ভিত্তি করে তৈরি। এটি কর, হিসাবরক্ষণ বা আইনি পরামর্শ নয়; গুরুত্বপূর্ণ সিদ্ধান্তের আগে যোগ্য পেশাজীবীর পরামর্শ নিন।</p>
@@ -329,7 +336,8 @@ If paid features are introduced, prices and terms will be shown clearly in advan
 <h2>2. Eligibility and account</h2>
 <ul>
 <li>You must be at least 18 years old or otherwise legally able to enter into a contract.</li>
-<li>Login is optional; when you log in we verify your mobile number with an OTP. Keep your phone and codes secure.</li>
+<li>You need an account to use the Service: sign in with a one-time code sent to your email and provide your name and mobile number. Use a separate account for each shop.</li>
+<li>Keep your email and phone secure and never share login codes.</li>
 <li>Tell us immediately if you notice suspicious activity on your account.</li>
 </ul>
 <h2>3. Your data is yours</h2>
@@ -339,7 +347,7 @@ If paid features are introduced, prices and terms will be shown clearly in advan
 <li>Enter accurate information and review your records regularly.</li>
 <li>Obtain consent before storing customers'/suppliers' details; send messages and reminders politely and only when needed — no spam or harassment.</li>
 <li>Do not use the Service for illegal activity or fraud, attempt to access other accounts, attack or abuse our servers.</li>
-<li>Without login, data lives only on your phone and can be lost if the phone is lost or the app is removed. We recommend keeping a backup (log in or export).</li>
+<li>Entries made offline are backed up the next time you are online; if the phone is lost before that, those entries can be lost — go online from time to time.</li>
 </ul>
 <h2>5. Not financial or legal advice</h2>
 <p>HisabBondhu is a record-keeping tool. All figures, including estimated profit, are based on the data you enter. It is not tax, accounting or legal advice; consult a qualified professional for important decisions.</p>
@@ -369,7 +377,7 @@ RIGHTS_BN = f"""
 <tr><td>সংশোধনের অধিকার</td><td>ভুল তথ্য ঠিক করা</td><td>অ্যাপে নাম/তথ্য সম্পাদনা করুন; ভুল লেনদেন “হিসাব বাতিল” করে আবার লিখুন</td></tr>
 <tr><td>ডেটা বহনযোগ্যতা</td><td>মেশিনে পড়ার উপযোগী ফরম্যাটে তথ্য নেওয়া</td><td>রিপোর্ট → Excel (CSV) বা সম্পূর্ণ ব্যাকআপ (JSON)</td></tr>
 <tr><td>মুছে ফেলার অধিকার</td><td>অ্যাকাউন্ট ও সব তথ্য স্থায়ীভাবে মোছা</td><td>অ্যাপে আরও → অ্যাকাউন্ট ও ডেটা মুছুন, অথবা <a href="data-deletion.html">ওয়েবসাইট থেকে</a></td></tr>
-<tr><td>সম্মতি প্রত্যাহার</td><td>অনলাইন ব্যাকআপ বন্ধ করা</td><td>লগআউট করুন — অনলাইন sync বন্ধ হবে</td></tr>
+<tr><td>সম্মতি প্রত্যাহার</td><td>প্রচারমূলক বার্তা বন্ধ করা</td><td>আরও → অনলাইন ব্যাকআপ → প্রোফাইল সম্পাদনা থেকে “অফারের খবর” বন্ধ করুন, বা আমাদের জানান</td></tr>
 <tr><td>নোটিফিকেশন বন্ধ</td><td>রিমাইন্ডার না পাওয়া</td><td>আরও → বাকি আদায়ের রিমাইন্ডার বন্ধ করুন</td></tr>
 <tr><td>অভিযোগের অধিকার</td><td>আমাদের কাজ নিয়ে অসন্তুষ্ট হলে</td><td>আমাদের ইমেইল করুন; প্রয়োজনে বাংলাদেশের সংশ্লিষ্ট কর্তৃপক্ষের কাছেও অভিযোগ করতে পারেন</td></tr>
 </table>
@@ -390,7 +398,7 @@ RIGHTS_EN = f"""
 <tr><td>Right to rectification</td><td>Fix incorrect data</td><td>Edit details in the app; cancel a wrong entry with “Cancel entry” and record it again</td></tr>
 <tr><td>Right to data portability</td><td>Get your data in a machine-readable format</td><td>Reports → Excel (CSV) or Full backup (JSON)</td></tr>
 <tr><td>Right to erasure</td><td>Permanently delete your account and data</td><td>In the app: More → Delete account &amp; data, or <a href="data-deletion.html">on the website</a></td></tr>
-<tr><td>Withdraw consent</td><td>Stop online backup</td><td>Log out — online sync stops</td></tr>
+<tr><td>Withdraw consent</td><td>Stop promotional messages</td><td>More → Online backup → Edit profile → turn off “news and offers”, or tell us</td></tr>
 <tr><td>Opt out of notifications</td><td>Stop reminders</td><td>More → turn off Due collection reminders</td></tr>
 <tr><td>Right to complain</td><td>If you are unhappy with how we handle data</td><td>Email us; you may also complain to the relevant authority in Bangladesh</td></tr>
 </table>
@@ -410,15 +418,15 @@ DEL_BN = """
 <h2>উপায় ১: অ্যাপ থেকে (সবচেয়ে সহজ)</h2>
 <ol><li>হিসাববন্ধু অ্যাপ খুলুন</li><li><b>আরও</b> ট্যাবে যান</li><li><b>অ্যাকাউন্ট ও ডেটা মুছুন</b> চাপুন</li><li>নিশ্চিত করুন</li></ol>
 <h2>উপায় ২: এই পাতা থেকে (অ্যাপ না থাকলেও)</h2>
-<p>নিবন্ধিত মোবাইল নম্বর দিন, SMS-এ আসা কোড দিয়ে যাচাই করুন, তারপর মুছে ফেলা নিশ্চিত করুন।</p>
+<p>অ্যাকাউন্টের ইমেইল দিন, ইমেইলে আসা কোড দিয়ে যাচাই করুন, তারপর মুছে ফেলা নিশ্চিত করুন।</p>
 <h2>যা মুছে যাবে</h2>
-<ul><li>আপনার অ্যাকাউন্ট, মোবাইল নম্বর, লগইন সেশন ও ডিভাইস তালিকা</li>
+<ul><li>আপনার অ্যাকাউন্ট, ইমেইল, নাম, মোবাইল নম্বর, লগইন সেশন ও ডিভাইস তালিকা</li>
 <li>সার্ভারে থাকা সব ব্যবসার তথ্য: দোকানের প্রোফাইল, কাস্টমার, সাপ্লায়ার, পণ্য, লেনদেন</li>
 <li>সাপ্তাহিক ব্যাকআপ কপি ও অডিট লগ</li></ul>
 <h2>যা থেকে যায় ও কতদিন</h2>
 <ul><li>ডেটাবেসের স্বয়ংক্রিয় দুর্যোগ-পুনরুদ্ধার কপি <b>৩০ দিনের মধ্যে</b> নিজে থেকে মুছে যায়</li>
-<li>মুছে ফেলার প্রমাণ হিসেবে শুধু মোবাইল নম্বরের একমুখী হ্যাশ ও তারিখ রাখা হয় (নম্বর নিজে নয়)</li>
-<li>যারা লগইন করেননি, তাদের তথ্য শুধু তাদের ফোনে থাকে — অ্যাপ আনইনস্টল করলেই মুছে যায়</li></ul>
+<li>মুছে ফেলার প্রমাণ হিসেবে শুধু ইমেইলের একমুখী হ্যাশ ও তারিখ রাখা হয় (ইমেইল নিজে নয়)</li>
+<li>ফোনে থাকা কপি অ্যাপ থেকে মুছলে বা অ্যাপ আনইনস্টল করলে মুছে যায়</li></ul>
 """
 DEL_EN = """
 <h1>Request account &amp; data deletion</h1>
@@ -426,25 +434,25 @@ DEL_EN = """
 <h2>Option 1: In the app (easiest)</h2>
 <ol><li>Open the HisabBondhu app</li><li>Go to the <b>More</b> tab</li><li>Tap <b>Delete account &amp; data</b></li><li>Confirm</li></ol>
 <h2>Option 2: On this page (works even without the app)</h2>
-<p>Enter your registered mobile number, verify with the code we send by SMS, then confirm deletion.</p>
+<p>Enter your account email, verify with the code we email you, then confirm deletion.</p>
 <h2>What is deleted</h2>
-<ul><li>Your account, mobile number, login sessions and device list</li>
+<ul><li>Your account, email, name, mobile number, login sessions and device list</li>
 <li>All business data on our servers: shop profile, customers, suppliers, products, transactions</li>
 <li>Weekly backup snapshots and audit logs</li></ul>
 <h2>What is kept, and for how long</h2>
 <ul><li>Automatic database disaster-recovery copies expire on their own <b>within 30 days</b></li>
-<li>As proof of deletion we keep only a one-way hash of the mobile number and the date (not the number itself)</li>
-<li>If you never logged in, your data exists only on your phone and is removed when you uninstall the app</li></ul>
+<li>As proof of deletion we keep only a one-way hash of the email and the date (not the email itself)</li>
+<li>The copy on your phone is removed when you delete it in the app or uninstall the app</li></ul>
 """
 DEL_FORM = """
 <form class="card" id="del-form" onsubmit="return false">
   <div id="step-phone">
-    <label for="phone"><span class="i18n" lang="bn">নিবন্ধিত মোবাইল নম্বর</span><span class="i18n" lang="en">Registered mobile number</span></label>
-    <input id="phone" type="tel" inputmode="tel" placeholder="01XXXXXXXXX" autocomplete="tel" required>
+    <label for="phone"><span class="i18n" lang="bn">অ্যাকাউন্টের ইমেইল</span><span class="i18n" lang="en">Account email</span></label>
+    <input id="phone" type="email" inputmode="email" placeholder="name@gmail.com" autocomplete="email" required>
     <p><button class="btn" id="send-otp" type="button"><span class="i18n" lang="bn">কোড পাঠান</span><span class="i18n" lang="en">Send code</span></button></p>
   </div>
   <div id="step-otp" class="hidden">
-    <label for="otp"><span class="i18n" lang="bn">SMS-এ আসা ৬ সংখ্যার কোড</span><span class="i18n" lang="en">6-digit code from SMS</span></label>
+    <label for="otp"><span class="i18n" lang="bn">ইমেইলে আসা ৬ সংখ্যার কোড</span><span class="i18n" lang="en">6-digit code from your email</span></label>
     <input id="otp" inputmode="numeric" maxlength="6" autocomplete="one-time-code" required>
     <p><label style="font-weight:400"><input type="checkbox" id="confirm" style="width:auto"> <span class="i18n" lang="bn">আমি বুঝেছি, এটি ফেরত আনা যাবে না</span><span class="i18n" lang="en">I understand this cannot be undone</span></label></p>
     <p><button class="btn danger" id="do-delete" type="button" disabled><span class="i18n" lang="bn">স্থায়ীভাবে মুছুন</span><span class="i18n" lang="en">Delete permanently</span></button></p>
@@ -452,17 +460,17 @@ DEL_FORM = """
   <div class="status" id="del-status" role="status" aria-live="polite"></div>
 </form>
 <div class="note" id="del-fallback">
-  <span class="i18n" lang="bn">অনলাইন ফর্ম কাজ না করলে, নিবন্ধিত নম্বর লিখে ইমেইল করুন — আমরা যাচাই করে ৭ কার্যদিবসের মধ্যে মুছে দেবো: </span>
-  <span class="i18n" lang="en">If the online form doesn't work, email us from any address with your registered number — we'll verify and delete within 7 working days: </span>
-  <a data-email href="mailto:support@hisabbondhu.com">support@hisabbondhu.com</a>
+  <span class="i18n" lang="bn">অনলাইন ফর্ম কাজ না করলে, অ্যাকাউন্টের ইমেইল থেকে আমাদের ইমেইল করুন বা WhatsApp করুন — যাচাই করে ৭ কার্যদিবসের মধ্যে মুছে দেবো: </span>
+  <span class="i18n" lang="en">If the online form doesn't work, email us from your account email or message us on WhatsApp — we'll verify and delete within 7 working days: </span>
+  <a data-email href="mailto:support@sayadbayezid.com">support@sayadbayezid.com</a> · <a data-whatsapp href="https://wa.me/8801519601517">WhatsApp +880 1519-601517</a>
 </div>
 <script>
 (function(){
   var lang=function(){return document.documentElement.getAttribute('data-lang')==='en'?'en':'bn'};
   var msgs={
-    sent:{bn:'কোড পাঠানো হয়েছে। SMS দেখুন।',en:'Code sent. Check your SMS.'},
+    sent:{bn:'কোড পাঠানো হয়েছে। ইমেইল দেখুন (Spam ফোল্ডারও)।',en:'Code sent. Check your email (and Spam folder).'},
     done:{bn:'আপনার অ্যাকাউন্ট ও সব তথ্য মুছে ফেলা হয়েছে।',en:'Your account and all data have been deleted.'},
-    invalid_phone:{bn:'সঠিক মোবাইল নম্বর দিন।',en:'Enter a valid mobile number.'},
+    invalid_email:{bn:'সঠিক ইমেইল দিন।',en:'Enter a valid email address.'},
     invalid_code:{bn:'কোডটি ভুল।',en:'Wrong code.'},
     code_expired:{bn:'কোডের মেয়াদ শেষ, আবার কোড নিন।',en:'Code expired, request a new one.'},
     too_many_attempts:{bn:'অনেকবার ভুল হয়েছে, নতুন কোড নিন।',en:'Too many attempts, request a new code.'},
@@ -476,14 +484,14 @@ DEL_FORM = """
   cb.addEventListener('change',function(){del.disabled=!cb.checked});
   document.getElementById('send-otp').addEventListener('click',function(){
     var b=this;b.disabled=true;
-    hbApi('/v1/auth/request-otp',{method:'POST',body:JSON.stringify({phone:phone.value})})
+    hbApi('/v1/auth/request-otp',{method:'POST',body:JSON.stringify({email:phone.value})})
       .then(function(){show('sent',true);document.getElementById('step-otp').classList.remove('hidden');otp.focus();})
       .catch(function(e){show(e.code||e.message);})
       .finally(function(){b.disabled=false;});
   });
   del.addEventListener('click',function(){
     del.disabled=true;
-    hbApi('/v1/auth/verify-otp',{method:'POST',body:JSON.stringify({phone:phone.value,code:otp.value.trim(),device_name:'web-deletion'})})
+    hbApi('/v1/auth/verify-otp',{method:'POST',body:JSON.stringify({email:phone.value,code:otp.value.trim(),device_name:'web-deletion'})})
       .then(function(t){return hbApi('/v1/account',{method:'DELETE',headers:{authorization:'Bearer '+t.access_token}});})
       .then(function(){show('done',true);document.getElementById('step-phone').classList.add('hidden');document.getElementById('step-otp').classList.add('hidden');})
       .catch(function(e){show(e.code||e.message);del.disabled=!cb.checked;});
@@ -498,9 +506,9 @@ page("data-deletion.html", "ডেটা মুছে ফেলুন · Delete 
 # ---------------------------------------------------------------- contact
 CONTACT_INTRO = bi("""<h1>যোগাযোগ করুন</h1>
 <p>প্রশ্ন, সমস্যা, পরামর্শ বা ডেটা-সংক্রান্ত অনুরোধ — আমরা সাহায্য করতে প্রস্তুত। সাধারণত ২ কার্যদিবসের মধ্যে উত্তর দেওয়া হয় (রবি–বৃহস্পতি, সকাল ১০টা–সন্ধ্যা ৬টা)।</p>
-<p>ইমেইল: """ + EMAIL + """</p>""", """<h1>Contact us</h1>
+<p>ইমেইল: """ + EMAIL + """ · WhatsApp: """ + WA + """</p>""", """<h1>Contact us</h1>
 <p>Questions, problems, suggestions or data requests — we're happy to help. We usually reply within 2 working days (Sun–Thu, 10am–6pm Bangladesh time).</p>
-<p>Email: """ + EMAIL + """</p>""")
+<p>Email: """ + EMAIL + """ · WhatsApp: """ + WA + """</p>""")
 CONTACT_FORM = """
 <form class="card" id="contact-form">
   <label for="c-name"><span class="i18n" lang="bn">আপনার নাম</span><span class="i18n" lang="en">Your name</span></label>

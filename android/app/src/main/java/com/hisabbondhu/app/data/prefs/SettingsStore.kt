@@ -29,11 +29,16 @@ data class BusinessProfile(
 
 data class AuthState(
     val userId: String? = null,
+    val email: String? = null,
+    val name: String? = null,
     val phone: String? = null,
+    val marketingOptIn: Boolean = false,
     val accessToken: String? = null,
     val refreshToken: String? = null,
 ) {
     val loggedIn: Boolean get() = !refreshToken.isNullOrBlank()
+    /** Every account must have a name and a mobile number. */
+    val profileComplete: Boolean get() = !name.isNullOrBlank() && !phone.isNullOrBlank()
 }
 
 data class SyncInfo(
@@ -58,9 +63,14 @@ class SettingsStore(private val context: Context) {
         val bizOpeningCash = longPreferencesKey("biz_opening_cash")
         val bizUpdatedAt = longPreferencesKey("biz_updated_at")
         val bizDirty = booleanPreferencesKey("biz_dirty")
+        val bizLinked = booleanPreferencesKey("biz_linked")
 
         val userId = stringPreferencesKey("auth_user_id")
+        val userEmail = stringPreferencesKey("auth_email")
+        val userName = stringPreferencesKey("auth_name")
         val userPhone = stringPreferencesKey("auth_phone")
+        val userOptIn = booleanPreferencesKey("auth_marketing")
+        val dataOwner = stringPreferencesKey("data_owner_user_id")
         val accessToken = stringPreferencesKey("auth_access")
         val refreshToken = stringPreferencesKey("auth_refresh")
 
@@ -94,7 +104,15 @@ class SettingsStore(private val context: Context) {
     }.distinctUntilChanged()
 
     val auth: Flow<AuthState> = data.map { p ->
-        AuthState(p[K.userId], p[K.userPhone], p[K.accessToken], p[K.refreshToken])
+        AuthState(
+            userId = p[K.userId],
+            email = p[K.userEmail],
+            name = p[K.userName],
+            phone = p[K.userPhone],
+            marketingOptIn = p[K.userOptIn] ?: false,
+            accessToken = p[K.accessToken],
+            refreshToken = p[K.refreshToken],
+        )
     }.distinctUntilChanged()
 
     val syncInfo: Flow<SyncInfo> = data.map { SyncInfo(it[K.lastSyncAt], it[K.lastSyncError]) }.distinctUntilChanged()
@@ -138,14 +156,36 @@ class SettingsStore(private val context: Context) {
 
     suspend fun currentAuth(): AuthState = auth.first()
 
-    suspend fun saveAuth(userId: String, phone: String, access: String, refresh: String) {
+    suspend fun saveAuth(
+        userId: String, email: String, name: String?, phone: String?, optIn: Boolean,
+        access: String, refresh: String,
+    ) {
         context.dataStore.edit {
             it[K.userId] = userId
-            it[K.userPhone] = phone
+            it[K.userEmail] = email
+            if (name.isNullOrBlank()) it.remove(K.userName) else it[K.userName] = name
+            if (phone.isNullOrBlank()) it.remove(K.userPhone) else it[K.userPhone] = phone
+            it[K.userOptIn] = optIn
             it[K.accessToken] = access
             it[K.refreshToken] = refresh
+            it[K.dataOwner] = userId
         }
     }
+
+    suspend fun saveProfile(name: String?, phone: String?, optIn: Boolean) {
+        context.dataStore.edit {
+            if (name.isNullOrBlank()) it.remove(K.userName) else it[K.userName] = name
+            if (phone.isNullOrBlank()) it.remove(K.userPhone) else it[K.userPhone] = phone
+            it[K.userOptIn] = optIn
+        }
+    }
+
+    /** The account that owns the data currently on this phone (survives session expiry). */
+    suspend fun dataOwner(): String? = data.first()[K.dataOwner]
+
+    suspend fun isBusinessLinked(): Boolean = data.first()[K.bizLinked] ?: false
+
+    suspend fun setBusinessLinked(linked: Boolean) = context.dataStore.edit { it[K.bizLinked] = linked }
 
     suspend fun updateTokens(access: String, refresh: String) {
         context.dataStore.edit {
@@ -154,11 +194,11 @@ class SettingsStore(private val context: Context) {
         }
     }
 
+    /** Session ended (expired or revoked). Local data stays; logging in again with the same account resumes it. */
     suspend fun clearAuth() {
         context.dataStore.edit {
-            it.remove(K.userId); it.remove(K.userPhone); it.remove(K.accessToken); it.remove(K.refreshToken)
-            it.remove(K.cursorParties); it.remove(K.cursorProducts); it.remove(K.cursorTx)
-            it.remove(K.lastSyncAt); it.remove(K.lastSyncError)
+            it.remove(K.accessToken); it.remove(K.refreshToken)
+            it.remove(K.lastSyncError)
         }
     }
 
@@ -182,8 +222,12 @@ class SettingsStore(private val context: Context) {
         }
     }
 
-    /** Wipes everything (used by logout and "delete my data"). */
-    suspend fun clearAll() {
-        context.dataStore.edit { it.clear() }
+    /** Wipes everything (logout / delete). Keeps the chosen language so the user isn't asked again. */
+    suspend fun clearAll(keepLanguage: Boolean = true) {
+        context.dataStore.edit { prefs ->
+            val lang = prefs[K.languageChosen]
+            prefs.clear()
+            if (keepLanguage && lang != null) prefs[K.languageChosen] = lang
+        }
     }
 }

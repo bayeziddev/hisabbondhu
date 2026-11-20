@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -35,6 +36,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -87,7 +89,7 @@ fun LanguageScreen() {
             Spacer(Modifier.height(10.dp))
             LanguageOption("বাংলা", "Bangla", selected == "bn") { selected = "bn" }
             Spacer(Modifier.height(10.dp))
-            LanguageOption("English", "ইংরেজি", selected == "en") { selected = "en" }
+            Box(Modifier.testTag("lang_en")) { LanguageOption("English", "ইংরেজি", selected == "en") { selected = "en" } }
             Spacer(Modifier.height(28.dp))
             Button(
                 onClick = {
@@ -96,7 +98,7 @@ fun LanguageScreen() {
                         AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(selected))
                     }
                 },
-                modifier = Modifier.fillMaxWidth().height(54.dp),
+                modifier = Modifier.fillMaxWidth().height(54.dp).testTag("lang_start"),
             ) {
                 Text(if (bn) "শুরু করুন" else "Get started", style = MaterialTheme.typography.titleMedium)
             }

@@ -14,12 +14,9 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.AccountCircle
 import androidx.compose.material.icons.rounded.CheckCircle
-import androidx.compose.material.icons.rounded.CloudSync
-import androidx.compose.material.icons.rounded.Devices
 import androidx.compose.material.icons.rounded.Logout
-import androidx.compose.material.icons.rounded.PhoneAndroid
-import androidx.compose.material.icons.rounded.Restore
 import androidx.compose.material.icons.rounded.Sync
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
@@ -35,7 +32,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -95,35 +91,27 @@ fun AccountScreen(nav: NavHostController) {
             Modifier.fillMaxSize().padding(padding).verticalScroll(rememberScrollState()).padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            if (!ui.auth.loggedIn) {
+            run {
                 SectionCard {
-                    Icon(Icons.Rounded.CloudSync, null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(48.dp))
-                    Spacer(Modifier.height(8.dp))
-                    Text(stringResource(R.string.backup_pitch_title), style = MaterialTheme.typography.titleLarge)
-                    Spacer(Modifier.height(6.dp))
-                    Text(stringResource(R.string.backup_pitch_body), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                    Spacer(Modifier.height(12.dp))
-                    Benefit(Icons.Rounded.Restore, stringResource(R.string.benefit_restore))
-                    Benefit(Icons.Rounded.Devices, stringResource(R.string.benefit_devices))
-                    Benefit(Icons.Rounded.PhoneAndroid, stringResource(R.string.benefit_offline))
-                    Spacer(Modifier.height(16.dp))
-                    Button(onClick = { nav.navigate(Routes.LOGIN) }, modifier = Modifier.fillMaxWidth().height(52.dp)) {
-                        Text(stringResource(R.string.login_with_mobile))
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(Icons.Rounded.AccountCircle, null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(44.dp))
+                        Spacer(Modifier.width(12.dp))
+                        Column(Modifier.weight(1f)) {
+                            Text(ui.auth.name.orEmpty(), style = MaterialTheme.typography.titleMedium)
+                            Text(ui.auth.email.orEmpty(), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                            Text(ui.auth.phone.orEmpty(), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        }
+                        OutlinedButton(onClick = { nav.navigate(Routes.PROFILE) }) { Text(stringResource(R.string.edit)) }
                     }
                 }
-                Text(
-                    stringResource(R.string.login_optional_note),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            } else {
+            }
+            if (ui.auth.loggedIn) {
                 SectionCard {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text(stringResource(R.string.status), style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
                         SyncChip(ui.state, ui.pending) { vm.syncNow() }
                     }
                     Spacer(Modifier.height(8.dp))
-                    LabelValue(stringResource(R.string.mobile_number), ui.auth.phone.orEmpty())
                     LabelValue(
                         stringResource(R.string.last_sync),
                         ui.info.lastSyncAt?.let { dateTime(it) } ?: stringResource(R.string.never),
@@ -169,15 +157,6 @@ fun AccountScreen(nav: NavHostController) {
             onConfirm = { confirmLogout = false; vm.logout { } },
             onDismiss = { confirmLogout = false },
         )
-    }
-}
-
-@Composable
-private fun Benefit(icon: ImageVector, text: String) {
-    Row(Modifier.padding(vertical = 4.dp), verticalAlignment = Alignment.CenterVertically) {
-        Icon(icon, null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(20.dp))
-        Spacer(Modifier.width(10.dp))
-        Text(text, style = MaterialTheme.typography.bodyMedium)
     }
 }
 

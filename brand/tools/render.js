@@ -48,3 +48,19 @@ async function svgToPng(page, svgFile, size, out, { round = false } = {}) {
   await browser.close();
   console.log('rendered');
 })();
+
+// ---- Extra sizes (run: node brand/tools/render.js) ----
+(async () => {
+  const { chromium } = require('playwright');
+  const browser = await chromium.launch();
+  const page = await browser.newPage({ deviceScaleFactor: 1 });
+  const iconDir = path.join(brand, 'play-store', 'icons');
+  fs.mkdirSync(iconDir, { recursive: true });
+  const sizes = { 'mdpi-48': 48, 'hdpi-72': 72, 'xhdpi-96': 96, 'xxhdpi-144': 144, 'xxxhdpi-192': 192, 'web-256': 256, 'play-512': 512, 'large-1024': 1024 };
+  for (const [name, px] of Object.entries(sizes)) {
+    await svgToPng(page, 'logo-mark-square.svg', px, path.join(iconDir, `icon-${name}.png`));
+    await svgToPng(page, 'logo-mark.svg', px, path.join(iconDir, `icon-rounded-${name}.png`));
+  }
+  await browser.close();
+  console.log('icons rendered');
+})();

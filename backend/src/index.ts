@@ -5,6 +5,7 @@ import type { AppEnv, Env, Job } from './env';
 import { clientIp } from './lib/http';
 import { dailyMaintenance, runJob } from './jobs';
 import { accountRoutes } from './routes/account';
+import { adminRoutes } from './routes/admin';
 import { authRoutes } from './routes/auth';
 import { businessRoutes } from './routes/business';
 import { publicRoutes } from './routes/public';
@@ -56,6 +57,7 @@ app.route('/v1/businesses', businessRoutes);
 app.route('/v1/businesses', syncRoutes);
 app.route('/v1/account', accountRoutes);
 app.route('/v1/public', publicRoutes);
+app.route('/v1/admin', adminRoutes);
 
 app.notFound((c) => c.json({ error: 'not_found' }, 404));
 app.onError((err, c) => {

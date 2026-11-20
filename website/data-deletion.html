@@ -44,15 +44,15 @@ r.setAttribute('data-lang',l);})();
 <h2>উপায় ১: অ্যাপ থেকে (সবচেয়ে সহজ)</h2>
 <ol><li>হিসাববন্ধু অ্যাপ খুলুন</li><li><b>আরও</b> ট্যাবে যান</li><li><b>অ্যাকাউন্ট ও ডেটা মুছুন</b> চাপুন</li><li>নিশ্চিত করুন</li></ol>
 <h2>উপায় ২: এই পাতা থেকে (অ্যাপ না থাকলেও)</h2>
-<p>নিবন্ধিত মোবাইল নম্বর দিন, SMS-এ আসা কোড দিয়ে যাচাই করুন, তারপর মুছে ফেলা নিশ্চিত করুন।</p>
+<p>অ্যাকাউন্টের ইমেইল দিন, ইমেইলে আসা কোড দিয়ে যাচাই করুন, তারপর মুছে ফেলা নিশ্চিত করুন।</p>
 <h2>যা মুছে যাবে</h2>
-<ul><li>আপনার অ্যাকাউন্ট, মোবাইল নম্বর, লগইন সেশন ও ডিভাইস তালিকা</li>
+<ul><li>আপনার অ্যাকাউন্ট, ইমেইল, নাম, মোবাইল নম্বর, লগইন সেশন ও ডিভাইস তালিকা</li>
 <li>সার্ভারে থাকা সব ব্যবসার তথ্য: দোকানের প্রোফাইল, কাস্টমার, সাপ্লায়ার, পণ্য, লেনদেন</li>
 <li>সাপ্তাহিক ব্যাকআপ কপি ও অডিট লগ</li></ul>
 <h2>যা থেকে যায় ও কতদিন</h2>
 <ul><li>ডেটাবেসের স্বয়ংক্রিয় দুর্যোগ-পুনরুদ্ধার কপি <b>৩০ দিনের মধ্যে</b> নিজে থেকে মুছে যায়</li>
-<li>মুছে ফেলার প্রমাণ হিসেবে শুধু মোবাইল নম্বরের একমুখী হ্যাশ ও তারিখ রাখা হয় (নম্বর নিজে নয়)</li>
-<li>যারা লগইন করেননি, তাদের তথ্য শুধু তাদের ফোনে থাকে — অ্যাপ আনইনস্টল করলেই মুছে যায়</li></ul>
+<li>মুছে ফেলার প্রমাণ হিসেবে শুধু ইমেইলের একমুখী হ্যাশ ও তারিখ রাখা হয় (ইমেইল নিজে নয়)</li>
+<li>ফোনে থাকা কপি অ্যাপ থেকে মুছলে বা অ্যাপ আনইনস্টল করলে মুছে যায়</li></ul>
 </div>
 <div class="i18n" lang="en">
 <h1>Request account &amp; data deletion</h1>
@@ -60,24 +60,24 @@ r.setAttribute('data-lang',l);})();
 <h2>Option 1: In the app (easiest)</h2>
 <ol><li>Open the HisabBondhu app</li><li>Go to the <b>More</b> tab</li><li>Tap <b>Delete account &amp; data</b></li><li>Confirm</li></ol>
 <h2>Option 2: On this page (works even without the app)</h2>
-<p>Enter your registered mobile number, verify with the code we send by SMS, then confirm deletion.</p>
+<p>Enter your account email, verify with the code we email you, then confirm deletion.</p>
 <h2>What is deleted</h2>
-<ul><li>Your account, mobile number, login sessions and device list</li>
+<ul><li>Your account, email, name, mobile number, login sessions and device list</li>
 <li>All business data on our servers: shop profile, customers, suppliers, products, transactions</li>
 <li>Weekly backup snapshots and audit logs</li></ul>
 <h2>What is kept, and for how long</h2>
 <ul><li>Automatic database disaster-recovery copies expire on their own <b>within 30 days</b></li>
-<li>As proof of deletion we keep only a one-way hash of the mobile number and the date (not the number itself)</li>
-<li>If you never logged in, your data exists only on your phone and is removed when you uninstall the app</li></ul>
+<li>As proof of deletion we keep only a one-way hash of the email and the date (not the email itself)</li>
+<li>The copy on your phone is removed when you delete it in the app or uninstall the app</li></ul>
 </div></article>
 <form class="card" id="del-form" onsubmit="return false">
   <div id="step-phone">
-    <label for="phone"><span class="i18n" lang="bn">নিবন্ধিত মোবাইল নম্বর</span><span class="i18n" lang="en">Registered mobile number</span></label>
-    <input id="phone" type="tel" inputmode="tel" placeholder="01XXXXXXXXX" autocomplete="tel" required>
+    <label for="phone"><span class="i18n" lang="bn">অ্যাকাউন্টের ইমেইল</span><span class="i18n" lang="en">Account email</span></label>
+    <input id="phone" type="email" inputmode="email" placeholder="name@gmail.com" autocomplete="email" required>
     <p><button class="btn" id="send-otp" type="button"><span class="i18n" lang="bn">কোড পাঠান</span><span class="i18n" lang="en">Send code</span></button></p>
   </div>
   <div id="step-otp" class="hidden">
-    <label for="otp"><span class="i18n" lang="bn">SMS-এ আসা ৬ সংখ্যার কোড</span><span class="i18n" lang="en">6-digit code from SMS</span></label>
+    <label for="otp"><span class="i18n" lang="bn">ইমেইলে আসা ৬ সংখ্যার কোড</span><span class="i18n" lang="en">6-digit code from your email</span></label>
     <input id="otp" inputmode="numeric" maxlength="6" autocomplete="one-time-code" required>
     <p><label style="font-weight:400"><input type="checkbox" id="confirm" style="width:auto"> <span class="i18n" lang="bn">আমি বুঝেছি, এটি ফেরত আনা যাবে না</span><span class="i18n" lang="en">I understand this cannot be undone</span></label></p>
     <p><button class="btn danger" id="do-delete" type="button" disabled><span class="i18n" lang="bn">স্থায়ীভাবে মুছুন</span><span class="i18n" lang="en">Delete permanently</span></button></p>
@@ -85,17 +85,17 @@ r.setAttribute('data-lang',l);})();
   <div class="status" id="del-status" role="status" aria-live="polite"></div>
 </form>
 <div class="note" id="del-fallback">
-  <span class="i18n" lang="bn">অনলাইন ফর্ম কাজ না করলে, নিবন্ধিত নম্বর লিখে ইমেইল করুন — আমরা যাচাই করে ৭ কার্যদিবসের মধ্যে মুছে দেবো: </span>
-  <span class="i18n" lang="en">If the online form doesn't work, email us from any address with your registered number — we'll verify and delete within 7 working days: </span>
-  <a data-email href="mailto:support@hisabbondhu.com">support@hisabbondhu.com</a>
+  <span class="i18n" lang="bn">অনলাইন ফর্ম কাজ না করলে, অ্যাকাউন্টের ইমেইল থেকে আমাদের ইমেইল করুন বা WhatsApp করুন — যাচাই করে ৭ কার্যদিবসের মধ্যে মুছে দেবো: </span>
+  <span class="i18n" lang="en">If the online form doesn't work, email us from your account email or message us on WhatsApp — we'll verify and delete within 7 working days: </span>
+  <a data-email href="mailto:support@sayadbayezid.com">support@sayadbayezid.com</a> · <a data-whatsapp href="https://wa.me/8801519601517">WhatsApp +880 1519-601517</a>
 </div>
 <script>
 (function(){
   var lang=function(){return document.documentElement.getAttribute('data-lang')==='en'?'en':'bn'};
   var msgs={
-    sent:{bn:'কোড পাঠানো হয়েছে। SMS দেখুন।',en:'Code sent. Check your SMS.'},
+    sent:{bn:'কোড পাঠানো হয়েছে। ইমেইল দেখুন (Spam ফোল্ডারও)।',en:'Code sent. Check your email (and Spam folder).'},
     done:{bn:'আপনার অ্যাকাউন্ট ও সব তথ্য মুছে ফেলা হয়েছে।',en:'Your account and all data have been deleted.'},
-    invalid_phone:{bn:'সঠিক মোবাইল নম্বর দিন।',en:'Enter a valid mobile number.'},
+    invalid_email:{bn:'সঠিক ইমেইল দিন।',en:'Enter a valid email address.'},
     invalid_code:{bn:'কোডটি ভুল।',en:'Wrong code.'},
     code_expired:{bn:'কোডের মেয়াদ শেষ, আবার কোড নিন।',en:'Code expired, request a new one.'},
     too_many_attempts:{bn:'অনেকবার ভুল হয়েছে, নতুন কোড নিন।',en:'Too many attempts, request a new code.'},
@@ -109,14 +109,14 @@ r.setAttribute('data-lang',l);})();
   cb.addEventListener('change',function(){del.disabled=!cb.checked});
   document.getElementById('send-otp').addEventListener('click',function(){
     var b=this;b.disabled=true;
-    hbApi('/v1/auth/request-otp',{method:'POST',body:JSON.stringify({phone:phone.value})})
+    hbApi('/v1/auth/request-otp',{method:'POST',body:JSON.stringify({email:phone.value})})
       .then(function(){show('sent',true);document.getElementById('step-otp').classList.remove('hidden');otp.focus();})
       .catch(function(e){show(e.code||e.message);})
       .finally(function(){b.disabled=false;});
   });
   del.addEventListener('click',function(){
     del.disabled=true;
-    hbApi('/v1/auth/verify-otp',{method:'POST',body:JSON.stringify({phone:phone.value,code:otp.value.trim(),device_name:'web-deletion'})})
+    hbApi('/v1/auth/verify-otp',{method:'POST',body:JSON.stringify({email:phone.value,code:otp.value.trim(),device_name:'web-deletion'})})
       .then(function(t){return hbApi('/v1/account',{method:'DELETE',headers:{authorization:'Bearer '+t.access_token}});})
       .then(function(){show('done',true);document.getElementById('step-phone').classList.add('hidden');document.getElementById('step-otp').classList.add('hidden');})
       .catch(function(e){show(e.code||e.message);del.disabled=!cb.checked;});
@@ -129,7 +129,8 @@ r.setAttribute('data-lang',l);})();
   <span>© <span id="year">2026</span> HisabBondhu · হিসাববন্ধু</span>
   <a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms</a><a href="your-rights.html">Your rights</a>
   <a href="data-deletion.html">Delete account &amp; data</a><a href="contact.html">Contact</a>
-  <a data-email href="mailto:support@hisabbondhu.com">support@hisabbondhu.com</a>
+  <a data-email href="mailto:support@sayadbayezid.com">support@sayadbayezid.com</a>
+  <a data-whatsapp href="https://wa.me/8801519601517">WhatsApp +880 1519-601517</a>
 </div></footer>
 </body>
 </html>

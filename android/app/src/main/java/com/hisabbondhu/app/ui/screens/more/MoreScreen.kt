@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Chat
 import androidx.compose.material.icons.rounded.CloudSync
 import androidx.compose.material.icons.rounded.DeleteForever
 import androidx.compose.material.icons.rounded.Edit
@@ -108,8 +109,7 @@ fun MoreScreen(nav: NavHostController) {
                     NavRow(
                         Icons.Rounded.CloudSync,
                         stringResource(R.string.online_backup_sync),
-                        if (auth?.loggedIn == true) stringResource(R.string.logged_in_as, auth?.phone.orEmpty())
-                        else stringResource(R.string.not_logged_in_desc),
+                        stringResource(R.string.logged_in_as, auth?.email.orEmpty()),
                     ) { nav.navigate(Routes.ACCOUNT) }
                 }
             }
@@ -134,7 +134,11 @@ fun MoreScreen(nav: NavHostController) {
             }
             item {
                 SectionCard(title = stringResource(R.string.section_help_legal), contentPadding = PaddingValues(vertical = 8.dp)) {
-                    NavRow(Icons.Rounded.SupportAgent, stringResource(R.string.contact_us), stringResource(R.string.contact_us_desc)) { nav.navigate(Routes.CONTACT) }
+                    NavRow(Icons.Rounded.SupportAgent, stringResource(R.string.contact_us), stringResource(R.string.contact_us_desc), tag = "nav_contact") { nav.navigate(Routes.CONTACT) }
+                    RowDivider()
+                    NavRow(Icons.Rounded.Chat, stringResource(R.string.whatsapp_us), "+" + BuildConfig.SUPPORT_WHATSAPP, tint = androidx.compose.ui.graphics.Color(0xFF25D366)) {
+                        Share.whatsApp(context, BuildConfig.SUPPORT_WHATSAPP, context.getString(R.string.whatsapp_greeting))
+                    }
                     RowDivider()
                     NavRow(Icons.Rounded.Policy, stringResource(R.string.privacy_policy)) { nav.navigate(Routes.legal("privacy")) }
                     RowDivider()

@@ -4,9 +4,10 @@
 - [ ] Google Play developer account (one-time US$25). New **personal** accounts must run a **closed test with
       at least 12 testers for 14 continuous days** before applying for production access.
 - [ ] Check the name: search “হিসাববন্ধু / HisabBondhu” on Play, check domain & Facebook page availability.
-- [ ] Support email you own set as `SUPPORT_EMAIL` variable (website + app rebuilt).
+- [ ] Support contact: support@sayadbayezid.com · WhatsApp +8801519601517 (already set in app + website).
 - [ ] Website live on GitHub Pages (privacy + data-deletion URLs open on a phone).
-- [ ] Backend deployed and `API_BASE_URL` variable set (optional for an offline-only first release).
+- [ ] **Backend deployed and `API_BASE_URL` variable set — required**, because every shop signs in with an email code.
+- [ ] Resend domain `sayadbayezid.com` verified; `RESEND_API_KEY`, `REVIEW_EMAIL`, `REVIEW_OTP` secrets added.
 
 ## Build
 - [ ] Signing secrets added → run **Android — build AAB & APK** → download artifact.
@@ -16,10 +17,10 @@
 ## Play Console
 1. **Create app** → name, default language Bengali (bn-BD), App, Free, accept declarations.
 2. **App integrity → Play App Signing**: keep “Google-managed key” (default). Your keystore becomes the upload key.
-3. **App content**: fill every item using `policy-answers.md` and `data-safety.md`.
-4. **Store listing**: texts from `listing.md`, icon + feature graphic from `brand/play-store/`, 4–8 phone screenshots.
+3. **App content**: fill every item using `policy-answers.md`; for Data safety import `data-safety/hisabbondhu-data-safety.csv`.
+4. **Store listing**: texts from `listing.md`; graphics from `brand/play-store/` (icon, feature graphic, `screenshots/phone`, `screenshots/tablet-7`, `screenshots/tablet-10`, `screenshots/chromebook`).
 5. **Store settings**: Category *Business*, contact email, website.
-6. **Testing → Internal testing**: create release, upload the `.aab`, release notes (bn + en), add your testers' emails.
+6. **Testing → Internal testing**: create release, upload the `.aab`, release name + notes from `release-notes.md`, add your testers' emails.
 7. **Testing → Closed testing**: same AAB, 12+ testers, keep it running 14 days, collect feedback.
 8. **Production**: apply for access → create release → roll out (start with 20% staged rollout).
 9. Upload `mapping-<version>.txt` under **App bundle explorer → Downloads → ReTrace mapping** for crash de-obfuscation.
