@@ -1,0 +1,62 @@
+<template>
+<style>
+@font-face{font-family:'Hind Siliguri';src:url('assets/fonts/hind_siliguri_regular.ttf') format('truetype');font-weight:400;font-style:normal}
+@font-face{font-family:'Hind Siliguri';src:url('assets/fonts/hind_siliguri_semibold.ttf') format('truetype');font-weight:600;font-style:normal}
+@font-face{font-family:'Hind Siliguri';src:url('assets/fonts/hind_siliguri_bold.ttf') format('truetype');font-weight:700;font-style:normal}
+#root{position:absolute;inset:0;font-family:'Hind Siliguri',sans-serif;color:#fff;overflow:visible}
+#root .hdr{position:absolute;left:120px;width:768px;top:292px;height:114px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-align:center}
+#root .chip{font-size:28px;font-weight:700;color:#053D2E;background:#FFD43B;border-radius:999px;padding:0 22px;line-height:40px}
+#root .ttl{font-size:60px;font-weight:700;line-height:1.15;text-shadow:0 4px 18px rgba(0,0,0,.25)}
+#root .ttl .w{display:inline-block;margin:0 .14em}
+#root .phone{position:absolute;left:290px;top:412px;width:429px;height:744px;border-radius:58px;background:#0b0f0e;box-shadow:0 34px 90px rgba(0,0,0,.45),inset 0 0 0 2px rgba(255,255,255,.10)}
+#root .screen{position:absolute;left:12px;top:12px;width:405px;height:720px;border-radius:46px;overflow:hidden;background:#fff}
+#root .enter,#root .zoom{position:absolute;left:0;top:0;width:405px;height:720px}
+#root img.scr{position:absolute;left:0;top:0;width:405px;height:720px}
+#root .tap{position:absolute;left:0;top:0;width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.55);border:4px solid #FFD43B;box-shadow:0 4px 14px rgba(0,0,0,.35);opacity:0}
+#root .press{position:absolute;background:rgba(8,127,91,.30);opacity:0}
+#root .mark{position:absolute;border:4px solid #FFD43B;border-radius:16px;opacity:0;box-shadow:0 0 0 999px rgba(5,61,46,.0)}
+</style>
+<div id="root" data-composition-id="ledger" data-width="1080" data-height="1920">
+<div id="ledger-hdr" class="hdr"><div id="ledger-chip"></div><div id="ledger-ttl" class="ttl"><span class="w">বাকির</span><span class="w">তাগাদা</span></div></div>
+<div id="ledger-phone" class="phone"><div id="ledger-screen" class="screen"><div id="ledger-enter" class="enter" data-layout-allow-overflow><div id="ledger-zoom" class="zoom" data-layout-allow-overflow>
+  <img id="ledger-img" class="scr" src="assets/screens/customer_ledger.png" alt="">
+  
+  <div id="ledger-dim" style="position:absolute;inset:0;background:rgba(0,0,0,.45);opacity:0"></div>
+  <div id="ledger-chat" style="position:absolute;left:0;top:250px;width:405px;height:470px;background:#ECE5DD;border-radius:24px 24px 0 0;opacity:0;color:#1f2a27">
+    <div style="height:62px;background:#075E54;border-radius:24px 24px 0 0;display:flex;align-items:center;gap:12px;padding:0 16px;color:#fff">
+      <div style="width:38px;height:38px;border-radius:50%;background:#FFE8CC;color:#D9480F;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px">স</div>
+      <div style="font-size:20px;font-weight:700">সালমা আপা</div></div>
+    <div style="position:absolute;left:46px;right:14px;top:80px;background:#DCF8C6;border-radius:16px 4px 16px 16px;padding:14px 16px 26px;font-size:21px;line-height:1.5;box-shadow:0 1px 2px rgba(0,0,0,.12)">
+      প্রিয় সালমা আপা, ২০ নভেম্বর ২০২৬ পর্যন্ত আপনার মোট বাকি ৳২,২০০। সুবিধামতো সময়ে পরিশোধ করার অনুরোধ রইলো। ধন্যবাদ।
+      <div id="ledger-ticks" style="position:absolute;right:12px;bottom:6px;font-size:16px;font-weight:700;color:#1864AB;opacity:0">✓✓</div></div>
+    <div style="position:absolute;left:12px;right:12px;bottom:18px;height:54px;display:flex;gap:10px;align-items:center">
+      <div style="flex:1;height:50px;border-radius:25px;background:#fff"></div>
+      <div id="ledger-send" style="width:50px;height:50px;border-radius:50%;background:#128C7E;display:flex;align-items:center;justify-content:center">
+        <svg width="24" height="24" viewBox="0 0 24 24"><path d="M3 20l18-8L3 4v6l12 2-12 2z" fill="#fff"/></svg></div>
+    </div>
+  </div>
+  <div id="ledger-pr1" class="press" style="left:57px;top:336px;width:61px;height:55px;border-radius:12px"></div>
+  <div id="ledger-tap" class="tap"></div>
+</div></div></div></div>
+</div>
+<script>
+  const tl = gsap.timeline({ paused: true });
+  tl.fromTo('#ledger-chip',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.16,ease:'power4.out'},0.05);
+  gsap.utils.toArray('#ledger-ttl .w').forEach((w,i)=>tl.fromTo(w,{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.11+i*0.067));
+  tl.to('#ledger-hdr',{opacity:0,filter:'blur(6px)',duration:0.16,ease:'power2.in'},7.02);
+  tl.fromTo('#ledger-enter',{scale:1.06,opacity:0.2,transformOrigin:'50% 50%'},{scale:1,opacity:1,duration:0.35,ease:'expo.out'},0);
+  tl.to('#ledger-zoom',{scale:1.6,x:-122.3,y:0.0,transformOrigin:'0 0',duration:0.6,ease:'power2.inOut'},0.4);
+  tl.to('#ledger-zoom',{scale:1,x:0,y:0,transformOrigin:'0 0',duration:0.45,ease:'power2.inOut'},1.55);
+  tl.fromTo('#ledger-tap',{x:60,y:324,opacity:0,scale:0.6},{opacity:1,scale:1,duration:0.2,ease:'power3.out'},1.95);
+  tl.to('#ledger-tap',{scale:0.78,duration:0.08,ease:'power2.in'},2.35);
+  tl.to('#ledger-tap',{scale:1,duration:0.2,ease:'power2.out'},2.43);
+  tl.fromTo('#ledger-pr1',{opacity:0},{opacity:1,duration:0.06},2.35);
+  tl.to('#ledger-pr1',{opacity:0,duration:0.3,ease:'power2.out'},2.51);
+  tl.to('#ledger-tap',{opacity:0,scale:0.7,duration:0.15,ease:'power2.in'},2.65);
+  tl.fromTo('#ledger-dim',{opacity:0},{opacity:1,duration:0.25},2.6);
+  tl.fromTo('#ledger-chat',{y:320,opacity:0},{y:0,opacity:1,duration:0.5,ease:'expo.out'},2.65);
+  tl.fromTo('#ledger-send',{scale:1,transformOrigin:'50% 50%'},{scale:0.82,duration:0.08,ease:'power2.in'},5.4); tl.to('#ledger-send',{scale:1,duration:0.2},5.48);
+  tl.fromTo('#ledger-ticks',{opacity:0},{opacity:1,duration:0.15},5.65);
+  window.__timelines["ledger"] = tl;
+</script>
+</template>
