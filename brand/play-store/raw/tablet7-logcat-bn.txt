@@ -1,31 +1,31 @@
 --------- beginning of main
-11-20 07:58:37.785  3726  4247 I TestRunner: run started: 1 tests
-11-20 07:58:37.785  3726  4247 I TestRunner: started: tour(com.hisabbondhu.app.ScreenshotTour)
-11-20 07:58:41.384  3726  4247 I ScreenshotTour: step language
-11-20 07:58:43.634  3726  4247 I ScreenshotTour: shot 01_language ok=true
-11-20 07:58:48.461  3726  4247 I ScreenshotTour: step signin
-11-20 07:58:51.756  3726  4247 I ScreenshotTour: shot 02_signin ok=true
-11-20 07:58:51.756  3726  4247 I ScreenshotTour: step profile
-11-20 07:58:53.732  3726  4247 I ScreenshotTour: shot 03_profile ok=true
-11-20 07:58:53.733  3726  4247 I ScreenshotTour: step setup
-11-20 07:58:55.495  3726  4247 I ScreenshotTour: shot 04_setup ok=true
-11-20 07:58:55.495  3726  4247 I ScreenshotTour: step home
-11-20 07:59:00.445  3726  4247 I ScreenshotTour: shot 05_home ok=true
-11-20 07:59:00.449  3726  4247 I ScreenshotTour: step sale
-11-20 07:59:03.490  3726  4247 I ScreenshotTour: shot 06_sale_entry ok=true
-11-20 07:59:05.153  3726  4247 I ScreenshotTour: step customers
-11-20 07:59:08.499  3726  4247 I ScreenshotTour: shot 07_customers ok=true
-11-20 07:59:11.528  3726  4247 I ScreenshotTour: shot 08_customer_ledger ok=true
-11-20 07:59:13.238  3726  4247 I ScreenshotTour: step stock
-11-20 07:59:14.837  3726  4247 I ScreenshotTour: shot 09_stock ok=true
-11-20 07:59:14.838  3726  4247 I ScreenshotTour: step reports
-11-20 07:59:16.387  3726  4247 I ScreenshotTour: shot 10_reports ok=true
-11-20 07:59:16.389  3726  4247 I ScreenshotTour: step more
-11-20 07:59:18.657  3726  4247 I ScreenshotTour: shot 11_more ok=true
-11-20 07:59:18.657  3726  4247 I ScreenshotTour: step contact
-11-20 07:59:20.137  3726  4247 I ScreenshotTour: shot 12_contact ok=true
-11-20 07:59:21.776  3726  4247 I ScreenshotTour: step dark
-11-20 07:59:27.735  3726  4247 I ScreenshotTour: shot 13_home_dark ok=true
-11-20 07:59:27.814  3726  4247 I ScreenshotTour: tour finished
-11-20 07:59:27.814  3726  4247 I TestRunner: finished: tour(com.hisabbondhu.app.ScreenshotTour)
-11-20 07:59:27.817  3726  4247 I TestRunner: run finished: ১ tests, ০ failed, ০ ignored
+11-26 10:17:09.569  3837  4212 I TestRunner: run started: 1 tests
+11-26 10:17:09.570  3837  4212 I TestRunner: started: tour(com.hisabbondhu.app.ScreenshotTour)
+11-26 10:17:13.766  3837  4212 I ScreenshotTour: step language
+11-26 10:17:17.226  3837  4212 I ScreenshotTour: shot 01_language ok=true
+11-26 10:17:20.454  3837  4212 I ScreenshotTour: step signin
+11-26 10:17:23.334  3837  4212 I ScreenshotTour: shot 02_signin ok=true
+11-26 10:17:23.334  3837  4212 I ScreenshotTour: step profile
+11-26 10:17:26.231  3837  4212 I ScreenshotTour: shot 03_profile ok=true
+11-26 10:17:26.231  3837  4212 I ScreenshotTour: step setup
+11-26 10:17:29.380  3837  4212 I ScreenshotTour: shot 04_setup ok=true
+11-26 10:17:29.381  3837  4212 I ScreenshotTour: step home
+11-26 10:17:35.261  3837  4212 I ScreenshotTour: shot 05_home ok=true
+11-26 10:17:35.262  3837  4212 I ScreenshotTour: step sale
+11-26 10:17:38.115  3837  4212 I ScreenshotTour: shot 06_sale_entry ok=true
+11-26 10:17:39.771  3837  4212 I ScreenshotTour: step customers
+11-26 10:17:44.290  3837  4212 I ScreenshotTour: shot 07_customers ok=true
+11-26 10:17:48.374  3837  4212 I ScreenshotTour: shot 08_customer_ledger ok=true
+11-26 10:17:49.796  3837  4212 I ScreenshotTour: step stock
+11-26 10:17:51.928  3837  4212 I ScreenshotTour: shot 09_stock ok=true
+11-26 10:17:51.930  3837  4212 I ScreenshotTour: step reports
+11-26 10:17:53.586  3837  4212 I ScreenshotTour: shot 10_reports ok=true
+11-26 10:17:53.586  3837  4212 I ScreenshotTour: step more
+11-26 10:17:56.037  3837  4212 I ScreenshotTour: shot 11_more ok=true
+11-26 10:17:56.039  3837  4212 I ScreenshotTour: step contact
+11-26 10:17:57.598  3837  4212 I ScreenshotTour: shot 12_contact ok=true
+11-26 10:17:59.269  3837  4212 I ScreenshotTour: step dark
+11-26 10:18:05.892  3837  4212 I ScreenshotTour: shot 13_home_dark ok=true
+11-26 10:18:05.938  3837  4212 I ScreenshotTour: tour finished
+11-26 10:18:05.939  3837  4212 I TestRunner: finished: tour(com.hisabbondhu.app.ScreenshotTour)
+11-26 10:18:05.993  3837  4212 I TestRunner: run finished: ১ tests, ০ failed, ০ ignored
