@@ -1,0 +1,58 @@
+<template>
+<style>
+@font-face{font-family:'Hind Siliguri';src:url('assets/fonts/hind_siliguri_regular.ttf') format('truetype');font-weight:400;font-style:normal}
+@font-face{font-family:'Hind Siliguri';src:url('assets/fonts/hind_siliguri_semibold.ttf') format('truetype');font-weight:600;font-style:normal}
+@font-face{font-family:'Hind Siliguri';src:url('assets/fonts/hind_siliguri_bold.ttf') format('truetype');font-weight:700;font-style:normal}
+#root{position:absolute;inset:0;font-family:'Hind Siliguri',sans-serif;color:#fff;overflow:visible}
+#root .brand{position:absolute;left:860px;top:112px;height:52px;display:flex;align-items:center;gap:14px;opacity:.85}
+#root .brand img{width:48px;height:48px;border-radius:12px}
+#root .brand div{font-size:28px;font-weight:600}
+#root .chip{position:absolute;left:860px;top:194px;font-size:28px;font-weight:700;color:#053D2E;background:#FFD43B;border-radius:999px;padding:0 24px;line-height:46px}
+#root .ttl{position:absolute;left:860px;top:250px;width:860px;font-size:66px;font-weight:700;line-height:1.15;text-shadow:0 4px 18px rgba(0,0,0,.25)}
+#root .ttl .w{display:inline-block;margin-right:.22em}
+#root .step{position:absolute;left:860px;width:860px;height:68px;display:flex;align-items:center;gap:22px;opacity:0}
+#root .step .n{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.14);border:3px solid rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:700;flex:none}
+#root .step .t{font-size:40px;font-weight:600;line-height:1.2}
+#root .phone{position:absolute;left:210px;top:72px;width:528px;height:920px;border-radius:66px;background:#0b0f0e;box-shadow:0 34px 90px rgba(0,0,0,.45),inset 0 0 0 2px rgba(255,255,255,.10)}
+#root .screen{position:absolute;left:12px;top:12px;width:504px;height:896px;border-radius:54px;overflow:hidden;background:#fff}
+#root .enter,#root .zoom{position:absolute;left:0;top:0;width:504px;height:896px}
+#root img.scr{position:absolute;left:0;top:0;width:504px;height:896px}
+#root .tap{position:absolute;left:0;top:0;width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,.55);border:4px solid #FFD43B;box-shadow:0 4px 14px rgba(0,0,0,.35);opacity:0}
+#root .press{position:absolute;background:rgba(8,127,91,.30);opacity:0}
+#root .mark{position:absolute;border:4px solid #FFD43B;border-radius:16px;opacity:0}
+</style>
+<div id="root" data-composition-id="s01" data-width="1920" data-height="1080">
+<div class="brand"><img src="assets/icon.png" alt=""><div>হিসাববন্ধু · ইউজার গাইড</div></div>
+<div id="s01-chip" class="chip">শুরু</div>
+<div id="s01-ttl" class="ttl"><span class="w">হিসাববন্ধু</span><span class="w">ব্যবহারের</span><span class="w">পূর্ণ</span><span class="w">গাইড</span></div>
+<div id="s01-steps"><div id="s01-st0" class="step" style="top:440px"><div class="n">১</div><div class="t">নগদ ও বাকি বিক্রি</div></div>
+<div id="s01-st1" class="step" style="top:520px"><div class="n">২</div><div class="t">বাকির খাতা ও আদায়</div></div>
+<div id="s01-st2" class="step" style="top:600px"><div class="n">৩</div><div class="t">খরচ ও মাল কেনা</div></div>
+<div id="s01-st3" class="step" style="top:680px"><div class="n">৪</div><div class="t">স্টক ও রিপোর্ট</div></div></div>
+<div id="s01-phone" class="phone"><div class="screen"><div id="s01-enter" class="enter" data-layout-allow-overflow><div id="s01-zoom" class="zoom" data-layout-allow-overflow>
+  <img id="s01-img" class="scr" src="assets/screens/home.png" alt="">
+  
+  
+  <div id="s01-tap" class="tap"></div>
+</div></div></div></div>
+</div>
+<script>
+  const tl = gsap.timeline({ paused: true });
+  tl.fromTo('#s01-chip',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.16,ease:'power4.out'},0.08);
+  gsap.utils.toArray('#s01-ttl .w').forEach((w,i)=>tl.fromTo(w,{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.14,ease:'power4.out'},0.14+i*0.067));
+  tl.to(['#s01-chip','#s01-ttl','#s01-steps'],{opacity:0,filter:'blur(6px)',duration:0.16,ease:'power2.in'},14.48);
+  tl.fromTo('#s01-st0',{opacity:0,x:-24},{opacity:1,x:0,duration:0.35,ease:'expo.out'},7.09);
+  tl.to('#s01-st0 .n',{backgroundColor:'#FFD43B',borderColor:'#FFD43B',color:'#053D2E',duration:0.2},7.09);
+  tl.fromTo('#s01-st1',{opacity:0,x:-24},{opacity:1,x:0,duration:0.35,ease:'expo.out'},8.52);
+  tl.to('#s01-st1 .n',{backgroundColor:'#FFD43B',borderColor:'#FFD43B',color:'#053D2E',duration:0.2},8.52);
+  tl.to('#s01-st0',{opacity:0.62,duration:0.25},8.52); tl.to('#s01-st0 .n',{backgroundColor:'rgba(255,255,255,.14)',borderColor:'rgba(255,255,255,.55)',color:'#ffffff',duration:0.2},8.52);
+  tl.fromTo('#s01-st2',{opacity:0,x:-24},{opacity:1,x:0,duration:0.35,ease:'expo.out'},9.47);
+  tl.to('#s01-st2 .n',{backgroundColor:'#FFD43B',borderColor:'#FFD43B',color:'#053D2E',duration:0.2},9.47);
+  tl.to('#s01-st1',{opacity:0.62,duration:0.25},9.47); tl.to('#s01-st1 .n',{backgroundColor:'rgba(255,255,255,.14)',borderColor:'rgba(255,255,255,.55)',color:'#ffffff',duration:0.2},9.47);
+  tl.fromTo('#s01-st3',{opacity:0,x:-24},{opacity:1,x:0,duration:0.35,ease:'expo.out'},10.02);
+  tl.to('#s01-st3 .n',{backgroundColor:'#FFD43B',borderColor:'#FFD43B',color:'#053D2E',duration:0.2},10.02);
+  tl.to('#s01-st2',{opacity:0.62,duration:0.25},10.02); tl.to('#s01-st2 .n',{backgroundColor:'rgba(255,255,255,.14)',borderColor:'rgba(255,255,255,.55)',color:'#ffffff',duration:0.2},10.02);
+  tl.fromTo('#s01-phone',{y:1150},{y:0,duration:0.9,ease:'expo.out'},0);
+  window.__timelines["s01"] = tl;
+</script>
+</template>

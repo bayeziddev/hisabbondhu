@@ -1,0 +1,80 @@
+<template>
+<style>
+@font-face{font-family:'Hind Siliguri';src:url('assets/fonts/hind_siliguri_regular.ttf') format('truetype');font-weight:400;font-style:normal}
+@font-face{font-family:'Hind Siliguri';src:url('assets/fonts/hind_siliguri_semibold.ttf') format('truetype');font-weight:600;font-style:normal}
+@font-face{font-family:'Hind Siliguri';src:url('assets/fonts/hind_siliguri_bold.ttf') format('truetype');font-weight:700;font-style:normal}
+#root{position:absolute;inset:0;font-family:'Hind Siliguri',sans-serif;color:#fff;overflow:visible}
+#root .brand{position:absolute;left:860px;top:112px;height:52px;display:flex;align-items:center;gap:14px;opacity:.85}
+#root .brand img{width:48px;height:48px;border-radius:12px}
+#root .brand div{font-size:28px;font-weight:600}
+#root .chip{position:absolute;left:860px;top:194px;font-size:28px;font-weight:700;color:#053D2E;background:#FFD43B;border-radius:999px;padding:0 24px;line-height:46px}
+#root .ttl{position:absolute;left:860px;top:250px;width:860px;font-size:66px;font-weight:700;line-height:1.15;text-shadow:0 4px 18px rgba(0,0,0,.25)}
+#root .ttl .w{display:inline-block;margin-right:.22em}
+#root .step{position:absolute;left:860px;width:860px;height:68px;display:flex;align-items:center;gap:22px;opacity:0}
+#root .step .n{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.14);border:3px solid rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:700;flex:none}
+#root .step .t{font-size:40px;font-weight:600;line-height:1.2}
+#root .phone{position:absolute;left:210px;top:72px;width:528px;height:920px;border-radius:66px;background:#0b0f0e;box-shadow:0 34px 90px rgba(0,0,0,.45),inset 0 0 0 2px rgba(255,255,255,.10)}
+#root .screen{position:absolute;left:12px;top:12px;width:504px;height:896px;border-radius:54px;overflow:hidden;background:#fff}
+#root .enter,#root .zoom{position:absolute;left:0;top:0;width:504px;height:896px}
+#root img.scr{position:absolute;left:0;top:0;width:504px;height:896px}
+#root .tap{position:absolute;left:0;top:0;width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,.55);border:4px solid #FFD43B;box-shadow:0 4px 14px rgba(0,0,0,.35);opacity:0}
+#root .press{position:absolute;background:rgba(8,127,91,.30);opacity:0}
+#root .mark{position:absolute;border:4px solid #FFD43B;border-radius:16px;opacity:0}
+</style>
+<div id="root" data-composition-id="s06" data-width="1920" data-height="1080">
+<div class="brand"><img src="assets/icon.png" alt=""><div>হিসাববন্ধু · ইউজার গাইড</div></div>
+<div id="s06-chip" class="chip">ধাপ ৫</div>
+<div id="s06-ttl" class="ttl"><span class="w">দোকানের</span><span class="w">তথ্য</span></div>
+<div id="s06-steps"><div id="s06-st0" class="step" style="top:440px"><div class="n">১</div><div class="t">দোকানের নাম</div></div>
+<div id="s06-st1" class="step" style="top:520px"><div class="n">২</div><div class="t">মালিকের নাম ও মোবাইল</div></div>
+<div id="s06-st2" class="step" style="top:600px"><div class="n">৩</div><div class="t">ব্যবসার ধরন</div></div>
+<div id="s06-st3" class="step" style="top:680px"><div class="n">৪</div><div class="t">শুরু করুন — খাতা তৈরি</div></div></div>
+<div id="s06-phone" class="phone"><div class="screen"><div id="s06-enter" class="enter" data-layout-allow-overflow><div id="s06-zoom" class="zoom" data-layout-allow-overflow>
+  <img id="s06-img" class="scr" src="assets/screens/setup.png" alt="">
+  
+  <div id="s06-pr1" class="press" style="left:22.9px;top:185.7px;width:462.5px;height:69.5px;border-radius:14px"></div>
+  <div id="s06-pr2" class="press" style="left:22.9px;top:279.1px;width:462.5px;height:69.5px;border-radius:14px"></div>
+  <div id="s06-pr3" class="press" style="left:22.9px;top:374.7px;width:462.5px;height:68.6px;border-radius:14px"></div>
+  <div id="s06-pr4" class="press" style="left:27.1px;top:510.5px;width:136.3px;height:37.8px;border-radius:14px"></div>
+  <div id="s06-pr5" class="press" style="left:22.9px;top:725.2px;width:462.5px;height:60.7px;border-radius:14px"></div>
+  <div id="s06-mk1" class="mark" style="left:177.3px;top:793.3px;width:154px;height:42px"></div>
+  <div id="s06-tap" class="tap"></div>
+</div></div></div></div>
+</div>
+<script>
+  const tl = gsap.timeline({ paused: true });
+  tl.fromTo('#s06-chip',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.16,ease:'power4.out'},0.08);
+  gsap.utils.toArray('#s06-ttl .w').forEach((w,i)=>tl.fromTo(w,{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.14,ease:'power4.out'},0.14+i*0.067));
+  tl.to(['#s06-chip','#s06-ttl','#s06-steps'],{opacity:0,filter:'blur(6px)',duration:0.16,ease:'power2.in'},11.92);
+  tl.fromTo('#s06-st0',{opacity:0,x:-24},{opacity:1,x:0,duration:0.35,ease:'expo.out'},0.84);
+  tl.to('#s06-st0 .n',{backgroundColor:'#FFD43B',borderColor:'#FFD43B',color:'#053D2E',duration:0.2},0.84);
+  tl.fromTo('#s06-st1',{opacity:0,x:-24},{opacity:1,x:0,duration:0.35,ease:'expo.out'},1.90);
+  tl.to('#s06-st1 .n',{backgroundColor:'#FFD43B',borderColor:'#FFD43B',color:'#053D2E',duration:0.2},1.90);
+  tl.to('#s06-st0',{opacity:0.62,duration:0.25},1.90); tl.to('#s06-st0 .n',{backgroundColor:'rgba(255,255,255,.14)',borderColor:'rgba(255,255,255,.55)',color:'#ffffff',duration:0.2},1.90);
+  tl.fromTo('#s06-st2',{opacity:0,x:-24},{opacity:1,x:0,duration:0.35,ease:'expo.out'},4.26);
+  tl.to('#s06-st2 .n',{backgroundColor:'#FFD43B',borderColor:'#FFD43B',color:'#053D2E',duration:0.2},4.26);
+  tl.to('#s06-st1',{opacity:0.62,duration:0.25},4.26); tl.to('#s06-st1 .n',{backgroundColor:'rgba(255,255,255,.14)',borderColor:'rgba(255,255,255,.55)',color:'#ffffff',duration:0.2},4.26);
+  tl.fromTo('#s06-st3',{opacity:0,x:-24},{opacity:1,x:0,duration:0.35,ease:'expo.out'},7.93);
+  tl.to('#s06-st3 .n',{backgroundColor:'#FFD43B',borderColor:'#FFD43B',color:'#053D2E',duration:0.2},7.93);
+  tl.to('#s06-st2',{opacity:0.62,duration:0.25},7.93); tl.to('#s06-st2 .n',{backgroundColor:'rgba(255,255,255,.14)',borderColor:'rgba(255,255,255,.55)',color:'#ffffff',duration:0.2},7.93);
+  tl.fromTo('#s06-enter',{x:70,opacity:0},{x:0,opacity:1,duration:0.35,ease:'power3.out'},0);
+  tl.fromTo('#s06-tap',{x:222.5,y:190.3,opacity:0,scale:0.6},{opacity:1,scale:1,duration:0.2,ease:'power3.out'},0.49);
+  tl.to('#s06-tap',{scale:0.78,duration:0.08,ease:'power2.in'},0.94); tl.to('#s06-tap',{scale:1,duration:0.2,ease:'power2.out'},1.02);
+  tl.fromTo('#s06-pr1',{opacity:0},{opacity:1,duration:0.06},0.94); tl.to('#s06-pr1',{opacity:0,duration:0.3,ease:'power2.out'},1.10);
+  tl.to('#s06-tap',{x:222.5,y:283.6,duration:0.4,ease:'power2.inOut'},1.50);
+  tl.to('#s06-tap',{scale:0.78,duration:0.08,ease:'power2.in'},2.00); tl.to('#s06-tap',{scale:1,duration:0.2,ease:'power2.out'},2.08);
+  tl.fromTo('#s06-pr2',{opacity:0},{opacity:1,duration:0.06},2.00); tl.to('#s06-pr2',{opacity:0,duration:0.3,ease:'power2.out'},2.16);
+  tl.to('#s06-tap',{x:222.5,y:378.8,duration:0.4,ease:'power2.inOut'},2.56);
+  tl.to('#s06-tap',{scale:0.78,duration:0.08,ease:'power2.in'},3.06); tl.to('#s06-tap',{scale:1,duration:0.2,ease:'power2.out'},3.14);
+  tl.fromTo('#s06-pr3',{opacity:0},{opacity:1,duration:0.06},3.06); tl.to('#s06-pr3',{opacity:0,duration:0.3,ease:'power2.out'},3.22);
+  tl.to('#s06-tap',{x:66.6,y:498.70000000000005,duration:0.4,ease:'power2.inOut'},3.86);
+  tl.to('#s06-tap',{scale:0.78,duration:0.08,ease:'power2.in'},4.36); tl.to('#s06-tap',{scale:1,duration:0.2,ease:'power2.out'},4.44);
+  tl.fromTo('#s06-pr4',{opacity:0},{opacity:1,duration:0.06},4.36); tl.to('#s06-pr4',{opacity:0,duration:0.3,ease:'power2.out'},4.52);
+  tl.to('#s06-tap',{x:222.5,y:725.5,duration:0.4,ease:'power2.inOut'},7.53);
+  tl.to('#s06-tap',{scale:0.78,duration:0.08,ease:'power2.in'},8.03); tl.to('#s06-tap',{scale:1,duration:0.2,ease:'power2.out'},8.11);
+  tl.fromTo('#s06-pr5',{opacity:0},{opacity:1,duration:0.06},8.03); tl.to('#s06-pr5',{opacity:0,duration:0.3,ease:'power2.out'},8.19);
+  tl.to('#s06-tap',{opacity:0,scale:0.7,duration:0.15,ease:'power2.in'},8.92);
+  tl.fromTo('#s06-mk1',{opacity:0,scale:1.1,transformOrigin:'50% 50%'},{opacity:1,scale:1,duration:0.28,ease:'expo.out'},6.81); tl.to('#s06-mk1',{opacity:0,duration:0.18,ease:'power2.in'},8.21);
+  window.__timelines["s06"] = tl;
+</script>
+</template>

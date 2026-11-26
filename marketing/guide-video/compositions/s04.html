@@ -1,0 +1,72 @@
+<template>
+<style>
+@font-face{font-family:'Hind Siliguri';src:url('assets/fonts/hind_siliguri_regular.ttf') format('truetype');font-weight:400;font-style:normal}
+@font-face{font-family:'Hind Siliguri';src:url('assets/fonts/hind_siliguri_semibold.ttf') format('truetype');font-weight:600;font-style:normal}
+@font-face{font-family:'Hind Siliguri';src:url('assets/fonts/hind_siliguri_bold.ttf') format('truetype');font-weight:700;font-style:normal}
+#root{position:absolute;inset:0;font-family:'Hind Siliguri',sans-serif;color:#fff;overflow:visible}
+#root .brand{position:absolute;left:860px;top:112px;height:52px;display:flex;align-items:center;gap:14px;opacity:.85}
+#root .brand img{width:48px;height:48px;border-radius:12px}
+#root .brand div{font-size:28px;font-weight:600}
+#root .chip{position:absolute;left:860px;top:194px;font-size:28px;font-weight:700;color:#053D2E;background:#FFD43B;border-radius:999px;padding:0 24px;line-height:46px}
+#root .ttl{position:absolute;left:860px;top:250px;width:860px;font-size:66px;font-weight:700;line-height:1.15;text-shadow:0 4px 18px rgba(0,0,0,.25)}
+#root .ttl .w{display:inline-block;margin-right:.22em}
+#root .step{position:absolute;left:860px;width:860px;height:68px;display:flex;align-items:center;gap:22px;opacity:0}
+#root .step .n{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.14);border:3px solid rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:700;flex:none}
+#root .step .t{font-size:40px;font-weight:600;line-height:1.2}
+#root .phone{position:absolute;left:210px;top:72px;width:528px;height:920px;border-radius:66px;background:#0b0f0e;box-shadow:0 34px 90px rgba(0,0,0,.45),inset 0 0 0 2px rgba(255,255,255,.10)}
+#root .screen{position:absolute;left:12px;top:12px;width:504px;height:896px;border-radius:54px;overflow:hidden;background:#fff}
+#root .enter,#root .zoom{position:absolute;left:0;top:0;width:504px;height:896px}
+#root img.scr{position:absolute;left:0;top:0;width:504px;height:896px}
+#root .tap{position:absolute;left:0;top:0;width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,.55);border:4px solid #FFD43B;box-shadow:0 4px 14px rgba(0,0,0,.35);opacity:0}
+#root .press{position:absolute;background:rgba(8,127,91,.30);opacity:0}
+#root .mark{position:absolute;border:4px solid #FFD43B;border-radius:16px;opacity:0}
+</style>
+<div id="root" data-composition-id="s04" data-width="1920" data-height="1080">
+<div class="brand"><img src="assets/icon.png" alt=""><div>হিসাববন্ধু · ইউজার গাইড</div></div>
+<div id="s04-chip" class="chip">ধাপ ৩</div>
+<div id="s04-ttl" class="ttl"><span class="w">ইমেইল</span><span class="w">দিয়ে</span><span class="w">প্রবেশ</span></div>
+<div id="s04-steps"><div id="s04-st0" class="step" style="top:440px"><div class="n">১</div><div class="t">ইমেইল লিখুন</div></div>
+<div id="s04-st1" class="step" style="top:520px"><div class="n">২</div><div class="t">কোড পাঠান চাপুন</div></div>
+<div id="s04-st2" class="step" style="top:600px"><div class="n">৩</div><div class="t">ইমেইলের ৬ সংখ্যার কোড দিন</div></div>
+<div id="s04-st3" class="step" style="top:680px"><div class="n">৪</div><div class="t">পাসওয়ার্ড লাগে না</div></div></div>
+<div id="s04-phone" class="phone"><div class="screen"><div id="s04-enter" class="enter" data-layout-allow-overflow><div id="s04-zoom" class="zoom" data-layout-allow-overflow>
+  <img id="s04-img" class="scr" src="assets/screens/signin.png" alt="">
+  <div id="s04-sheet" style="position:absolute;left:0;top:560px;width:504px;height:336px;background:#fff;border-radius:30px 30px 0 0;box-shadow:0 -10px 30px rgba(0,0,0,.18);color:#1f2a27;opacity:0">
+  <div style="text-align:center;font-size:30px;font-weight:700;margin-top:28px">ইমেইলে আসা কোডটি দিন</div>
+  <div style="display:flex;gap:12px;justify-content:center;margin-top:22px"><div style="width:58px;height:72px;border-radius:14px;border:2px solid #087F5B;display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:700;color:#053D2E"><span class="d" style="opacity:0">4</span></div><div style="width:58px;height:72px;border-radius:14px;border:2px solid #087F5B;display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:700;color:#053D2E"><span class="d" style="opacity:0">8</span></div><div style="width:58px;height:72px;border-radius:14px;border:2px solid #087F5B;display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:700;color:#053D2E"><span class="d" style="opacity:0">2</span></div><div style="width:58px;height:72px;border-radius:14px;border:2px solid #087F5B;display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:700;color:#053D2E"><span class="d" style="opacity:0">9</span></div><div style="width:58px;height:72px;border-radius:14px;border:2px solid #087F5B;display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:700;color:#053D2E"><span class="d" style="opacity:0">1</span></div><div style="width:58px;height:72px;border-radius:14px;border:2px solid #087F5B;display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:700;color:#053D2E"><span class="d" style="opacity:0">6</span></div></div>
+  <div id="s04-ok" style="margin:26px auto 0;width:380px;height:60px;border-radius:30px;background:#E7F5EF;color:#087F5B;font-size:28px;font-weight:700;display:flex;align-items:center;justify-content:center;opacity:0">পাসওয়ার্ড লাগে না</div></div>
+  <div id="s04-pr1" class="press" style="left:33.1px;top:317.3px;width:439.1px;height:70.9px;border-radius:14px"></div>
+  <div id="s04-pr2" class="press" style="left:33.1px;top:415.3px;width:439.1px;height:65.3px;border-radius:14px"></div>
+  <div id="s04-tap" class="tap"></div>
+</div></div></div></div>
+</div>
+<script>
+  const tl = gsap.timeline({ paused: true });
+  tl.fromTo('#s04-chip',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.16,ease:'power4.out'},0.08);
+  gsap.utils.toArray('#s04-ttl .w').forEach((w,i)=>tl.fromTo(w,{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.14,ease:'power4.out'},0.14+i*0.067));
+  tl.to(['#s04-chip','#s04-ttl','#s04-steps'],{opacity:0,filter:'blur(6px)',duration:0.16,ease:'power2.in'},9.96);
+  tl.fromTo('#s04-st0',{opacity:0,x:-24},{opacity:1,x:0,duration:0.35,ease:'expo.out'},1.06);
+  tl.to('#s04-st0 .n',{backgroundColor:'#FFD43B',borderColor:'#FFD43B',color:'#053D2E',duration:0.2},1.06);
+  tl.fromTo('#s04-st1',{opacity:0,x:-24},{opacity:1,x:0,duration:0.35,ease:'expo.out'},2.54);
+  tl.to('#s04-st1 .n',{backgroundColor:'#FFD43B',borderColor:'#FFD43B',color:'#053D2E',duration:0.2},2.54);
+  tl.to('#s04-st0',{opacity:0.62,duration:0.25},2.54); tl.to('#s04-st0 .n',{backgroundColor:'rgba(255,255,255,.14)',borderColor:'rgba(255,255,255,.55)',color:'#ffffff',duration:0.2},2.54);
+  tl.fromTo('#s04-st2',{opacity:0,x:-24},{opacity:1,x:0,duration:0.35,ease:'expo.out'},4.41);
+  tl.to('#s04-st2 .n',{backgroundColor:'#FFD43B',borderColor:'#FFD43B',color:'#053D2E',duration:0.2},4.41);
+  tl.to('#s04-st1',{opacity:0.62,duration:0.25},4.41); tl.to('#s04-st1 .n',{backgroundColor:'rgba(255,255,255,.14)',borderColor:'rgba(255,255,255,.55)',color:'#ffffff',duration:0.2},4.41);
+  tl.fromTo('#s04-st3',{opacity:0,x:-24},{opacity:1,x:0,duration:0.35,ease:'expo.out'},7.51);
+  tl.to('#s04-st3 .n',{backgroundColor:'#FFD43B',borderColor:'#FFD43B',color:'#053D2E',duration:0.2},7.51);
+  tl.to('#s04-st2',{opacity:0.62,duration:0.25},7.51); tl.to('#s04-st2 .n',{backgroundColor:'rgba(255,255,255,.14)',borderColor:'rgba(255,255,255,.55)',color:'#ffffff',duration:0.2},7.51);
+  tl.fromTo('#s04-enter',{x:70,opacity:0},{x:0,opacity:1,duration:0.35,ease:'power3.out'},0);
+  tl.fromTo('#s04-sheet',{y:340,opacity:0},{y:0,opacity:1,duration:0.45,ease:'expo.out'},4.51);
+  gsap.utils.toArray('#s04-sheet .d').forEach((d,i)=>tl.fromTo(d,{opacity:0,y:8},{opacity:1,y:0,duration:0.12,ease:'power3.out'},5.01+i*0.12));
+  tl.fromTo('#s04-ok',{opacity:0,scale:0.85,transformOrigin:'50% 50%'},{opacity:1,scale:1,duration:0.3,ease:'back.out(1.6)'},7.61);
+  tl.fromTo('#s04-tap',{x:222.5,y:321.9,opacity:0,scale:0.6},{opacity:1,scale:1,duration:0.2,ease:'power3.out'},0.71);
+  tl.to('#s04-tap',{scale:0.78,duration:0.08,ease:'power2.in'},1.16); tl.to('#s04-tap',{scale:1,duration:0.2,ease:'power2.out'},1.24);
+  tl.fromTo('#s04-pr1',{opacity:0},{opacity:1,duration:0.06},1.16); tl.to('#s04-pr1',{opacity:0,duration:0.3,ease:'power2.out'},1.32);
+  tl.to('#s04-tap',{x:222.5,y:418,duration:0.4,ease:'power2.inOut'},2.14);
+  tl.to('#s04-tap',{scale:0.78,duration:0.08,ease:'power2.in'},2.64); tl.to('#s04-tap',{scale:1,duration:0.2,ease:'power2.out'},2.72);
+  tl.fromTo('#s04-pr2',{opacity:0},{opacity:1,duration:0.06},2.64); tl.to('#s04-pr2',{opacity:0,duration:0.3,ease:'power2.out'},2.80);
+  tl.to('#s04-tap',{opacity:0,scale:0.7,duration:0.15,ease:'power2.in'},3.53);
+  window.__timelines["s04"] = tl;
+</script>
+</template>
