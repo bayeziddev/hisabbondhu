@@ -31,7 +31,13 @@ accountRoutes.get('/', async (c) => {
 accountRoutes.get('/export', async (c) => {
   const db = c.env.DB;
   const userId = c.get('userId');
-  const user = await db.prepare('SELECT id, email, phone, name, marketing_opt_in, created_at, last_login_at FROM users WHERE id = ?').bind(userId).first();
+  const user = await db.prepare('SELECT id, email, phone, name, marketing_opt_in, created_at, last_login_at, pro_until FROM users WHERE id = ?').bind(userId).first();
+  const [code, invitedBy, points] = await db.batch([
+    db.prepare('SELECT code, created_at FROM referral_codes WHERE user_id = ?').bind(userId),
+    db.prepare('SELECT code, status, created_at FROM referrals WHERE referee_user_id = ?').bind(userId),
+    db.prepare('SELECT delta, reason, created_at FROM points_ledger WHERE user_id = ? ORDER BY created_at').bind(userId),
+  ]);
+  const referral = { code: code.results[0] ?? null, invited_with: invitedBy.results[0] ?? null, points_ledger: points.results };
   const owned = await db.prepare('SELECT * FROM businesses WHERE owner_user_id = ?').bind(userId).all();
   const out: Record<string, unknown>[] = [];
   for (const b of owned.results as { id: string }[]) {
@@ -43,7 +49,7 @@ accountRoutes.get('/export', async (c) => {
     out.push({ business: b, parties: parties.results, products: products.results, transactions: txs.results });
   }
   c.header('content-disposition', 'attachment; filename="hisabbondhu-export.json"');
-  return c.json({ format: 'hisabbondhu-export', version: 1, exported_at: now(), user, data: out });
+  return c.json({ format: 'hisabbondhu-export', version: 1, exported_at: now(), user, referral, data: out });
 });
 
 /** Complete / update the profile. Name and Bangladeshi mobile number are required for every account. */
@@ -137,6 +143,9 @@ export async function deleteUserEverything(
     db.prepare('DELETE FROM sessions WHERE user_id = ?').bind(userId),
     db.prepare('DELETE FROM otp_codes WHERE target = ? OR target = ?').bind(user.email, user.phone ?? ''),
     db.prepare('DELETE FROM audit_logs WHERE user_id = ?').bind(userId),
+    db.prepare('DELETE FROM points_ledger WHERE user_id = ?').bind(userId),
+    db.prepare('DELETE FROM referrals WHERE referee_user_id = ? OR referrer_user_id = ?').bind(userId, userId),
+    db.prepare('DELETE FROM referral_codes WHERE user_id = ?').bind(userId),
     db.prepare('DELETE FROM users WHERE id = ?').bind(userId),
     db.prepare('INSERT INTO deletion_log (id, email_hash, source, businesses, requested_at, completed_at) VALUES (?, ?, ?, ?, ?, ?)')
       .bind(uuid(), await sha256Hex(`${env.OTP_PEPPER}:deleted:${user.email}`), source, ids.length, t, t),

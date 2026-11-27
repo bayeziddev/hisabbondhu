@@ -9,6 +9,7 @@ import { adminRoutes } from './routes/admin';
 import { authRoutes } from './routes/auth';
 import { businessRoutes } from './routes/business';
 import { publicRoutes } from './routes/public';
+import { referralRoutes } from './routes/referral';
 import { syncRoutes } from './routes/sync';
 import { VERSION } from './version';
 
@@ -57,6 +58,7 @@ app.route('/v1/businesses', businessRoutes);
 app.route('/v1/businesses', syncRoutes);
 app.route('/v1/account', accountRoutes);
 app.route('/v1/public', publicRoutes);
+app.route('/v1/referral', referralRoutes);
 app.route('/v1/admin', adminRoutes);
 
 app.notFound((c) => c.json({ error: 'not_found' }, 404));

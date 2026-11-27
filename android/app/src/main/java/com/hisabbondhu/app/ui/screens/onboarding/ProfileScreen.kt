@@ -15,6 +15,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.CardGiftcard
 import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material.icons.rounded.Phone
 import androidx.compose.material3.Button
@@ -46,8 +47,11 @@ import com.hisabbondhu.app.core.normalizeBdPhone
 import com.hisabbondhu.app.data.remote.apiErrorCode
 import com.hisabbondhu.app.ui.appContainer
 import com.hisabbondhu.app.ui.components.AppTopBar
+import com.hisabbondhu.app.ui.screens.more.referralErrorText
+import com.hisabbondhu.app.util.cleanReferralCode
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withTimeoutOrNull
 import retrofit2.HttpException
 import java.io.IOException
 
@@ -63,6 +67,8 @@ fun ProfileScreen(editMode: Boolean = false, onDone: () -> Unit = {}) {
     var loaded by rememberSaveable { mutableStateOf(false) }
     var error by remember { mutableStateOf<String?>(null) }
     var saving by remember { mutableStateOf(false) }
+    var refCode by rememberSaveable { mutableStateOf("") }
+    var refError by remember { mutableStateOf<String?>(null) }
 
     LaunchedEffect(Unit) {
         val a = container.settings.auth.first()
@@ -75,6 +81,14 @@ fun ProfileScreen(editMode: Boolean = false, onDone: () -> Unit = {}) {
         }
     }
 
+    // A friend's Play Store link carries their referral code — pre-fill it (the user can change it).
+    LaunchedEffect(Unit) {
+        if (editMode) return@LaunchedEffect
+        withTimeoutOrNull(3_000) { container.installReferrerCapture.join() }
+        val fromLink = container.referral.codeFromInstall()
+        if (refCode.isBlank() && fromLink != null) refCode = cleanReferralCode(fromLink)
+    }
+
     fun save() {
         if (name.isBlank()) { error = "name_required"; return }
         if (normalizeBdPhone(phone) == null) { error = "invalid_phone"; return }
@@ -82,6 +96,18 @@ fun ProfileScreen(editMode: Boolean = false, onDone: () -> Unit = {}) {
         scope.launch {
             try {
                 container.auth.updateProfile(name, normalizeBdPhone(phone)!!, optIn)
+                val code = refCode.trim()
+                if (!editMode && code.isNotEmpty()) {
+                    try {
+                        container.referral.apply(code)
+                    } catch (e: HttpException) {
+                        val c = e.apiErrorCode() ?: "server"
+                        // Already applied (e.g. a retry after a lost response) is fine; anything else is shown.
+                        if (c != "already_applied") { refError = c; return@launch }
+                    } catch (e: IOException) {
+                        container.referral.rememberForRetry(code) // sent automatically once online
+                    }
+                }
                 onDone()
             } catch (e: Exception) {
                 error = when (e) {
@@ -159,6 +185,20 @@ fun ProfileScreen(editMode: Boolean = false, onDone: () -> Unit = {}) {
             ) {
                 Checkbox(checked = optIn, onCheckedChange = { optIn = it })
                 Text(stringResource(R.string.marketing_opt_in), style = MaterialTheme.typography.bodyMedium)
+            }
+            if (!editMode) {
+                Spacer(Modifier.height(6.dp))
+                OutlinedTextField(
+                    value = refCode,
+                    onValueChange = { refCode = cleanReferralCode(it); refError = null },
+                    label = { Text(stringResource(R.string.referral_code_label)) },
+                    leadingIcon = { Icon(Icons.Rounded.CardGiftcard, null) },
+                    singleLine = true,
+                    isError = refError != null,
+                    supportingText = { Text(refError?.let { referralErrorText(it) } ?: stringResource(R.string.referral_code_hint)) },
+                    keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Characters),
+                    modifier = Modifier.fillMaxWidth().testTag("profile_referral"),
+                )
             }
             error?.let {
                 Spacer(Modifier.height(6.dp))

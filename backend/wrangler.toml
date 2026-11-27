@@ -20,6 +20,8 @@ EMAIL_FROM = "HisabBondhu <info@sayadbayezid.com>"
 SUPPORT_EMAIL = "support@sayadbayezid.com"
 # SMS phone verification is built but switched off until an SMS gateway is paid for.
 PHONE_OTP_ENABLED = "false"
+REFERRAL_REDEEM_ENABLED = "false"   # turn on when Pro features ship; points are collected meanwhile
+REFERRAL_MIN_AGE_HOURS = "24"
 # bulksmsbd | sslwireless | webhook | log
 SMS_PROVIDER = "bulksmsbd"
 

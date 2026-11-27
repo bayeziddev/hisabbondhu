@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.CardGiftcard
 import androidx.compose.material.icons.rounded.Chat
 import androidx.compose.material.icons.rounded.CloudSync
 import androidx.compose.material.icons.rounded.DeleteForever
@@ -105,6 +106,16 @@ fun MoreScreen(nav: NavHostController) {
                 }
             }
             item {
+                SectionCard(contentPadding = PaddingValues(vertical = 8.dp)) {
+                    NavRow(
+                        Icons.Rounded.CardGiftcard,
+                        stringResource(R.string.referral_title),
+                        stringResource(R.string.referral_menu_desc),
+                        tag = "nav_referral",
+                    ) { nav.navigate(Routes.REFERRAL) }
+                }
+            }
+            item {
                 SectionCard(title = stringResource(R.string.section_backup), contentPadding = PaddingValues(vertical = 8.dp)) {
                     NavRow(
                         Icons.Rounded.CloudSync,
@@ -157,14 +168,14 @@ fun MoreScreen(nav: NavHostController) {
             item {
                 SectionCard(title = stringResource(R.string.section_about), contentPadding = PaddingValues(vertical = 8.dp)) {
                     NavRow(Icons.Rounded.Star, stringResource(R.string.rate_app)) {
-                        val market = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=${context.packageName}"))
+                        val market = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=${Share.PLAY_PACKAGE}"))
                         runCatching { context.startActivity(market) }.onFailure {
-                            Share.openUrl(context, "https://play.google.com/store/apps/details?id=${context.packageName}")
+                            Share.openUrl(context, Share.PLAY_URL)
                         }
                     }
                     RowDivider()
                     NavRow(Icons.Rounded.Share, stringResource(R.string.share_app)) {
-                        Share.text(context, context.getString(R.string.share_app_text, "https://play.google.com/store/apps/details?id=${context.packageName}"))
+                        Share.text(context, context.getString(R.string.share_app_text, Share.PLAY_URL))
                     }
                     RowDivider()
                     NavRow(Icons.Rounded.Info, stringResource(R.string.app_version), BuildConfig.VERSION_NAME, trailing = {}) {

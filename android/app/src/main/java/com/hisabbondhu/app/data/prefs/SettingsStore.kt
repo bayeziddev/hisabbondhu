@@ -82,6 +82,9 @@ class SettingsStore(private val context: Context) {
 
         val remindersEnabled = booleanPreferencesKey("reminders_enabled")
         val messageSignature = stringPreferencesKey("message_signature")
+        val referralFromInstall = stringPreferencesKey("referral_from_install")
+        val referralRetry = stringPreferencesKey("referral_retry")
+        val installReferrerChecked = booleanPreferencesKey("install_referrer_checked")
     }
 
     private val data = context.dataStore.data
@@ -222,12 +225,33 @@ class SettingsStore(private val context: Context) {
         }
     }
 
-    /** Wipes everything (logout / delete). Keeps the chosen language so the user isn't asked again. */
+    /** Code from the Play Store link this app was installed with (pre-fills the profile step). */
+    suspend fun referralFromInstall(): String? = data.first()[K.referralFromInstall]
+
+    suspend fun setReferralFromInstall(code: String) = context.dataStore.edit { it[K.referralFromInstall] = code }
+
+    /** A code the user entered while offline; applied once the phone is online. */
+    suspend fun referralRetry(): String? = data.first()[K.referralRetry]
+
+    suspend fun setReferralRetry(code: String?) = context.dataStore.edit {
+        if (code == null) it.remove(K.referralRetry) else it[K.referralRetry] = code
+    }
+
+    suspend fun installReferrerChecked(): Boolean = data.first()[K.installReferrerChecked] ?: false
+
+    suspend fun setInstallReferrerChecked() = context.dataStore.edit { it[K.installReferrerChecked] = true }
+
+    /**
+     * Wipes everything (logout / delete). Keeps the chosen language so the user isn't asked again,
+     * and the fact that the install referrer was already read (it is only meaningful once per install).
+     */
     suspend fun clearAll(keepLanguage: Boolean = true) {
         context.dataStore.edit { prefs ->
             val lang = prefs[K.languageChosen]
+            val referrerRead = prefs[K.installReferrerChecked]
             prefs.clear()
             if (keepLanguage && lang != null) prefs[K.languageChosen] = lang
+            if (referrerRead != null) prefs[K.installReferrerChecked] = referrerRead
         }
     }
 }

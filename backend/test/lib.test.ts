@@ -3,6 +3,8 @@ import { randomOtp, safeEqual, sha256Hex, signJwt, verifyJwt } from '../src/lib/
 import { maskPhone, normalizeBdPhone } from '../src/lib/phone';
 import { maskEmail, normalizeEmail } from '../src/lib/email';
 import { contactSchema, partySchema, txSchema } from '../src/lib/validate';
+import { CODE_RE, REFERRAL, generateCode, minAgeMs, normalizeCode, redeemEnabled, shareUrl } from '../src/lib/referral';
+import type { Env } from '../src/env';
 
 describe('phone', () => {
   it('normalises Bangladeshi numbers', () => {
@@ -95,5 +97,39 @@ describe('ledger validation', () => {
   it('contact form honeypot + limits', () => {
     expect(contactSchema.safeParse({ name: 'A', subject: 'Hi', message: 'Hello there' }).success).toBe(true);
     expect(contactSchema.safeParse({ name: 'A', subject: 'Hi', message: 'no' }).success).toBe(false);
+  });
+});
+
+describe('referral', () => {
+  it('codes are 6 unambiguous characters', () => {
+    const seen = new Set<string>();
+    for (let i = 0; i < 2000; i++) {
+      const c = generateCode();
+      expect(c).toMatch(CODE_RE);
+      expect(c).not.toMatch(/[01OI]/);
+      seen.add(c);
+    }
+    expect(seen.size).toBeGreaterThan(1990); // 32^6 ≈ 1.07 billion codes, collisions are rare
+  });
+  it('normalises what people type', () => {
+    expect(normalizeCode(' k7m-2qx ')).toBe('K7M2QX');
+    expect(normalizeCode('K7M 2QX')).toBe('K7M2QX');
+    expect(normalizeCode('K7M2Q0')).toBeNull(); // 0 is never used
+    expect(normalizeCode('K7M2Q')).toBeNull();
+    expect(normalizeCode('K7M2QXX')).toBeNull();
+  });
+  it('share link carries the code to the Play install referrer', () => {
+    expect(shareUrl('K7M2QX')).toBe('https://play.google.com/store/apps/details?id=com.hisabbondhu.myapp&referrer=ref%3DK7M2QX');
+  });
+  it('minimum account age and redeem switch come from config', () => {
+    const env = (vars: Record<string, string>) => vars as unknown as Env;
+    expect(minAgeMs(env({}))).toBe(24 * 3600_000);
+    expect(minAgeMs(env({ REFERRAL_MIN_AGE_HOURS: '0' }))).toBe(0);
+    expect(minAgeMs(env({ REFERRAL_MIN_AGE_HOURS: 'x' }))).toBe(24 * 3600_000);
+    expect(redeemEnabled(env({}))).toBe(false);
+    expect(redeemEnabled(env({ REFERRAL_REDEEM_ENABLED: 'true' }))).toBe(true);
+  });
+  it('redeem options cost what the rules say', () => {
+    expect(REFERRAL.redeemOptions.map((o) => [o.id, o.points, o.days])).toEqual([['pro_30', 100, 30], ['pro_365', 1000, 365]]);
   });
 });

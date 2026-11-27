@@ -11,6 +11,10 @@ import com.hisabbondhu.app.R
 import java.io.File
 
 object Share {
+    /** The Play Store listing. Always the release id — debug builds are "….debug" and have no listing. */
+    const val PLAY_PACKAGE = "com.hisabbondhu.myapp"
+    const val PLAY_URL = "https://play.google.com/store/apps/details?id=$PLAY_PACKAGE"
+
     fun text(context: Context, text: String, title: String? = null) {
         val send = Intent(Intent.ACTION_SEND).apply {
             type = "text/plain"

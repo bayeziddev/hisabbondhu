@@ -27,3 +27,7 @@ node_modules/
 .wrangler/
 .dev.vars
 *.log
+
+# Python bytecode
+__pycache__/
+*.pyc

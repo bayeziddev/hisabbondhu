@@ -37,6 +37,7 @@ import com.hisabbondhu.app.ui.screens.home.HomeScreen
 import com.hisabbondhu.app.ui.screens.more.AccountScreen
 import com.hisabbondhu.app.ui.screens.more.ContactScreen
 import com.hisabbondhu.app.ui.screens.more.DeleteDataScreen
+import com.hisabbondhu.app.ui.screens.more.ReferralScreen
 import com.hisabbondhu.app.ui.screens.more.LegalScreen
 import com.hisabbondhu.app.ui.screens.more.MoreScreen
 import com.hisabbondhu.app.ui.screens.onboarding.AuthScreen
@@ -90,6 +91,7 @@ object Routes {
     const val ACCOUNT = "account"
     const val PROFILE = "profile"
     const val CONTACT = "contact"
+    const val REFERRAL = "referral"
     const val DELETE = "deleteData"
     const val LEGAL = "legal/{page}"
     fun legal(page: String) = "legal/$page"
@@ -190,6 +192,7 @@ private fun MainNav() {
             composable(Routes.ACCOUNT) { AccountScreen(nav) }
             composable(Routes.PROFILE) { ProfileScreen(editMode = true, onDone = { nav.popBackStack() }) }
             composable(Routes.CONTACT) { ContactScreen(nav) }
+            composable(Routes.REFERRAL) { ReferralScreen(nav) }
             composable(Routes.DELETE) { DeleteDataScreen(nav) }
             composable(Routes.LEGAL, listOf(navArgument("page") { type = NavType.StringType })) {
                 LegalScreen(nav, it.arguments?.getString("page") ?: "privacy")

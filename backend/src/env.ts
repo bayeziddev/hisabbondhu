@@ -22,6 +22,8 @@ export interface Env {
   SUPPORT_EMAIL?: string;       // reply-to address on emails
   PHONE_OTP_ENABLED?: string;   // "true" to enable SMS phone verification (needs an SMS gateway)
   SMS_PROVIDER?: string;        // "bulksmsbd" | "sslwireless" | "webhook" | "log"
+  REFERRAL_REDEEM_ENABLED?: string; // "true" once Pro exists — until then points are only collected
+  REFERRAL_MIN_AGE_HOURS?: string;  // invited account age before the inviter is rewarded (default 24)
 
   // secrets (wrangler secret put …)
   JWT_SECRET: string;

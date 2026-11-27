@@ -5,9 +5,10 @@ export type UserRow = {
   name: string | null;
   phone_verified_at: number | null;
   marketing_opt_in: number;
+  pro_until: number | null;
 };
 
-export const USER_COLUMNS = 'id, email, phone, name, phone_verified_at, marketing_opt_in';
+export const USER_COLUMNS = 'id, email, phone, name, phone_verified_at, marketing_opt_in, pro_until';
 
 /** Shape returned to the app. profile_complete = name + mobile number are filled in. */
 export function publicUser(u: UserRow) {
@@ -19,6 +20,8 @@ export function publicUser(u: UserRow) {
     phone_verified: !!u.phone_verified_at,
     marketing_opt_in: !!u.marketing_opt_in,
     profile_complete: !!(u.name && u.phone),
+    pro_until: u.pro_until ?? null,
+    pro_active: !!u.pro_until && u.pro_until > Date.now(),
   };
 }
 

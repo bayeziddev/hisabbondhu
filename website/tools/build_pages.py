@@ -4,8 +4,8 @@
 Pages: index, privacy, terms, your-rights, data-deletion, contact, 404."""
 import os
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
-EFFECTIVE_BN = "২০ নভেম্বর ২০২৬"
-EFFECTIVE_EN = "20 November 2026"
+EFFECTIVE_BN = "২৭ নভেম্বর ২০২৬"
+EFFECTIVE_EN = "27 November 2026"
 
 HEAD = """<!doctype html>
 <html lang="bn" data-lang="bn">
@@ -134,11 +134,14 @@ PRIV_BN = f"""
 <tr><th>তথ্য</th><th>কখন</th><th>কেন</th></tr>
 <tr><td>দোকানের তথ্য (নাম, মালিকের নাম, মোবাইল, ঠিকানা, ব্যবসার ধরন, শুরুর ক্যাশ)</td><td>আপনি লিখলে</td><td>অ্যাপ চালানো, স্টেটমেন্ট ও মেসেজে দোকানের নাম দেখানো</td></tr>
 <tr><td>আপনার কাস্টমার ও সাপ্লায়ারের নাম, মোবাইল, ঠিকানা, নোট</td><td>আপনি লিখলে বা ফোনবুক থেকে একজনকে বাছাই করলে</td><td>বাকির খাতা ও মেসেজ পাঠানো</td></tr>
+<tr><td>ব্যক্তিগত/পরিবারের হিসাব: আয়-ব্যয়, খাত, পরিবারের সদস্যের ট্যাগ (যেমন "ছেলে"), যে দোকানে বাকি বা যাদের সাথে ধার-দেনা তাদের নাম ও নম্বর</td><td>ব্যক্তিগত খাতা ব্যবহার করলে</td><td>আপনার নিজের আয়-ব্যয়ের হিসাব, বাজেট ও রিপোর্ট</td></tr>
+<tr><td>মেস/গ্রুপ খাতা: মেসের নাম, সদস্যদের নাম, মোবাইল, রুম/সিট, মিলের সংখ্যা, বাজার, জমা, ভাড়া ও বিলের হিসাব, কোন এন্ট্রি কে লিখেছেন</td><td>মেস খুললে বা কোনো মেসে যোগ দিলে</td><td>মেসের মিল রেট ও কার কত পাওনা-দেনা হিসাব করা — গ্রুপের সদস্যরা তা দেখতে পান (৩ নম্বর অংশ দেখুন)</td></tr>
 <tr><td>পণ্য, দাম, স্টক এবং লেনদেন (বিক্রি, কেনা, খরচ, টাকা আদান-প্রদান)</td><td>আপনি লিখলে</td><td>হিসাব, স্টক ও রিপোর্ট তৈরি</td></tr>
 <tr><td>অ্যাকাউন্টের তথ্য: ইমেইল ঠিকানা, আপনার নাম, মোবাইল নম্বর</td><td>অ্যাকাউন্ট খোলার সময় (আবশ্যক)</td><td>অ্যাকাউন্ট তৈরি ও প্রবেশ, সাপোর্ট, অ্যাকাউন্ট-সংক্রান্ত জরুরি বার্তা; আপনি সম্মতি দিলে নতুন সুবিধা ও অফারের খবর (ইমেইল/WhatsApp)</td></tr>
 <tr><td>এককালীন লগইন কোড (OTP)</td><td>প্রবেশ করার সময়</td><td>ইমেইলে পাঠিয়ে পরিচয় যাচাই। কোড শুধু হ্যাশ করে রাখা হয় এবং ২৪ ঘণ্টার মধ্যে মুছে যায়। এখন মোবাইলে কোনো SMS পাঠানো হয় না</td></tr>
 <tr><td>ডিভাইসের আইডি (অ্যাপের তৈরি র‍্যান্ডম আইডি) ও ডিভাইসের মডেলের নাম</td><td>প্রবেশ ও sync করলে</td><td>কোন ফোন থেকে হিসাব এসেছে বোঝা, লগইন করা ডিভাইস দেখানো, ডুপ্লিকেট রোধ</td></tr>
 <tr><td>IP ঠিকানা ও প্রযুক্তিগত লগ</td><td>সার্ভারে অনুরোধ এলে</td><td>নিরাপত্তা, অপব্যবহার ও স্প্যাম রোধ (রেট লিমিট), সমস্যা সমাধান</td></tr>
+<tr><td>রেফারেল তথ্য: আপনার রেফারেল কোড, কোন কোড দিয়ে যোগ দিয়েছেন, হিসাব পয়েন্টের হিসাব, Pro-এর মেয়াদ। বন্ধুর লিংক থেকে ইনস্টল করলে Play Store যে কোডটি দেয় (Install Referrer) সেটি ফোনেই পড়া হয়</td><td>রেফারেল স্ক্রিন খুললে বা কোড দিলে</td><td>পয়েন্ট দেওয়া ও Pro চালু করা; অপব্যবহার রোধ (একই ফোনে দুই অ্যাকাউন্ট কিনা দেখতে ডিভাইস আইডি মেলানো হয়)</td></tr>
 <tr><td>আপনার পাঠানো মেসেজ (নাম, মোবাইল/ইমেইল, বিষয়, মেসেজ)</td><td>যোগাযোগ ফর্ম ব্যবহার করলে</td><td>আপনার প্রশ্নের উত্তর দেওয়া</td></tr>
 </table>
 <p><b>যা আমরা সংগ্রহ করি না:</b> লোকেশন, আপনার পুরো ফোনবুক, SMS পড়া, ছবি/ফাইল, বিজ্ঞাপন আইডি (Advertising ID), বা কোনো ব্যাংক/মোবাইল ব্যাংকিং অ্যাকাউন্টের তথ্য।
@@ -158,11 +161,15 @@ PRIV_BN = f"""
 <li><b>SMS গেটওয়ে (ভবিষ্যতে, চালু হলে)</b> — মোবাইল নম্বর যাচাইয়ের কোড পাঠাতে শুধু নম্বর ও কোড। বর্তমানে কোনো SMS পাঠানো হয় না।</li>
 <li><b>Google Play</b> — অ্যাপ বিতরণ ও আপডেট (Google-এর নিজস্ব নীতি প্রযোজ্য)।</li>
 </ul>
+<p><b>গ্রুপ খাতা (মেস/হোস্টেল):</b> আপনি কোনো মেস খুললে বা যোগ দিলে, সেই মেসের সব হিসাব — সদস্যদের নাম, রুম/সিট, মিল, বাজার, জমা, ভাড়া, বিল, কে কোন এন্ট্রি লিখেছেন এবং কার কত পাওনা-দেনা —
+<b>শুধু সেই মেসের অনুমোদিত সদস্যরা</b> দেখতে পান; এটাই এই সুবিধার উদ্দেশ্য। ম্যানেজার অনুমোদন না দিলে কেউ মেসে ঢুকতে পারে না। সদস্য চাইলে নিজের মোবাইল নম্বর শুধু ম্যানেজারকে দেখাতে পারেন।
+আপনার ব্যক্তিগত খাতা বা দোকানের খাতা কোনো গ্রুপে যায় না। মেস ছাড়লে বা ম্যানেজার সরিয়ে দিলে আর সেই মেসের হিসাব দেখা যায় না।</p>
 <p>আইন অনুযায়ী বাধ্য হলে (যেমন আদালতের বৈধ আদেশ) বা প্রতারণা/নিরাপত্তা ঝুঁকি ঠেকাতে প্রয়োজনীয় সর্বনিম্ন তথ্য প্রকাশ করা হতে পারে।
 আপনি নিজে “শেয়ার” চাপলে মেসেজ বা PDF আপনার বাছাই করা অ্যাপে (WhatsApp, SMS ইত্যাদি) যায় — সেটি আপনার নিয়ন্ত্রণে।</p>
 
-<h2>৪. আপনার কাস্টমারদের তথ্য</h2>
-<p>আপনি যে কাস্টমার/সাপ্লায়ারের তথ্য লেখেন, সেই তথ্যের দায়িত্ব আপনার; আমরা আপনার পক্ষ থেকে শুধু সংরক্ষণ ও প্রক্রিয়া করি। অনুগ্রহ করে তাদের অনুমতি নিয়ে তথ্য রাখুন ও শুধু প্রয়োজনীয় মেসেজ পাঠান — স্প্যাম করবেন না।</p>
+<h2>৪. আপনি যাদের তথ্য লেখেন</h2>
+<p>আপনি যে কাস্টমার, সাপ্লায়ার, দোকান, ধার-দেনার মানুষ বা মেসের সদস্যের তথ্য লেখেন, সেই তথ্যের দায়িত্ব আপনার; আমরা আপনার পক্ষ থেকে শুধু সংরক্ষণ ও প্রক্রিয়া করি। অনুগ্রহ করে তাদের অনুমতি নিয়ে তথ্য রাখুন ও শুধু প্রয়োজনীয় মেসেজ পাঠান — স্প্যাম করবেন না।
+মেসের ম্যানেজার কাউকে সদস্য হিসেবে যোগ করার আগে তার সম্মতি নেবেন। যার তথ্য কোনো মেসে আছে, তিনি ম্যানেজারকে বা আমাদের জানিয়ে নিজের নাম ও নম্বর সরাতে বলতে পারেন।</p>
 
 <h2>৫. নিরাপত্তা</h2>
 <ul>
@@ -184,11 +191,13 @@ PRIV_BN = f"""
 <tr><td>সাপ্তাহিক দুর্যোগ-পুনরুদ্ধার কপি</td><td>সর্বোচ্চ ৮ সপ্তাহ; অ্যাকাউন্ট মুছলে সঙ্গে সঙ্গে মুছে ফেলা হয়</td></tr>
 <tr><td>ডেটাবেসের স্বয়ংক্রিয় পয়েন্ট-ইন-টাইম ব্যাকআপ (Cloudflare D1)</td><td>৩০ দিন পর নিজে থেকে মুছে যায়</td></tr>
 <tr><td>যোগাযোগ ফর্মের মেসেজ</td><td>সর্বোচ্চ ২ বছর</td></tr>
+<tr><td>মেস/গ্রুপ খাতা</td><td>মেস থাকা পর্যন্ত; ম্যানেজার মেস মুছলে সবার জন্য মুছে যায়। কোনো সদস্য অ্যাকাউন্ট মুছলে তার ব্যক্তিগত তথ্য মুছে যায় এবং মেসের হিসাবে তার নাম "প্রাক্তন সদস্য" হয়ে যায় — সংখ্যাগুলো থাকে, যাতে বাকিদের হিসাব ঠিক থাকে</td></tr>
+<tr><td>রেফারেল ও পয়েন্টের তথ্য</td><td>যতদিন অ্যাকাউন্ট থাকে; অ্যাকাউন্ট মুছলে মুছে যায়। শুধু ইমেইলের একমুখী হ্যাশ থেকে যায়, যাতে একই ইমেইলে বারবার রেফারেল বোনাস নেওয়া না যায়</td></tr>
 <tr><td>মুছে ফেলার রেকর্ড</td><td>শুধু ফোন নম্বরের একমুখী হ্যাশ ও তারিখ — প্রমাণ হিসেবে</td></tr>
 </table>
 
 <h2>৭. ডেটা মুছে ফেলা</h2>
-<p>অ্যাপে: <b>আরও → অ্যাকাউন্ট ও ডেটা মুছুন</b>। অ্যাপ ছাড়া: <a href="data-deletion.html">ডেটা মুছে ফেলার পাতা</a> থেকে মোবাইল নম্বর যাচাই করে মুছুন। সার্ভারের তথ্য সঙ্গে সঙ্গে মুছে যায়; স্বয়ংক্রিয় ব্যাকআপ কপি ৩০ দিনের মধ্যে মুছে যায়।</p>
+<p>অ্যাপে: <b>আরও → অ্যাকাউন্ট ও ডেটা মুছুন</b>। অ্যাপ ছাড়া: <a href="data-deletion.html">ডেটা মুছে ফেলার পাতা</a> থেকে ইমেইল যাচাই করে মুছুন। সার্ভারের তথ্য সঙ্গে সঙ্গে মুছে যায়; স্বয়ংক্রিয় ব্যাকআপ কপি ৩০ দিনের মধ্যে মুছে যায়। কোনো মেসের ম্যানেজার হলে আগে ম্যানেজারি অন্য সদস্যকে দিন — নইলে মেসটি সবার জন্য মুছে যাবে।</p>
 
 <h2>৮. আপনার অধিকার</h2>
 <p>তথ্য দেখা, সংশোধন, এক্সপোর্ট (CSV/JSON), মুছে ফেলা ও সম্মতি প্রত্যাহারের অধিকার আছে। বিস্তারিত: <a href="your-rights.html">আপনার অধিকার</a>।</p>
@@ -217,11 +226,14 @@ We show no ads, never sell data, and use no analytics or tracking SDKs. Promotio
 <tr><th>Information</th><th>When</th><th>Why</th></tr>
 <tr><td>Business details (shop name, owner name, mobile, address, business type, opening cash)</td><td>When you enter them</td><td>To run the app and show your shop name on statements and messages</td></tr>
 <tr><td>Names, mobile numbers, addresses and notes of your customers and suppliers</td><td>When you type them or pick one contact</td><td>Credit ledger and messages you choose to send</td></tr>
+<tr><td>Personal/family accounts: income and expenses, categories, family-member tags (e.g. "son"), names and numbers of shops you owe or people you lend to or borrow from</td><td>When you use a personal ledger</td><td>Keeping your own income and expense records, budgets and reports</td></tr>
+<tr><td>Mess/group ledgers: mess name, members' names, mobile numbers, room/seat, meal counts, grocery (bazar), deposits, rent and bills, and who recorded each entry</td><td>When you create or join a mess</td><td>Calculating the meal rate and what each member owes or is owed — visible to the group's members (see section 3)</td></tr>
 <tr><td>Products, prices, stock and transactions (sales, purchases, expenses, payments)</td><td>When you enter them</td><td>Accounting, stock and reports</td></tr>
 <tr><td>Account details: email address, your name, mobile number</td><td>When you create the account (required)</td><td>Creating and signing in to your account, support, important account messages; news about features and offers by email/WhatsApp only if you opt in</td></tr>
 <tr><td>One-time login code (OTP)</td><td>When you sign in</td><td>Verifying your identity by email. Codes are stored only as hashes and deleted within 24 hours. No SMS is sent to your mobile at present</td></tr>
 <tr><td>Device ID (a random ID created by the app) and device model name</td><td>When you log in and sync</td><td>Knowing which phone sent an entry, listing logged-in devices, preventing duplicates</td></tr>
 <tr><td>IP address and technical logs</td><td>When the server receives a request</td><td>Security, abuse and spam prevention (rate limiting), troubleshooting</td></tr>
+<tr><td>Referral data: your referral code, the code you joined with, your Hisab points history, Pro expiry. If you install from a friend's link, the code the Play Store passes (Install Referrer) is read on the phone</td><td>When you open the referral screen or enter a code</td><td>Awarding points and turning on Pro; preventing abuse (device IDs are compared to spot two accounts on one phone)</td></tr>
 <tr><td>Messages you send us (name, mobile/email, subject, message)</td><td>When you use the contact form</td><td>Replying to you</td></tr>
 </table>
 <p><b>We do not collect:</b> location, your full contact list, SMS contents, photos/files, the Advertising ID, or any bank/mobile-wallet account credentials.
@@ -241,12 +253,16 @@ When you add a customer from contacts, Android's system picker gives the app onl
 <li><b>SMS gateway (future, when enabled)</b> — only your number and a verification code. No SMS is sent at present.</li>
 <li><b>Google Play</b> — app distribution and updates (Google's own policy applies).</li>
 </ul>
+<p><b>Group ledgers (mess/hostel):</b> when you create or join a mess, all of that mess's records — members' names, room/seat, meals, grocery, deposits, rent, bills, who recorded each entry, and what each member owes or is owed —
+are visible <b>only to that mess's approved members</b>; that is the purpose of the feature. No one can join without the manager's approval. A member can choose to show their mobile number to the manager only.
+Your personal or shop ledgers are never shared with a group. After you leave a mess, or the manager removes you, you can no longer see it.</p>
 <p>We may disclose the minimum necessary information if required by law (e.g. a valid court order) or to prevent fraud or a security threat.
 When you tap “Share”, the message or PDF goes to the app you choose (WhatsApp, SMS, etc.) — that is under your control.</p>
 
-<h2>4. Your customers' information</h2>
-<p>You are responsible for the customer/supplier information you enter; we store and process it on your behalf.
-Please keep it with their permission and send only necessary messages — no spam.</p>
+<h2>4. Information about other people</h2>
+<p>You are responsible for the information you enter about customers, suppliers, shops, people you lend to or borrow from, and mess members; we store and process it on your behalf.
+Please keep it with their permission and send only necessary messages — no spam. A mess manager must have a person's consent before adding them as a member.
+Anyone whose details are in a mess can ask the manager, or us, to remove their name and number.</p>
 
 <h2>5. Security</h2>
 <ul>
@@ -268,12 +284,14 @@ Please keep it with their permission and send only necessary messages — no spa
 <tr><td>Weekly disaster-recovery snapshots</td><td>Up to 8 weeks; deleted immediately when the account is deleted</td></tr>
 <tr><td>Automatic point-in-time database backups (Cloudflare D1)</td><td>Expire automatically after 30 days</td></tr>
 <tr><td>Contact form messages</td><td>Up to 2 years</td></tr>
+<tr><td>Mess/group ledgers</td><td>As long as the mess exists; deleted for everyone when the manager deletes the mess. When a member deletes their account, their personal data is deleted and their name in the mess becomes "former member" — the figures stay so the other members' accounts remain correct</td></tr>
+<tr><td>Referral and points data</td><td>As long as the account exists; deleted with the account. Only a one-way hash of the email address remains, so the same email cannot claim a referral bonus again</td></tr>
 <tr><td>Deletion records</td><td>Only a one-way hash of the phone number and the date — as proof</td></tr>
 </table>
 
 <h2>7. Deleting your data</h2>
-<p>In the app: <b>More → Delete account &amp; data</b>. Without the app: use the <a href="data-deletion.html">data deletion page</a> and verify your mobile number.
-Server data is deleted immediately; automatic backup copies expire within 30 days.</p>
+<p>In the app: <b>More → Delete account &amp; data</b>. Without the app: use the <a href="data-deletion.html">data deletion page</a> and verify your email address.
+Server data is deleted immediately; automatic backup copies expire within 30 days. If you manage a mess, hand the manager role to another member first — otherwise the mess is deleted for everyone.</p>
 
 <h2>8. Your rights</h2>
 <p>You can access, correct, export (CSV/JSON), and delete your data, and withdraw consent. Details: <a href="your-rights.html">Your rights</a>.</p>
@@ -315,15 +333,32 @@ TERMS_BN = f"""
 </ul>
 <h2>৫. আর্থিক বা আইনি পরামর্শ নয়</h2>
 <p>হিসাববন্ধু একটি রেকর্ড রাখার টুল। আনুমানিক লাভসহ সব হিসাব আপনার দেওয়া তথ্যের ওপর ভিত্তি করে তৈরি। এটি কর, হিসাবরক্ষণ বা আইনি পরামর্শ নয়; গুরুত্বপূর্ণ সিদ্ধান্তের আগে যোগ্য পেশাজীবীর পরামর্শ নিন।</p>
-<h2>৬. সেবার প্রাপ্যতা</h2>
+<h2>৬. রেফারেল ও হিসাব পয়েন্ট</h2>
+<ul>
+<li>প্রতিটি অ্যাকাউন্টের একটি রেফারেল কোড থাকে। নতুন অ্যাকাউন্ট খোলার ৭ দিনের মধ্যে একটি কোড একবারই দেওয়া যায়, এবং একটি ইমেইল ঠিকানায় একবারের বেশি রেফারেল বোনাস পাওয়া যায় না।</li>
+<li>যিনি আমন্ত্রণ জানান, তিনি পয়েন্ট পান কেবল তখন, যখন নতুন ব্যবহারকারী সত্যিই অ্যাপ ব্যবহার শুরু করেন (কয়েকটি হিসাব লেখেন)। শুধু ইনস্টলের জন্য কোনো পয়েন্ট দেওয়া হয় না।</li>
+<li>হিসাব পয়েন্টের কোনো নগদ মূল্য নেই। এগুলো টাকায় বদলানো, বিক্রি বা অন্য অ্যাকাউন্টে পাঠানো যায় না; শুধু অ্যাপের Pro সুবিধা নেওয়ার জন্য ব্যবহার করা যায়।</li>
+<li>নিজের কোড নিজে ব্যবহার, ভুয়া বা একাধিক অ্যাকাউন্ট, বা অন্য কোনো অপব্যবহার ধরা পড়লে সংশ্লিষ্ট পয়েন্ট বাতিল হতে পারে। অপব্যবহার রোধে মাসিক রেফারেল পুরস্কারের একটি সীমা আছে।</li>
+<li>অ্যাকাউন্ট মুছে ফেললে জমা পয়েন্টও মুছে যায়। আমরা আগে জানিয়ে প্রোগ্রামের নিয়ম, পয়েন্টের পরিমাণ বা Pro-এর বিনিময় বদলাতে অথবা প্রোগ্রাম বন্ধ করতে পারি; ততদিনে চালু হওয়া Pro তার মেয়াদ শেষ পর্যন্ত চলবে।</li>
+</ul>
+<h2>৭. ব্যক্তিগত খাতা ও গ্রুপ খাতা (মেস/হোস্টেল)</h2>
+<ul>
+<li>ব্যক্তিগত খাতা ফ্রি। দোকানের বাকির খাতা ফ্রিতে সর্বোচ্চ ৫টি দোকানের জন্য; বেশি লাগলে হিসাব পয়েন্ট দিয়ে আনলক করা যায়।</li>
+<li>মেস/গ্রুপ খাতায় গ্রুপের <b>সব অনুমোদিত সদস্য পুরো গ্রুপের হিসাব দেখেন</b> — সদস্যদের নাম, মিল, জমা, বাজার, বিল ও কার কত পাওনা-দেনা। গ্রুপে যোগ দিয়ে আপনি এতে সম্মত হন।</li>
+<li>ম্যানেজার শুধু সম্মতি দেওয়া মানুষকেই সদস্য হিসেবে যোগ করবেন। হিসাব সঠিক রাখার দায়িত্ব ম্যানেজার ও সদস্যদের; প্রতিটি এন্ট্রিতে কে লিখেছেন তা দেখা যায়।</li>
+<li>হিসাববন্ধু শুধু হিসাব রাখার টুল — অ্যাপের মাধ্যমে কোনো টাকা লেনদেন হয় না, এবং সদস্যদের মধ্যে টাকা-পয়সার বিরোধে আমরা কোনো পক্ষ নই।</li>
+<li>গ্রুপে অপমানজনক, হয়রানিমূলক বা বেআইনি কিছু লেখা নিষেধ। এমন কিছু দেখলে অ্যাপ থেকে রিপোর্ট করুন; আমরা প্রয়োজনে সংশ্লিষ্ট অ্যাকাউন্ট বা গ্রুপ স্থগিত করতে পারি।</li>
+<li>ম্যানেজার মেস মুছলে তা সবার জন্য মুছে যায়। ম্যানেজার মেস ছাড়ার বা অ্যাকাউন্ট মোছার আগে ম্যানেজারি অন্য সদস্যকে দেবেন।</li>
+</ul>
+<h2>৮. সেবার প্রাপ্যতা</h2>
 <p>অফলাইন অংশ সবসময় ফোনে চলে। অনলাইন sync সর্বোচ্চ চেষ্টায় সচল রাখা হয়, তবে রক্ষণাবেক্ষণ বা নেটওয়ার্ক সমস্যায় সাময়িক বিঘ্ন হতে পারে। সেবা উন্নত করতে বৈশিষ্ট্য পরিবর্তন হতে পারে।</p>
-<h2>৭. দায়বদ্ধতার সীমা</h2>
+<h2>৯. দায়বদ্ধতার সীমা</h2>
 <p>আইনের অনুমোদিত সর্বোচ্চ সীমা পর্যন্ত, সেবা “যেমন আছে” ভিত্তিতে দেওয়া হয়। পরোক্ষ ক্ষতি, ব্যবসায়িক ক্ষতি বা ভুল তথ্য লেখার ফলে হওয়া ক্ষতির জন্য আমরা দায়ী থাকবো না। আমাদের ইচ্ছাকৃত অসদাচরণ বা গুরুতর অবহেলার দায় এতে সীমিত হয় না।</p>
-<h2>৮. অ্যাকাউন্ট বন্ধ</h2>
+<h2>১০. অ্যাকাউন্ট বন্ধ</h2>
 <p>আপনি যেকোনো সময় অ্যাকাউন্ট ও ডেটা মুছে ফেলতে পারেন। শর্ত ভঙ্গ বা অপব্যবহারের ক্ষেত্রে আমরা অ্যাকাউন্ট স্থগিত করতে পারি; সম্ভব হলে আগে জানিয়ে ডেটা এক্সপোর্টের সুযোগ দেওয়া হবে।</p>
-<h2>৯. প্রযোজ্য আইন</h2>
+<h2>১১. প্রযোজ্য আইন</h2>
 <p>এই শর্তাবলী বাংলাদেশের আইন অনুযায়ী পরিচালিত হবে; বিরোধ নিষ্পত্তির এখতিয়ার ঢাকার আদালতের।</p>
-<h2>১০. পরিবর্তন ও যোগাযোগ</h2>
+<h2>১২. পরিবর্তন ও যোগাযোগ</h2>
 <p>শর্তাবলী পরিবর্তন হলে অ্যাপ বা ওয়েবসাইটে জানানো হবে। পরিবর্তনের পর ব্যবহার চালিয়ে গেলে নতুন শর্ত মেনে নেওয়া হয়েছে বলে ধরা হবে। যোগাযোগ: {EMAIL}</p>
 """
 TERMS_EN = f"""
@@ -351,15 +386,32 @@ If paid features are introduced, prices and terms will be shown clearly in advan
 </ul>
 <h2>5. Not financial or legal advice</h2>
 <p>HisabBondhu is a record-keeping tool. All figures, including estimated profit, are based on the data you enter. It is not tax, accounting or legal advice; consult a qualified professional for important decisions.</p>
-<h2>6. Availability</h2>
+<h2>6. Referrals and Hisab points</h2>
+<ul>
+<li>Every account has a referral code. A new account can enter one code, once, within 7 days of being created, and an email address can receive a referral bonus only once.</li>
+<li>The person who invited earns points only when the new user really starts using the app (records a few entries). No points are given for an install alone.</li>
+<li>Hisab points have no cash value. They cannot be exchanged for money, sold or moved to another account; they can only be used to get Pro features in the app.</li>
+<li>Points may be cancelled if we find self-referral, fake or duplicate accounts, or other abuse. There is a monthly limit on referral rewards to prevent abuse.</li>
+<li>Deleting your account also deletes your points. We may change the programme's rules, the number of points or what they can be exchanged for, or end the programme, with notice; Pro that is already active runs until it expires.</li>
+</ul>
+<h2>7. Personal ledgers and group ledgers (mess/hostel)</h2>
+<ul>
+<li>Personal ledgers are free. The shop-dues ledger covers up to 5 shops for free; more can be unlocked with Hisab points.</li>
+<li>In a mess/group ledger, <b>all approved members see the whole group's records</b> — members' names, meals, deposits, grocery, bills and what each member owes or is owed. By joining a group you agree to this.</li>
+<li>A manager may add only people who have agreed to be members. Keeping the records accurate is the responsibility of the manager and the members; every entry shows who recorded it.</li>
+<li>HisabBondhu is only a record-keeping tool — no money moves through the app, and we are not a party to money disputes between members.</li>
+<li>Abusive, harassing or unlawful content in a group is not allowed. Report it from the app; we may suspend the account or group concerned.</li>
+<li>When a manager deletes a mess, it is deleted for everyone. Before leaving a mess or deleting their account, a manager must hand the role to another member.</li>
+</ul>
+<h2>8. Availability</h2>
 <p>The offline part always runs on your phone. Online sync is provided on a best-effort basis and may be briefly unavailable for maintenance or network issues. Features may change as we improve the Service.</p>
-<h2>7. Limitation of liability</h2>
+<h2>9. Limitation of liability</h2>
 <p>To the maximum extent permitted by law, the Service is provided “as is”. We are not liable for indirect or consequential losses, lost profits, or losses caused by incorrect data entry. Nothing here limits liability for our wilful misconduct or gross negligence.</p>
-<h2>8. Termination</h2>
+<h2>10. Termination</h2>
 <p>You may delete your account and data at any time. We may suspend accounts that breach these terms or abuse the Service; where possible we will give notice and a chance to export data.</p>
-<h2>9. Governing law</h2>
+<h2>11. Governing law</h2>
 <p>These terms are governed by the laws of Bangladesh; the courts of Dhaka have jurisdiction over disputes.</p>
-<h2>10. Changes and contact</h2>
+<h2>12. Changes and contact</h2>
 <p>We will announce changes in the app or on the website. Continuing to use the Service after changes means you accept the updated terms. Contact: {EMAIL}</p>
 """
 page("terms.html", "শর্তাবলী · Terms & Conditions — হিসাববন্ধু", "HisabBondhu terms and conditions", "terms",
