@@ -1,0 +1,205 @@
+--------- beginning of main
+11-26 10:16:54.024  3553  3768 I TestRunner: run started: 1 tests
+11-26 10:16:54.027  3553  3768 I TestRunner: started: guide(com.hisabbondhu.app.GuideTour)
+11-26 10:16:57.055  3553  3768 I GuideTour: step onboarding
+11-26 10:17:07.245  3553  3768 I GuideTour: step home
+11-26 10:17:08.578  3553  3768 I GuideTour: shot 01_home ok=true
+11-26 10:17:11.617  3553  3768 I GuideTour: shot 02_home_today ok=true
+11-26 10:17:14.651  3553  3768 I GuideTour: shot 03_home_recent ok=true
+11-26 10:17:22.259  3553  3768 I GuideTour: step sale_cash
+11-26 10:17:24.739  3553  3768 I GuideTour: shot 04_sale_new ok=true
+11-26 10:17:27.778  3553  3768 I GuideTour: shot 05_product_picker ok=true
+11-26 10:17:30.588  3553  3768 I GuideTour: shot 06_sale_product ok=true
+11-26 10:17:33.346  3553  3768 I GuideTour: shot 07_sale_method ok=true
+11-26 10:17:36.761  3553  3768 I GuideTour: shot 08_sale_saved ok=true
+11-26 10:17:46.130  3553  3768 I GuideTour: step sale_credit
+11-26 10:17:48.930  3553  3768 I GuideTour: shot 09_credit_mode ok=true
+11-26 10:17:51.871  3553  3768 I GuideTour: shot 10_customer_picker ok=true
+11-26 10:17:54.690  3553  3768 I GuideTour: shot 11_credit_filled ok=true
+11-26 10:17:57.947  3553  3768 I GuideTour: shot 12_credit_saved ok=true
+11-26 10:18:06.765  3553  3768 I GuideTour: step payment_in
+11-26 10:18:08.666  3553  3768 I GuideTour: shot 13_payment_in ok=true
+11-26 10:18:15.169  3553  3768 I GuideTour: not found text: বিকাশ
+11-26 10:18:18.235  3553  3768 I GuideTour: not found text: বিকাশ
+11-26 10:18:19.353  3553  3768 I GuideTour: shot 14_payment_in_filled ok=true
+11-26 10:18:22.151  3553  3768 I GuideTour: shot 15_payment_in_saved ok=true
+11-26 10:18:30.664  3553  3768 I GuideTour: step expense
+11-26 10:18:32.764  3553  3768 I GuideTour: shot 16_expense ok=true
+11-26 10:18:35.094  3553  3768 I GuideTour: shot 17_expense_filled ok=true
+11-26 10:18:45.478  3553  3768 I GuideTour: step purchase
+11-26 10:18:47.312  3553  3768 I GuideTour: shot 18_purchase ok=true
+11-26 10:18:56.722  3553  3768 I GuideTour: shot 19_purchase_filled ok=true
+11-26 10:18:58.840  3553  3768 I GuideTour: shot 20_purchase_paid ok=true
+11-26 10:19:02.112  3553  3768 I GuideTour: shot 21_purchase_saved ok=true
+11-26 10:19:10.552  3553  3768 I GuideTour: step payment_out
+11-26 10:19:16.326  3553  3768 I GuideTour: shot 22_payment_out ok=true
+11-26 10:19:26.452  3553  3768 I GuideTour: step sale_return
+11-26 10:19:28.326  3553  3768 I GuideTour: shot 23_sale_return ok=true
+11-26 10:19:29.982  3553  3768 E GuideTour: step sale_return failed
+11-26 10:19:29.982  3553  3768 E GuideTour: androidx.test.uiautomator.StaleObjectException
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at androidx.test.uiautomator.UiObject2.getAccessibilityNodeInfo(UiObject2.java:1018)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at androidx.test.uiautomator.UiObject2.click(UiObject2.java:516)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at com.hisabbondhu.app.GuideTour.tap(GuideTour.kt:46)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at com.hisabbondhu.app.GuideTour.home(GuideTour.kt:106)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at com.hisabbondhu.app.GuideTour.guide$lambda$8(GuideTour.kt:246)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at com.hisabbondhu.app.GuideTour.$r8$lambda$T6EBjP3cjsaUTgk1EfB4YVzedjs(Unknown Source:0)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at com.hisabbondhu.app.GuideTour$$ExternalSyntheticLambda7.invoke(D8$$SyntheticClass:0)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at com.hisabbondhu.app.GuideTour.step(GuideTour.kt:118)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at com.hisabbondhu.app.GuideTour.guide(GuideTour.kt:244)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at java.lang.reflect.Method.invoke(Native Method)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:162)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at org.junit.runners.Suite.runChild(Suite.java:128)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at org.junit.runners.Suite.runChild(Suite.java:27)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:68)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:59)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:463)
+11-26 10:19:29.982  3553  3768 E GuideTour: 	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2402)
+11-26 10:19:29.982  3553  3768 I GuideTour: step stock_adjust
+11-26 10:19:29.989  3553  3768 E GuideTour: step stock_adjust failed
+11-26 10:19:29.989  3553  3768 E GuideTour: androidx.test.uiautomator.StaleObjectException
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at androidx.test.uiautomator.UiObject2.getAccessibilityNodeInfo(UiObject2.java:1018)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at androidx.test.uiautomator.UiObject2.getVisibleBounds(UiObject2.java:310)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at com.hisabbondhu.app.GuideTour.swipeRowLeft(GuideTour.kt:99)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at com.hisabbondhu.app.GuideTour.guide$lambda$9(GuideTour.kt:249)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at com.hisabbondhu.app.GuideTour.$r8$lambda$xPwbCylKYmHuBnaquqdi1ISoD6U(Unknown Source:0)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at com.hisabbondhu.app.GuideTour$$ExternalSyntheticLambda8.invoke(D8$$SyntheticClass:0)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at com.hisabbondhu.app.GuideTour.step(GuideTour.kt:118)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at com.hisabbondhu.app.GuideTour.guide(GuideTour.kt:248)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at java.lang.reflect.Method.invoke(Native Method)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:162)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at org.junit.runners.Suite.runChild(Suite.java:128)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at org.junit.runners.Suite.runChild(Suite.java:27)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:68)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:59)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:463)
+11-26 10:19:29.989  3553  3768 E GuideTour: 	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2402)
+11-26 10:19:29.989  3553  3768 I GuideTour: step cash_in_out
+11-26 10:19:29.995  3553  3768 E GuideTour: step cash_in_out failed
+11-26 10:19:29.995  3553  3768 E GuideTour: androidx.test.uiautomator.StaleObjectException
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at androidx.test.uiautomator.UiObject2.getAccessibilityNodeInfo(UiObject2.java:1018)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at androidx.test.uiautomator.UiObject2.getVisibleBounds(UiObject2.java:310)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at com.hisabbondhu.app.GuideTour.swipeRowLeft(GuideTour.kt:99)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at com.hisabbondhu.app.GuideTour.guide$lambda$10(GuideTour.kt:259)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at com.hisabbondhu.app.GuideTour.$r8$lambda$yGqIFIuN07AxcJ_WjKm4De_u7gw(Unknown Source:0)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at com.hisabbondhu.app.GuideTour$$ExternalSyntheticLambda11.invoke(D8$$SyntheticClass:0)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at com.hisabbondhu.app.GuideTour.step(GuideTour.kt:118)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at com.hisabbondhu.app.GuideTour.guide(GuideTour.kt:258)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at java.lang.reflect.Method.invoke(Native Method)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:162)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at org.junit.runners.Suite.runChild(Suite.java:128)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at org.junit.runners.Suite.runChild(Suite.java:27)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:68)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:59)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:463)
+11-26 10:19:29.995  3553  3768 E GuideTour: 	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2402)
+11-26 10:19:29.995  3553  3768 I GuideTour: step transactions
+11-26 10:19:33.993  3553  3768 I GuideTour: shot 27_all_transactions ok=true
+11-26 10:19:38.231  3553  3768 I GuideTour: shot 28_tx_detail ok=true
+11-26 10:19:40.741  3553  3768 I GuideTour: shot 29_cancel_confirm ok=true
+11-26 10:19:43.790  3553  3768 I GuideTour: shot 30_cancelled ok=true
+11-26 10:19:57.925  3553  3768 I GuideTour: not found: qa_sale
+11-26 10:20:03.988  3553  3768 I GuideTour: step parties
+11-26 10:20:06.815  3553  3768 I GuideTour: shot 31_customers ok=true
+11-26 10:20:14.816  3553  3768 I GuideTour: not found text: নতুন কাস্টমার
+11-26 10:20:16.688  3553  3768 I GuideTour: shot 34_suppliers ok=true
+11-26 10:20:17.446  3553  3768 I GuideTour: step party_detail
+11-26 10:20:25.484  3553  3768 I GuideTour: not found text: করিম ভাই
+11-26 10:20:34.748  3553  3768 I GuideTour: step products
+11-26 10:20:36.621  3553  3768 I GuideTour: shot 40_products ok=true
+11-26 10:20:44.654  3553  3768 I GuideTour: not found text: শুধু কম স্টক
+11-26 10:20:52.676  3553  3768 I GuideTour: not found text: নতুন পণ্য
+11-26 10:20:56.371  3553  3768 I GuideTour: shot 44_product_detail ok=true
+11-26 10:20:58.488  3553  3768 I GuideTour: shot 45_stock_history ok=true
+11-26 10:21:05.102  3553  3768 I GuideTour: shot 46_stock_in ok=true
+11-26 10:21:11.424  3553  3768 I GuideTour: not found: tab_home
+11-26 10:21:26.686  3553  3768 I GuideTour: not found: qa_sale
+11-26 10:21:39.485  3553  3768 I GuideTour: step reports
+11-26 10:21:54.504  3553  3768 I GuideTour: not found: tab_reports
+11-26 10:21:57.581  3553  3768 I GuideTour: not found: tab_home
+11-26 10:22:11.828  3553  3768 I GuideTour: not found: qa_sale
+11-26 10:22:21.173  3553  3768 I GuideTour: step more
+11-26 10:22:36.257  3553  3768 I GuideTour: not found: tab_more
+11-26 10:22:39.357  3553  3768 I GuideTour: not found: tab_home
+11-26 10:22:53.549  3553  3768 I GuideTour: not found: qa_sale
+11-26 10:23:05.058  3553  3768 I GuideTour: step offline
+11-26 10:23:12.201  3553  3768 I GuideTour: not found: tab_home
+11-26 10:23:26.843  3553  3768 I GuideTour: not found: qa_sale
+11-26 10:23:38.462  3553  3768 I GuideTour: shot 57_home_offline ok=true
+11-26 10:23:38.490  3553  3768 I GuideTour: guide finished
+11-26 10:23:38.491  3553  3768 I TestRunner: finished: guide(com.hisabbondhu.app.GuideTour)
+11-26 10:23:38.492  3553  3768 I TestRunner: run finished: 1 tests, 0 failed, 0 ignored

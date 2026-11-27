@@ -1,0 +1,81 @@
+<template>
+<style>
+@font-face{font-family:'Hind Siliguri';src:url('assets/fonts/hind_siliguri_regular.ttf') format('truetype');font-weight:400;font-style:normal}
+@font-face{font-family:'Hind Siliguri';src:url('assets/fonts/hind_siliguri_semibold.ttf') format('truetype');font-weight:600;font-style:normal}
+@font-face{font-family:'Hind Siliguri';src:url('assets/fonts/hind_siliguri_bold.ttf') format('truetype');font-weight:700;font-style:normal}
+#root{position:absolute;inset:0;font-family:'Hind Siliguri',sans-serif;color:#fff;overflow:visible}
+#root .hdr{position:absolute;left:120px;width:768px;top:292px;height:114px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-align:center}
+#root .chip{font-size:28px;font-weight:700;color:#053D2E;background:#FFD43B;border-radius:999px;padding:0 22px;line-height:40px}
+#root .ttl{font-size:60px;font-weight:700;line-height:1.15;text-shadow:0 4px 18px rgba(0,0,0,.25)}
+#root .ttl .w{display:inline-block;margin:0 .14em}
+#root .phone{position:absolute;left:290px;top:412px;width:429px;height:744px;border-radius:58px;background:#0b0f0e;box-shadow:0 34px 90px rgba(0,0,0,.45),inset 0 0 0 2px rgba(255,255,255,.10)}
+#root .screen{position:absolute;left:12px;top:12px;width:405px;height:720px;border-radius:46px;overflow:hidden;background:#fff}
+#root .enter,#root .zoom{position:absolute;left:0;top:0;width:405px;height:720px}
+#root img.scr{position:absolute;left:0;top:0;width:405px;height:720px}
+#root .tap{position:absolute;left:0;top:0;width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.55);border:4px solid #FFD43B;box-shadow:0 4px 14px rgba(0,0,0,.35);opacity:0}
+#root .press{position:absolute;background:rgba(8,127,91,.30);opacity:0}
+#root .mark{position:absolute;border:4px solid #FFD43B;border-radius:16px;opacity:0;box-shadow:0 0 0 999px rgba(5,61,46,.0)}
+</style>
+<div id="root" data-composition-id="install" data-width="1080" data-height="1920">
+<div id="install-hdr" class="hdr"><div id="install-chip" class="chip">ধাপ ১</div><div id="install-ttl" class="ttl"><span class="w">অ্যাপ</span><span class="w">ইনস্টল</span><span class="w">করুন</span></div></div>
+<div id="install-phone" class="phone"><div id="install-screen" class="screen"><div id="install-enter" class="enter" data-layout-allow-overflow><div id="install-zoom" class="zoom" data-layout-allow-overflow>
+  
+  
+ <div style="position:absolute;inset:0;background:#fff;font-family:'Hind Siliguri',sans-serif;color:#1f2a27">
+  <div data-layout-ignore style="position:absolute;left:28px;top:14px;font-size:15px;color:#555">9:30</div>
+  <div style="position:absolute;left:16px;top:44px;width:373px;height:52px;border-radius:26px;background:#EEF2F1;display:flex;align-items:center;padding-left:18px;gap:12px">
+    <svg width="22" height="22" viewBox="0 0 24 24"><circle cx="10" cy="10" r="7" stroke="#5f6b67" stroke-width="2.5" fill="none"/><path d="M15 15l6 6" stroke="#5f6b67" stroke-width="2.5" stroke-linecap="round"/></svg>
+    <div id="install-q" style="font-size:22px;font-weight:600;letter-spacing:.2px"><span class="c" style="opacity:0">H</span><span class="c" style="opacity:0">i</span><span class="c" style="opacity:0">s</span><span class="c" style="opacity:0">a</span><span class="c" style="opacity:0">b</span><span class="c" style="opacity:0">B</span><span class="c" style="opacity:0">o</span><span class="c" style="opacity:0">n</span><span class="c" style="opacity:0">d</span><span class="c" style="opacity:0">h</span><span class="c" style="opacity:0">u</span></div>
+  </div>
+  <div id="install-card" style="position:absolute;left:20px;top:116px;width:365px;opacity:0">
+    <div style="display:flex;gap:16px;align-items:center">
+      <img src="assets/icon.png" alt="" style="width:84px;height:84px;border-radius:20px;box-shadow:0 2px 8px rgba(0,0,0,.18)">
+      <div><div style="font-size:23px;font-weight:700;line-height:1.2">HisabBondhu: Shop Ledger Khata</div>
+      <div data-layout-ignore style="font-size:16px;color:#087F5B;font-weight:600;margin-top:2px">HisabBondhu · Business · Free</div></div>
+    </div>
+    <div style="position:absolute;left:0;top:112px;width:365px;height:50px;border-radius:25px;background:#087F5B;overflow:hidden">
+      <div id="install-btn-t" style="position:absolute;inset:0;color:#fff;font-size:21px;font-weight:700;display:flex;align-items:center;justify-content:center">Install</div>
+      <div id="install-prog" style="position:absolute;inset:0;background:#DDEFE8;opacity:0">
+        <div id="install-fill" style="position:absolute;inset:0;background:#7CC7AE"></div>
+        <div style="position:absolute;inset:0;color:#064e3b;font-size:21px;font-weight:700;display:flex;align-items:center;justify-content:center">ইনস্টল হচ্ছে…</div>
+      </div>
+      <div id="install-open" style="position:absolute;inset:0;color:#fff;font-size:21px;font-weight:700;display:flex;align-items:center;justify-content:center;opacity:0;background:#087F5B">Open</div>
+    </div>
+  </div>
+  <div id="install-shots" style="position:absolute;left:20px;top:300px;display:flex;gap:10px;opacity:0">
+    <img src="assets/screens/home.png" alt="" style="width:115px;height:204px;border-radius:12px;border:1px solid #dde3e1">
+    <img src="assets/screens/customer_ledger.png" alt="" style="width:115px;height:204px;border-radius:12px;border:1px solid #dde3e1">
+    <img src="assets/screens/reports.png" alt="" style="width:115px;height:204px;border-radius:12px;border:1px solid #dde3e1">
+  </div>
+  <div data-layout-ignore style="position:absolute;left:20px;top:524px;width:365px;font-size:17px;line-height:1.45;color:#3c4744">ইন্টারনেট ছাড়াই দোকানের বিক্রি, বাকি, খরচ ও স্টকের সহজ বাংলা হিসাব খাতা।</div>
+  <div id="install-splash" style="position:absolute;inset:0;background:#087F5B;opacity:0;display:flex;align-items:center;justify-content:center">
+    <div id="install-splashlogo" style="width:120px;height:120px;border-radius:30px;opacity:0;background:url('assets/icon.png') center/cover"></div>
+  </div>
+ </div>
+  <div id="install-tap" class="tap"></div>
+</div></div></div></div>
+</div>
+<script>
+  const tl = gsap.timeline({ paused: true });
+  tl.fromTo('#install-chip',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.16,ease:'power4.out'},0.05);
+  gsap.utils.toArray('#install-ttl .w').forEach((w,i)=>tl.fromTo(w,{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.11+i*0.067));
+  tl.to('#install-hdr',{opacity:0,filter:'blur(6px)',duration:0.16,ease:'power2.in'},5.82);
+  tl.fromTo('#install-enter',{opacity:0},{opacity:1,duration:0.25,ease:'power2.out'},0);
+  gsap.utils.toArray('#install-q .c').forEach((c,i)=>tl.set(c,{opacity:1},0.45+i*0.07));
+  tl.fromTo('#install-card',{opacity:0,y:24},{opacity:1,y:0,duration:0.35,ease:'expo.out'},1.4);
+  tl.fromTo('#install-shots',{opacity:0,y:30},{opacity:1,y:0,duration:0.4,ease:'expo.out'},1.55);
+  tl.fromTo('#install-tap',{x:175,y:225,opacity:0,scale:0.6},{opacity:1,scale:1,duration:0.2,ease:'power3.out'},2.2);
+  tl.to('#install-tap',{scale:0.78,duration:0.08,ease:'power2.in'},2.75);
+  tl.to('#install-tap',{scale:1,duration:0.2,ease:'power2.out'},2.83);
+  tl.set('#install-btn-t',{opacity:0},2.85); tl.set('#install-prog',{opacity:1},2.85);
+  tl.fromTo('#install-fill',{scaleX:0,transformOrigin:'0% 50%'},{scaleX:1,duration:1.2,ease:'power1.inOut'},2.9);
+  tl.set('#install-prog',{opacity:0},4.12); tl.set('#install-open',{opacity:1},4.12);
+  tl.fromTo('#install-open',{scale:0.92,transformOrigin:'50% 50%'},{scale:1,duration:0.3,ease:'back.out(1.6)'},4.12);
+  tl.to('#install-tap',{scale:0.78,duration:0.08,ease:'power2.in'},4.75);
+  tl.to('#install-tap',{scale:1,duration:0.2,ease:'power2.out'},4.83);
+  tl.to('#install-tap',{opacity:0,scale:0.7,duration:0.15,ease:'power2.in'},5.05);
+  tl.fromTo('#install-splash',{opacity:0,scale:0.2,transformOrigin:'50% 35%'},{opacity:1,scale:1,duration:0.45,ease:'power3.in'},5.0);
+  tl.fromTo('#install-splashlogo',{opacity:0,scale:0.6,transformOrigin:'50% 50%'},{opacity:1,scale:1,duration:0.3,ease:'expo.out'},5.35);
+  window.__timelines["install"] = tl;
+</script>
+</template>

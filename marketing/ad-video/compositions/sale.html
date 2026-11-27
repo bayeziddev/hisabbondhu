@@ -1,0 +1,57 @@
+<template>
+<style>
+@font-face{font-family:'Hind Siliguri';src:url('assets/fonts/hind_siliguri_regular.ttf') format('truetype');font-weight:400;font-style:normal}
+@font-face{font-family:'Hind Siliguri';src:url('assets/fonts/hind_siliguri_semibold.ttf') format('truetype');font-weight:600;font-style:normal}
+@font-face{font-family:'Hind Siliguri';src:url('assets/fonts/hind_siliguri_bold.ttf') format('truetype');font-weight:700;font-style:normal}
+#root{position:absolute;inset:0;font-family:'Hind Siliguri',sans-serif;color:#fff;overflow:visible}
+#root .hdr{position:absolute;left:120px;width:768px;top:292px;height:114px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-align:center}
+#root .chip{font-size:28px;font-weight:700;color:#053D2E;background:#FFD43B;border-radius:999px;padding:0 22px;line-height:40px}
+#root .ttl{font-size:60px;font-weight:700;line-height:1.15;text-shadow:0 4px 18px rgba(0,0,0,.25)}
+#root .ttl .w{display:inline-block;margin:0 .14em}
+#root .phone{position:absolute;left:290px;top:412px;width:429px;height:744px;border-radius:58px;background:#0b0f0e;box-shadow:0 34px 90px rgba(0,0,0,.45),inset 0 0 0 2px rgba(255,255,255,.10)}
+#root .screen{position:absolute;left:12px;top:12px;width:405px;height:720px;border-radius:46px;overflow:hidden;background:#fff}
+#root .enter,#root .zoom{position:absolute;left:0;top:0;width:405px;height:720px}
+#root img.scr{position:absolute;left:0;top:0;width:405px;height:720px}
+#root .tap{position:absolute;left:0;top:0;width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.55);border:4px solid #FFD43B;box-shadow:0 4px 14px rgba(0,0,0,.35);opacity:0}
+#root .press{position:absolute;background:rgba(8,127,91,.30);opacity:0}
+#root .mark{position:absolute;border:4px solid #FFD43B;border-radius:16px;opacity:0;box-shadow:0 0 0 999px rgba(5,61,46,.0)}
+</style>
+<div id="root" data-composition-id="sale" data-width="1080" data-height="1920">
+<div id="sale-hdr" class="hdr"><div id="sale-chip"></div><div id="sale-ttl" class="ttl"><span class="w">বিক্রি</span><span class="w">লিখুন</span></div></div>
+<div id="sale-phone" class="phone"><div id="sale-screen" class="screen"><div id="sale-enter" class="enter" data-layout-allow-overflow><div id="sale-zoom" class="zoom" data-layout-allow-overflow>
+  <img id="sale-img" class="scr" src="assets/screens/sale_entry.png" alt="">
+  
+  <div id="sale-toast" style="position:absolute;left:24px;top:556px;width:357px;height:62px;border-radius:31px;background:#1f2a27;color:#fff;display:flex;align-items:center;justify-content:center;gap:10px;font-size:24px;font-weight:700;opacity:0;box-shadow:0 10px 24px rgba(0,0,0,.3)">
+    <svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#2FB380"/><path d="M6.5 12.5l3.5 3.5 7.5-8" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>বিক্রি সংরক্ষিত হয়েছে</div>
+  <div id="sale-pr1" class="press" style="left:18px;top:338px;width:371px;height:63px;border-radius:12px"></div>
+<div id="sale-pr2" class="press" style="left:115px;top:459px;width:73px;height:27px;border-radius:13px"></div>
+<div id="sale-pr3" class="press" style="left:18px;top:628px;width:371px;height:52px;border-radius:26px"></div>
+  <div id="sale-tap" class="tap"></div>
+</div></div></div></div>
+</div>
+<script>
+  const tl = gsap.timeline({ paused: true });
+  tl.fromTo('#sale-chip',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.16,ease:'power4.out'},0.05);
+  gsap.utils.toArray('#sale-ttl .w').forEach((w,i)=>tl.fromTo(w,{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.11+i*0.067));
+  tl.to('#sale-hdr',{opacity:0,filter:'blur(6px)',duration:0.16,ease:'power2.in'},6.22);
+  tl.fromTo('#sale-enter',{scale:1.06,opacity:0.2,transformOrigin:'50% 50%'},{scale:1,opacity:1,duration:0.35,ease:'expo.out'},0);
+  tl.fromTo('#sale-tap',{x:177,y:342,opacity:0,scale:0.6},{opacity:1,scale:1,duration:0.2,ease:'power3.out'},0.55);
+  tl.to('#sale-tap',{scale:0.78,duration:0.08,ease:'power2.in'},0.9);
+  tl.to('#sale-tap',{scale:1,duration:0.2,ease:'power2.out'},0.98);
+  tl.fromTo('#sale-pr1',{opacity:0},{opacity:1,duration:0.06},0.9);
+  tl.to('#sale-pr1',{opacity:0,duration:0.3,ease:'power2.out'},1.06);
+  tl.to('#sale-tap',{x:125,y:446,duration:0.4,ease:'power2.inOut'},1.6);
+  tl.to('#sale-tap',{scale:0.78,duration:0.08,ease:'power2.in'},2.2);
+  tl.to('#sale-tap',{scale:1,duration:0.2,ease:'power2.out'},2.28);
+  tl.fromTo('#sale-pr2',{opacity:0},{opacity:1,duration:0.06},2.2);
+  tl.to('#sale-pr2',{opacity:0,duration:0.3,ease:'power2.out'},2.36);
+  tl.to('#sale-tap',{x:177,y:627,duration:0.45,ease:'power2.inOut'},3.15);
+  tl.to('#sale-tap',{scale:0.78,duration:0.08,ease:'power2.in'},3.85);
+  tl.to('#sale-tap',{scale:1,duration:0.2,ease:'power2.out'},3.93);
+  tl.fromTo('#sale-pr3',{opacity:0},{opacity:1,duration:0.06},3.85);
+  tl.to('#sale-pr3',{opacity:0,duration:0.3,ease:'power2.out'},4.01);
+  tl.to('#sale-tap',{opacity:0,scale:0.7,duration:0.15,ease:'power2.in'},4.15);
+  tl.fromTo('#sale-toast',{opacity:0,y:30},{opacity:1,y:0,duration:0.4,ease:'expo.out'},4.15);
+  window.__timelines["sale"] = tl;
+</script>
+</template>

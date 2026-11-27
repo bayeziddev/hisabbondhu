@@ -13,9 +13,9 @@ TOP = {
     ("PSL_ACCOUNT_DELETION_URL", ""): DELETION_URL,
     ("PSL_SUPPORT_DATA_DELETION_BY_USER", "DATA_DELETION_YES"): "true",
     ("PSL_DATA_DELETION_URL", ""): DELETION_URL,
-    ("PSL_INDEPENDENTLY_VALIDATED", ""): "false",
-    ("PSL_HAS_OUTSIDE_APP_ACCOUNTS", ""): "false",
 }
+# Left blank on purpose: PSL_HAS_OUTSIDE_APP_ACCOUNTS only exists when the app has no in-app account
+# creation (Play rejects the import otherwise), and PSL_INDEPENDENTLY_VALIDATED is an optional badge.
 
 APP, ACCOUNT, DEV_COMMS, SECURITY, MARKETING = (
     "PSL_APP_FUNCTIONALITY", "PSL_ACCOUNT_MANAGEMENT", "PSL_DEVELOPER_COMMUNICATIONS",

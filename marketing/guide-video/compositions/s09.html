@@ -1,0 +1,77 @@
+<template>
+<style>
+@font-face{font-family:'Hind Siliguri';src:url('assets/fonts/hind_siliguri_regular.ttf') format('truetype');font-weight:400;font-style:normal}
+@font-face{font-family:'Hind Siliguri';src:url('assets/fonts/hind_siliguri_semibold.ttf') format('truetype');font-weight:600;font-style:normal}
+@font-face{font-family:'Hind Siliguri';src:url('assets/fonts/hind_siliguri_bold.ttf') format('truetype');font-weight:700;font-style:normal}
+#root{position:absolute;inset:0;font-family:'Hind Siliguri',sans-serif;color:#fff;overflow:visible}
+#root .brand{position:absolute;left:860px;top:112px;height:52px;display:flex;align-items:center;gap:14px;opacity:.85}
+#root .brand img{width:48px;height:48px;border-radius:12px}
+#root .brand div{font-size:28px;font-weight:600}
+#root .chip{position:absolute;left:860px;top:194px;font-size:28px;font-weight:700;color:#053D2E;background:#FFD43B;border-radius:999px;padding:0 24px;line-height:46px}
+#root .ttl{position:absolute;left:860px;top:250px;width:860px;font-size:66px;font-weight:700;line-height:1.15;text-shadow:0 4px 18px rgba(0,0,0,.25)}
+#root .ttl .w{display:inline-block;margin-right:.22em}
+#root .step{position:absolute;left:860px;width:860px;height:68px;display:flex;align-items:center;gap:22px;opacity:0}
+#root .step .n{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.14);border:3px solid rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:700;flex:none}
+#root .step .t{font-size:40px;font-weight:600;line-height:1.2}
+#root .phone{position:absolute;left:210px;top:72px;width:528px;height:920px;border-radius:66px;background:#0b0f0e;box-shadow:0 34px 90px rgba(0,0,0,.45),inset 0 0 0 2px rgba(255,255,255,.10)}
+#root .screen{position:absolute;left:12px;top:12px;width:504px;height:896px;border-radius:54px;overflow:hidden;background:#fff}
+#root .enter,#root .zoom{position:absolute;left:0;top:0;width:504px;height:896px}
+#root img.scr{position:absolute;left:0;top:0;width:504px;height:896px}
+#root .tap{position:absolute;left:0;top:0;width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,.55);border:4px solid #FFD43B;box-shadow:0 4px 14px rgba(0,0,0,.35);opacity:0}
+#root .press{position:absolute;background:rgba(8,127,91,.30);opacity:0}
+#root .mark{position:absolute;border:4px solid #FFD43B;border-radius:16px;opacity:0}
+</style>
+<div id="root" data-composition-id="s09" data-width="1920" data-height="1080">
+<div class="brand"><img src="assets/icon.png" alt=""><div>হিসাববন্ধু · ইউজার গাইড</div></div>
+<div id="s09-chip" class="chip">বিক্রি</div>
+<div id="s09-ttl" class="ttl"><span class="w">নগদ</span><span class="w">বিক্রি</span><span class="w">লিখুন</span></div>
+<div id="s09-steps"><div id="s09-st0" class="step" style="top:440px"><div class="n">১</div><div class="t">নগদ বাছাই থাকে</div></div>
+<div id="s09-st1" class="step" style="top:520px"><div class="n">২</div><div class="t">টাকার পরিমাণ লিখুন</div></div>
+<div id="s09-st2" class="step" style="top:600px"><div class="n">৩</div><div class="t">পেমেন্ট মাধ্যম বাছুন</div></div>
+<div id="s09-st3" class="step" style="top:680px"><div class="n">৪</div><div class="t">সংরক্ষণ করুন</div></div></div>
+<div id="s09-phone" class="phone"><div class="screen"><div id="s09-enter" class="enter" data-layout-allow-overflow><div id="s09-zoom" class="zoom" data-layout-allow-overflow>
+  <img id="s09-img" class="scr" src="assets/screens/sale_entry.png" alt="">
+  <div id="s09-toast" style="position:absolute;left:30px;top:700px;width:444px;height:72px;border-radius:36px;background:#1f2a27;color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;opacity:0;box-shadow:0 10px 24px rgba(0,0,0,.3)">✓ বিক্রি সংরক্ষিত হয়েছে</div>
+  <div id="s09-pr1" class="press" style="left:22.9px;top:133px;width:229.6px;height:45.7px;border-radius:14px"></div>
+  <div id="s09-pr2" class="press" style="left:22.9px;top:420px;width:461.1px;height:78.9px;border-radius:14px"></div>
+  <div id="s09-pr3" class="press" style="left:143.7px;top:571.2px;width:91px;height:33.6px;border-radius:14px"></div>
+  <div id="s09-pr4" class="press" style="left:22.9px;top:781.2px;width:461.1px;height:64.9px;border-radius:14px"></div>
+  <div id="s09-mk1" class="mark" style="left:18.7px;top:567px;width:466.7px;height:86.3px"></div>
+  <div id="s09-tap" class="tap"></div>
+</div></div></div></div>
+</div>
+<script>
+  const tl = gsap.timeline({ paused: true });
+  tl.fromTo('#s09-chip',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.16,ease:'power4.out'},0.08);
+  gsap.utils.toArray('#s09-ttl .w').forEach((w,i)=>tl.fromTo(w,{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.14,ease:'power4.out'},0.14+i*0.067));
+  tl.to(['#s09-chip','#s09-ttl','#s09-steps'],{opacity:0,filter:'blur(6px)',duration:0.16,ease:'power2.in'},18.14);
+  tl.fromTo('#s09-st0',{opacity:0,x:-24},{opacity:1,x:0,duration:0.35,ease:'expo.out'},3.37);
+  tl.to('#s09-st0 .n',{backgroundColor:'#FFD43B',borderColor:'#FFD43B',color:'#053D2E',duration:0.2},3.37);
+  tl.fromTo('#s09-st1',{opacity:0,x:-24},{opacity:1,x:0,duration:0.35,ease:'expo.out'},5.41);
+  tl.to('#s09-st1 .n',{backgroundColor:'#FFD43B',borderColor:'#FFD43B',color:'#053D2E',duration:0.2},5.41);
+  tl.to('#s09-st0',{opacity:0.62,duration:0.25},5.41); tl.to('#s09-st0 .n',{backgroundColor:'rgba(255,255,255,.14)',borderColor:'rgba(255,255,255,.55)',color:'#ffffff',duration:0.2},5.41);
+  tl.fromTo('#s09-st2',{opacity:0,x:-24},{opacity:1,x:0,duration:0.35,ease:'expo.out'},7.53);
+  tl.to('#s09-st2 .n',{backgroundColor:'#FFD43B',borderColor:'#FFD43B',color:'#053D2E',duration:0.2},7.53);
+  tl.to('#s09-st1',{opacity:0.62,duration:0.25},7.53); tl.to('#s09-st1 .n',{backgroundColor:'rgba(255,255,255,.14)',borderColor:'rgba(255,255,255,.55)',color:'#ffffff',duration:0.2},7.53);
+  tl.fromTo('#s09-st3',{opacity:0,x:-24},{opacity:1,x:0,duration:0.35,ease:'expo.out'},13.25);
+  tl.to('#s09-st3 .n',{backgroundColor:'#FFD43B',borderColor:'#FFD43B',color:'#053D2E',duration:0.2},13.25);
+  tl.to('#s09-st2',{opacity:0.62,duration:0.25},13.25); tl.to('#s09-st2 .n',{backgroundColor:'rgba(255,255,255,.14)',borderColor:'rgba(255,255,255,.55)',color:'#ffffff',duration:0.2},13.25);
+  tl.fromTo('#s09-enter',{x:70,opacity:0},{x:0,opacity:1,duration:0.35,ease:'power3.out'},0);
+  tl.fromTo('#s09-toast',{opacity:0,y:30},{opacity:1,y:0,duration:0.4,ease:'expo.out'},15.39);
+  tl.fromTo('#s09-tap',{x:107.69999999999999,y:125.9,opacity:0,scale:0.6},{opacity:1,scale:1,duration:0.2,ease:'power3.out'},3.02);
+  tl.to('#s09-tap',{scale:0.78,duration:0.08,ease:'power2.in'},3.47); tl.to('#s09-tap',{scale:1,duration:0.2,ease:'power2.out'},3.55);
+  tl.fromTo('#s09-pr1',{opacity:0},{opacity:1,duration:0.06},3.47); tl.to('#s09-pr1',{opacity:0,duration:0.3,ease:'power2.out'},3.63);
+  tl.to('#s09-tap',{x:222.5,y:427.8,duration:0.4,ease:'power2.inOut'},5.01);
+  tl.to('#s09-tap',{scale:0.78,duration:0.08,ease:'power2.in'},5.51); tl.to('#s09-tap',{scale:1,duration:0.2,ease:'power2.out'},5.59);
+  tl.fromTo('#s09-pr2',{opacity:0},{opacity:1,duration:0.06},5.51); tl.to('#s09-pr2',{opacity:0,duration:0.3,ease:'power2.out'},5.67);
+  tl.to('#s09-tap',{x:159,y:558,duration:0.4,ease:'power2.inOut'},9.42);
+  tl.to('#s09-tap',{scale:0.78,duration:0.08,ease:'power2.in'},9.92); tl.to('#s09-tap',{scale:1,duration:0.2,ease:'power2.out'},10.00);
+  tl.fromTo('#s09-pr3',{opacity:0},{opacity:1,duration:0.06},9.92); tl.to('#s09-pr3',{opacity:0,duration:0.3,ease:'power2.out'},10.08);
+  tl.to('#s09-tap',{x:222.5,y:784.3,duration:0.4,ease:'power2.inOut'},12.85);
+  tl.to('#s09-tap',{scale:0.78,duration:0.08,ease:'power2.in'},13.35); tl.to('#s09-tap',{scale:1,duration:0.2,ease:'power2.out'},13.43);
+  tl.fromTo('#s09-pr4',{opacity:0},{opacity:1,duration:0.06},13.35); tl.to('#s09-pr4',{opacity:0,duration:0.3,ease:'power2.out'},13.51);
+  tl.to('#s09-tap',{opacity:0,scale:0.7,duration:0.15,ease:'power2.in'},14.24);
+  tl.fromTo('#s09-mk1',{opacity:0,scale:1.1,transformOrigin:'50% 50%'},{opacity:1,scale:1,duration:0.28,ease:'expo.out'},7.63); tl.to('#s09-mk1',{opacity:0,duration:0.18,ease:'power2.in'},9.23);
+  window.__timelines["s09"] = tl;
+</script>
+</template>

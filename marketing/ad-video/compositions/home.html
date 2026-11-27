@@ -1,0 +1,44 @@
+<template>
+<style>
+@font-face{font-family:'Hind Siliguri';src:url('assets/fonts/hind_siliguri_regular.ttf') format('truetype');font-weight:400;font-style:normal}
+@font-face{font-family:'Hind Siliguri';src:url('assets/fonts/hind_siliguri_semibold.ttf') format('truetype');font-weight:600;font-style:normal}
+@font-face{font-family:'Hind Siliguri';src:url('assets/fonts/hind_siliguri_bold.ttf') format('truetype');font-weight:700;font-style:normal}
+#root{position:absolute;inset:0;font-family:'Hind Siliguri',sans-serif;color:#fff;overflow:visible}
+#root .hdr{position:absolute;left:120px;width:768px;top:292px;height:114px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-align:center}
+#root .chip{font-size:28px;font-weight:700;color:#053D2E;background:#FFD43B;border-radius:999px;padding:0 22px;line-height:40px}
+#root .ttl{font-size:60px;font-weight:700;line-height:1.15;text-shadow:0 4px 18px rgba(0,0,0,.25)}
+#root .ttl .w{display:inline-block;margin:0 .14em}
+#root .phone{position:absolute;left:290px;top:412px;width:429px;height:744px;border-radius:58px;background:#0b0f0e;box-shadow:0 34px 90px rgba(0,0,0,.45),inset 0 0 0 2px rgba(255,255,255,.10)}
+#root .screen{position:absolute;left:12px;top:12px;width:405px;height:720px;border-radius:46px;overflow:hidden;background:#fff}
+#root .enter,#root .zoom{position:absolute;left:0;top:0;width:405px;height:720px}
+#root img.scr{position:absolute;left:0;top:0;width:405px;height:720px}
+#root .tap{position:absolute;left:0;top:0;width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.55);border:4px solid #FFD43B;box-shadow:0 4px 14px rgba(0,0,0,.35);opacity:0}
+#root .press{position:absolute;background:rgba(8,127,91,.30);opacity:0}
+#root .mark{position:absolute;border:4px solid #FFD43B;border-radius:16px;opacity:0;box-shadow:0 0 0 999px rgba(5,61,46,.0)}
+</style>
+<div id="root" data-composition-id="home" data-width="1080" data-height="1920">
+<div id="home-hdr" class="hdr"><div id="home-chip" class="chip">হোম</div><div id="home-ttl" class="ttl"><span class="w">এক</span><span class="w">নজরে</span><span class="w">সব</span><span class="w">হিসাব</span></div></div>
+<div id="home-phone" class="phone"><div id="home-screen" class="screen"><div id="home-enter" class="enter" data-layout-allow-overflow><div id="home-zoom" class="zoom" data-layout-allow-overflow>
+  <img id="home-img" class="scr" src="assets/screens/home.png" alt="">
+  
+  <div id="home-pr1" class="press" style="left:21px;top:291px;width:79px;height:73px;border-radius:18px"></div>
+  <div id="home-tap" class="tap"></div>
+</div></div></div></div>
+</div>
+<script>
+  const tl = gsap.timeline({ paused: true });
+  tl.fromTo('#home-chip',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.16,ease:'power4.out'},0.05);
+  gsap.utils.toArray('#home-ttl .w').forEach((w,i)=>tl.fromTo(w,{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.11+i*0.067));
+  tl.to('#home-hdr',{opacity:0,filter:'blur(6px)',duration:0.16,ease:'power2.in'},5.42);
+  tl.fromTo('#home-enter',{scale:1.06,opacity:0.2,transformOrigin:'50% 50%'},{scale:1,opacity:1,duration:0.35,ease:'expo.out'},0);
+  tl.to('#home-zoom',{scale:1.5,x:-45.0,y:0.0,transformOrigin:'0 0',duration:0.6,ease:'power2.inOut'},0.55);
+  tl.to('#home-zoom',{scale:1.5,x:0.0,y:-360.0,transformOrigin:'0 0',duration:0.65,ease:'power2.inOut'},2.45);
+  tl.to('#home-zoom',{scale:1,x:0,y:0,transformOrigin:'0 0',duration:0.5,ease:'power2.inOut'},4.15);
+  tl.fromTo('#home-tap',{x:34,y:301,opacity:0,scale:0.6},{opacity:1,scale:1,duration:0.2,ease:'power3.out'},4.75);
+  tl.to('#home-tap',{scale:0.78,duration:0.08,ease:'power2.in'},5.12);
+  tl.to('#home-tap',{scale:1,duration:0.2,ease:'power2.out'},5.20);
+  tl.fromTo('#home-pr1',{opacity:0},{opacity:1,duration:0.06},5.12);
+  tl.to('#home-pr1',{opacity:0,duration:0.3,ease:'power2.out'},5.28);
+  window.__timelines["home"] = tl;
+</script>
+</template>

@@ -93,7 +93,7 @@ Legend: `[x]` done in repo · `[ ]` pending · 👤 = needs the owner (you) to d
 - [x] Email OTP login (Resend) + required profile (name, mobile) — SMS verification ready for later
 - [ ] Tablet-optimised layout (centered content / navigation rail on 10")
 
-## 6. Phase 2+ (after MVP)
+## 6. Phase 2+ (after MVP) — full plan, pricing and research: `docs/ROADMAP.md`
 - [ ] PDF invoice, barcode scanner, thermal printer
 - [ ] Staff accounts & roles (Owner / Manager / Cashier / Viewer)
 - [ ] Multi-branch, POS cart, bKash/Nagad reconciliation, Bangla QR

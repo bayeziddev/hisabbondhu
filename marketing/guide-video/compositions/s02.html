@@ -1,0 +1,87 @@
+<template>
+<style>
+@font-face{font-family:'Hind Siliguri';src:url('assets/fonts/hind_siliguri_regular.ttf') format('truetype');font-weight:400;font-style:normal}
+@font-face{font-family:'Hind Siliguri';src:url('assets/fonts/hind_siliguri_semibold.ttf') format('truetype');font-weight:600;font-style:normal}
+@font-face{font-family:'Hind Siliguri';src:url('assets/fonts/hind_siliguri_bold.ttf') format('truetype');font-weight:700;font-style:normal}
+#root{position:absolute;inset:0;font-family:'Hind Siliguri',sans-serif;color:#fff;overflow:visible}
+#root .brand{position:absolute;left:860px;top:112px;height:52px;display:flex;align-items:center;gap:14px;opacity:.85}
+#root .brand img{width:48px;height:48px;border-radius:12px}
+#root .brand div{font-size:28px;font-weight:600}
+#root .chip{position:absolute;left:860px;top:194px;font-size:28px;font-weight:700;color:#053D2E;background:#FFD43B;border-radius:999px;padding:0 24px;line-height:46px}
+#root .ttl{position:absolute;left:860px;top:250px;width:860px;font-size:66px;font-weight:700;line-height:1.15;text-shadow:0 4px 18px rgba(0,0,0,.25)}
+#root .ttl .w{display:inline-block;margin-right:.22em}
+#root .step{position:absolute;left:860px;width:860px;height:68px;display:flex;align-items:center;gap:22px;opacity:0}
+#root .step .n{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.14);border:3px solid rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:700;flex:none}
+#root .step .t{font-size:40px;font-weight:600;line-height:1.2}
+#root .phone{position:absolute;left:210px;top:72px;width:528px;height:920px;border-radius:66px;background:#0b0f0e;box-shadow:0 34px 90px rgba(0,0,0,.45),inset 0 0 0 2px rgba(255,255,255,.10)}
+#root .screen{position:absolute;left:12px;top:12px;width:504px;height:896px;border-radius:54px;overflow:hidden;background:#fff}
+#root .enter,#root .zoom{position:absolute;left:0;top:0;width:504px;height:896px}
+#root img.scr{position:absolute;left:0;top:0;width:504px;height:896px}
+#root .tap{position:absolute;left:0;top:0;width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,.55);border:4px solid #FFD43B;box-shadow:0 4px 14px rgba(0,0,0,.35);opacity:0}
+#root .press{position:absolute;background:rgba(8,127,91,.30);opacity:0}
+#root .mark{position:absolute;border:4px solid #FFD43B;border-radius:16px;opacity:0}
+</style>
+<div id="root" data-composition-id="s02" data-width="1920" data-height="1080">
+<div class="brand"><img src="assets/icon.png" alt=""><div>হিসাববন্ধু · ইউজার গাইড</div></div>
+<div id="s02-chip" class="chip">ধাপ ১</div>
+<div id="s02-ttl" class="ttl"><span class="w">অ্যাপ</span><span class="w">ইনস্টল</span><span class="w">করুন</span></div>
+<div id="s02-steps"><div id="s02-st0" class="step" style="top:440px"><div class="n">১</div><div class="t">Play Store খুলুন</div></div>
+<div id="s02-st1" class="step" style="top:520px"><div class="n">২</div><div class="t">HisabBondhu লিখে খুঁজুন</div></div>
+<div id="s02-st2" class="step" style="top:600px"><div class="n">৩</div><div class="t">Install চাপুন</div></div>
+<div id="s02-st3" class="step" style="top:680px"><div class="n">৪</div><div class="t">Open চাপুন</div></div></div>
+<div id="s02-phone" class="phone"><div class="screen"><div id="s02-enter" class="enter" data-layout-allow-overflow><div id="s02-zoom" class="zoom" data-layout-allow-overflow>
+  
+  <div style="position:absolute;inset:0;background:#fff;color:#1f2a27">
+  <div style="position:absolute;left:20px;top:58px;width:464px;height:64px;border-radius:32px;background:#EEF2F1;display:flex;align-items:center;padding-left:22px;gap:14px">
+    <svg width="28" height="28" viewBox="0 0 24 24"><circle cx="10" cy="10" r="7" stroke="#5f6b67" stroke-width="2.5" fill="none"/><path d="M15 15l6 6" stroke="#5f6b67" stroke-width="2.5" stroke-linecap="round"/></svg>
+    <div id="s02-q" style="font-size:28px;font-weight:600"><span class="c" style="opacity:0">H</span><span class="c" style="opacity:0">i</span><span class="c" style="opacity:0">s</span><span class="c" style="opacity:0">a</span><span class="c" style="opacity:0">b</span><span class="c" style="opacity:0">B</span><span class="c" style="opacity:0">o</span><span class="c" style="opacity:0">n</span><span class="c" style="opacity:0">d</span><span class="c" style="opacity:0">h</span><span class="c" style="opacity:0">u</span></div></div>
+  <div id="s02-card" style="position:absolute;left:24px;top:150px;width:456px;opacity:0">
+    <div style="display:flex;gap:20px;align-items:center">
+      <img src="assets/icon.png" alt="" style="width:104px;height:104px;border-radius:24px;box-shadow:0 2px 8px rgba(0,0,0,.18)">
+      <div><div style="font-size:28px;font-weight:700;line-height:1.2">HisabBondhu: Shop Ledger Khata</div>
+      <div data-layout-ignore style="font-size:20px;color:#087F5B;font-weight:600;margin-top:4px">Business · Free</div></div></div>
+    <div style="position:absolute;left:0;top:140px;width:456px;height:62px;border-radius:31px;background:#087F5B;overflow:hidden">
+      <div id="s02-btn" style="position:absolute;inset:0;color:#fff;font-size:28px;font-weight:700;display:flex;align-items:center;justify-content:center">Install</div>
+      <div id="s02-prog" style="position:absolute;inset:0;background:#DDEFE8;opacity:0"><div id="s02-fill" style="position:absolute;inset:0;background:#7CC7AE"></div>
+        <div style="position:absolute;inset:0;color:#064e3b;font-size:28px;font-weight:700;display:flex;align-items:center;justify-content:center">ইনস্টল হচ্ছে…</div></div>
+      <div id="s02-open" style="position:absolute;inset:0;color:#fff;font-size:28px;font-weight:700;display:flex;align-items:center;justify-content:center;opacity:0;background:#087F5B">Open</div></div></div>
+  <div id="s02-shots" style="position:absolute;left:24px;top:380px;display:flex;gap:12px;opacity:0">
+    <img src="assets/screens/home.png" alt="" style="width:144px;height:256px;border-radius:14px;border:1px solid #dde3e1">
+    <img src="assets/screens/customer_ledger.png" alt="" style="width:144px;height:256px;border-radius:14px;border:1px solid #dde3e1">
+    <img src="assets/screens/reports.png" alt="" style="width:144px;height:256px;border-radius:14px;border:1px solid #dde3e1"></div>
+</div>
+  
+  <div id="s02-tap" class="tap"></div>
+</div></div></div></div>
+</div>
+<script>
+  const tl = gsap.timeline({ paused: true });
+  tl.fromTo('#s02-chip',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.16,ease:'power4.out'},0.08);
+  gsap.utils.toArray('#s02-ttl .w').forEach((w,i)=>tl.fromTo(w,{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.14,ease:'power4.out'},0.14+i*0.067));
+  tl.to(['#s02-chip','#s02-ttl','#s02-steps'],{opacity:0,filter:'blur(6px)',duration:0.16,ease:'power2.in'},10.48);
+  tl.fromTo('#s02-st0',{opacity:0,x:-24},{opacity:1,x:0,duration:0.35,ease:'expo.out'},0.92);
+  tl.to('#s02-st0 .n',{backgroundColor:'#FFD43B',borderColor:'#FFD43B',color:'#053D2E',duration:0.2},0.92);
+  tl.fromTo('#s02-st1',{opacity:0,x:-24},{opacity:1,x:0,duration:0.35,ease:'expo.out'},2.38);
+  tl.to('#s02-st1 .n',{backgroundColor:'#FFD43B',borderColor:'#FFD43B',color:'#053D2E',duration:0.2},2.38);
+  tl.to('#s02-st0',{opacity:0.62,duration:0.25},2.38); tl.to('#s02-st0 .n',{backgroundColor:'rgba(255,255,255,.14)',borderColor:'rgba(255,255,255,.55)',color:'#ffffff',duration:0.2},2.38);
+  tl.fromTo('#s02-st2',{opacity:0,x:-24},{opacity:1,x:0,duration:0.35,ease:'expo.out'},4.97);
+  tl.to('#s02-st2 .n',{backgroundColor:'#FFD43B',borderColor:'#FFD43B',color:'#053D2E',duration:0.2},4.97);
+  tl.to('#s02-st1',{opacity:0.62,duration:0.25},4.97); tl.to('#s02-st1 .n',{backgroundColor:'rgba(255,255,255,.14)',borderColor:'rgba(255,255,255,.55)',color:'#ffffff',duration:0.2},4.97);
+  tl.fromTo('#s02-st3',{opacity:0,x:-24},{opacity:1,x:0,duration:0.35,ease:'expo.out'},8.94);
+  tl.to('#s02-st3 .n',{backgroundColor:'#FFD43B',borderColor:'#FFD43B',color:'#053D2E',duration:0.2},8.94);
+  tl.to('#s02-st2',{opacity:0.62,duration:0.25},8.94); tl.to('#s02-st2 .n',{backgroundColor:'rgba(255,255,255,.14)',borderColor:'rgba(255,255,255,.55)',color:'#ffffff',duration:0.2},8.94);
+  tl.fromTo('#s02-enter',{x:70,opacity:0},{x:0,opacity:1,duration:0.35,ease:'power3.out'},0);
+  gsap.utils.toArray('#s02-q .c').forEach((c,i)=>tl.set(c,{opacity:1},2.48+i*0.07));
+  tl.fromTo('#s02-card',{opacity:0,y:24},{opacity:1,y:0,duration:0.35,ease:'expo.out'},3.38);
+  tl.fromTo('#s02-shots',{opacity:0,y:30},{opacity:1,y:0,duration:0.4,ease:'expo.out'},3.53);
+  tl.set('#s02-btn',{opacity:0},5.29); tl.set('#s02-prog',{opacity:1},5.29);
+  tl.fromTo('#s02-fill',{scaleX:0,transformOrigin:'0% 50%'},{scaleX:1,duration:3.27,ease:'power1.inOut'},5.32);
+  tl.set('#s02-prog',{opacity:0},8.69); tl.set('#s02-open',{opacity:1},8.69);
+  tl.fromTo('#s02-tap',{x:222,y:291,opacity:0,scale:0.6},{opacity:1,scale:1,duration:0.2,ease:'power3.out'},4.72);
+  tl.to('#s02-tap',{scale:0.78,duration:0.08,ease:'power2.in'},5.17); tl.to('#s02-tap',{scale:1,duration:0.2,ease:'power2.out'},5.25);
+  tl.to('#s02-tap',{x:222,y:291,duration:0.4,ease:'power2.inOut'},8.84);
+  tl.to('#s02-tap',{scale:0.78,duration:0.08,ease:'power2.in'},9.34); tl.to('#s02-tap',{scale:1,duration:0.2,ease:'power2.out'},9.42);
+  tl.to('#s02-tap',{opacity:0,scale:0.7,duration:0.15,ease:'power2.in'},10.23);
+  window.__timelines["s02"] = tl;
+</script>
+</template>
