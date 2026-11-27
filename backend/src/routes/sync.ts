@@ -2,6 +2,7 @@ import { Hono } from 'hono';
 import type { AppEnv } from '../env';
 import { requireAuth, requireMember } from '../lib/auth';
 import { fail, now, readJson } from '../lib/http';
+import { decideReferral } from '../lib/referral';
 import { partySchema, productSchema, pullSchema, pushSchema, txSchema } from '../lib/validate';
 import { BIZ_COLUMNS } from './business';
 
@@ -95,6 +96,7 @@ syncRoutes.post('/:id/sync/push', async (c) => {
         JSON.stringify({ device: body.device_id, p: parties.length, pr: products.length, t: txs.length, rej: rejected.length, key: c.req.header('idempotency-key') ?? null }), t),
   );
   await db.batch(stmts); // one atomic transaction
+  if (txs.length) c.executionCtx.waitUntil(decideReferral(c.env, userId).catch((e) => console.error('referral', e)));
 
   return c.json({ ok: true, accepted: { parties: parties.length, products: products.length, transactions: txs.length }, rejected });
 });

@@ -6,12 +6,16 @@ import com.hisabbondhu.app.data.prefs.SettingsStore
 import com.hisabbondhu.app.data.remote.Network
 import com.hisabbondhu.app.data.repo.AuthRepository
 import com.hisabbondhu.app.data.repo.LedgerRepository
+import com.hisabbondhu.app.data.repo.ReferralRepository
 import com.hisabbondhu.app.data.repo.SyncEngine
 import com.hisabbondhu.app.sync.ConnectivityObserver
 import com.hisabbondhu.app.sync.SyncScheduler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 /** Simple manual dependency container — fast startup, no reflection, easy to read. */
@@ -29,8 +33,18 @@ class AppContainer(app: Application) {
     val ledger = LedgerRepository(db, settings) { if (loggedIn) scheduler.requestSync() }
     val syncEngine = SyncEngine(db, settings, network)
     val auth = AuthRepository(db, settings, network, scheduler)
+    val referral = ReferralRepository(network, settings)
+
+    /** Reads the Play install referrer once per install (the profile step waits briefly for it). */
+    val installReferrerCapture: Job = appScope.launch { runCatching { referral.captureInstallReferrer(app) } }
 
     init {
         appScope.launch { settings.auth.collect { loggedIn = it.loggedIn } }
+        // A referral code entered while offline is sent once the user is signed in and online.
+        appScope.launch {
+            settings.auth.first { it.loggedIn }
+            delay(5_000)
+            runCatching { referral.applyRetryIfAny() }
+        }
     }
 }

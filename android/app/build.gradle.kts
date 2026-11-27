@@ -147,6 +147,7 @@ dependencies {
     implementation(libs.retrofit.kotlinx.serialization)
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging)
+    implementation(libs.android.installreferrer) // reads the referral code from a Play Store link
 
     coreLibraryDesugaring(libs.desugar.jdk.libs)
 

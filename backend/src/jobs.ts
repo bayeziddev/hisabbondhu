@@ -1,4 +1,5 @@
 import type { Env, Job } from './env';
+import { sweepReferrals } from './lib/referral';
 
 const SNAPSHOT_KEEP = 8; // weekly snapshots kept per business
 
@@ -54,6 +55,8 @@ export async function dailyMaintenance(env: Env): Promise<void> {
     env.DB.prepare('DELETE FROM audit_logs WHERE created_at < ?').bind(t - 365 * 24 * 3600_000),
     env.DB.prepare("DELETE FROM support_messages WHERE created_at < ? AND status != 'open'").bind(t - 2 * 365 * 24 * 3600_000),
   ]);
+
+  await sweepReferrals(env);
 
   // Sundays: snapshot businesses that synced in the last 7 days (only when R2 is available).
   if (env.FILES && new Date(t).getUTCDay() === 0) {

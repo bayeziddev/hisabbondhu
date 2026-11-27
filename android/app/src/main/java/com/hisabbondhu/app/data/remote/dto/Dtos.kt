@@ -178,3 +178,49 @@ data class ContactRequest(
     val message: String,
     val source: String = "android",
 )
+
+// ---- Referral programme & Hisab points ----
+
+@Serializable
+data class ReferralApplyRequest(val code: String)
+
+@Serializable
+data class RedeemRequest(val option: String)
+
+@Serializable
+data class RedeemOptionDto(val id: String, val points: Int, val days: Int)
+
+@Serializable
+data class ReferralRulesDto(
+    @SerialName("referrer_points") val referrerPoints: Int = 100,
+    @SerialName("welcome_points") val welcomePoints: Int = 50,
+    @SerialName("min_transactions") val minTransactions: Int = 5,
+    @SerialName("apply_window_days") val applyWindowDays: Int = 7,
+    @SerialName("redeem_options") val redeemOptions: List<RedeemOptionDto> = emptyList(),
+)
+
+@Serializable
+data class ReferralStatsDto(val pending: Int = 0, val qualified: Int = 0)
+
+@Serializable
+data class PointsEntryDto(
+    val delta: Int,
+    val reason: String,
+    @SerialName("created_at") val createdAt: Long,
+)
+
+@Serializable
+data class ReferralSummary(
+    val code: String,
+    @SerialName("share_url") val shareUrl: String,
+    val points: Int = 0,
+    @SerialName("pro_until") val proUntil: Long? = null,
+    @SerialName("pro_active") val proActive: Boolean = false,
+    @SerialName("redeem_enabled") val redeemEnabled: Boolean = false,
+    @SerialName("can_apply") val canApply: Boolean = false,
+    @SerialName("applied_code") val appliedCode: String? = null,
+    @SerialName("applied_status") val appliedStatus: String? = null,
+    val stats: ReferralStatsDto = ReferralStatsDto(),
+    val rules: ReferralRulesDto = ReferralRulesDto(),
+    val history: List<PointsEntryDto> = emptyList(),
+)

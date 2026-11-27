@@ -12,6 +12,9 @@ import com.hisabbondhu.app.data.remote.dto.PullResponse
 import com.hisabbondhu.app.data.remote.dto.PushRequest
 import com.hisabbondhu.app.data.remote.dto.ProfileRequest
 import com.hisabbondhu.app.data.remote.dto.PushResponse
+import com.hisabbondhu.app.data.remote.dto.RedeemRequest
+import com.hisabbondhu.app.data.remote.dto.ReferralApplyRequest
+import com.hisabbondhu.app.data.remote.dto.ReferralSummary
 import com.hisabbondhu.app.data.remote.dto.RefreshRequest
 import com.hisabbondhu.app.data.remote.dto.UserResponse
 import com.hisabbondhu.app.data.remote.dto.VerifyOtpRequest
@@ -60,6 +63,15 @@ interface HisabApi {
 
     @POST("v1/public/contact")
     suspend fun contact(@Body body: ContactRequest): OkResponse
+
+    @GET("v1/referral")
+    suspend fun referral(): ReferralSummary
+
+    @POST("v1/referral/apply")
+    suspend fun applyReferral(@Body body: ReferralApplyRequest): ReferralSummary
+
+    @POST("v1/referral/redeem")
+    suspend fun redeemPoints(@Body body: RedeemRequest): ReferralSummary
 }
 
 /** Separate interface used only by the token authenticator (no auth header, no recursion). */

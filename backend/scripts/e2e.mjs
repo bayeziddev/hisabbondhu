@@ -112,6 +112,64 @@ check('tenant isolation (push)', spyPush.status === 404, spyPush);
 const hijack = await call('POST', '/v1/businesses/link', { id: bizId, name: 'hijack', updated_at: t0 }, v2.json.access_token);
 check('cannot claim another business id', hijack.status === 201 && hijack.json.id !== bizId, hijack);
 
+// Referral: code → friend applies → friend becomes active → inviter rewarded → points redeemed for Pro.
+// The local Worker runs with REFERRAL_MIN_AGE_HOURS=0 and REFERRAL_REDEEM_ENABLED=true.
+async function signup(prefix, deviceId) {
+  const em = `${prefix}${rnd()}@example.com`;
+  const o = await call('POST', '/v1/auth/request-otp', { email: em });
+  const v = await call('POST', '/v1/auth/verify-otp', { email: em, code: o.json.dev_code, device_id: deviceId, device_name: prefix });
+  return v.json.access_token;
+}
+const inviter = await signup('inviter', 'dev-ref-inviter');
+const friend = await signup('friend', 'dev-ref-friend');
+const refA = await call('GET', '/v1/referral', null, inviter);
+const myCode = refA.json?.code;
+check('referral: code created', refA.status === 200 && /^[A-HJ-NP-Z2-9]{6}$/.test(myCode) && refA.json.points === 0 && refA.json.can_apply === true, refA);
+check('referral: share link has code', refA.json?.share_url?.endsWith(`referrer=ref%3D${myCode}`), refA.json?.share_url);
+check('referral: same code next time', (await call('GET', '/v1/referral', null, inviter)).json.code === myCode);
+const own = await call('POST', '/v1/referral/apply', { code: myCode }, inviter);
+check('referral: own code rejected', own.status === 422 && own.json.error === 'own_code', own);
+const badCode = await call('POST', '/v1/referral/apply', { code: 'AB' }, friend);
+check('referral: malformed code rejected', badCode.status === 422 && badCode.json.error === 'invalid_code', badCode);
+const unknown = await call('POST', '/v1/referral/apply', { code: myCode === 'ZZZZZZ' ? 'YYYYYY' : 'ZZZZZZ' }, friend);
+check('referral: unknown code', unknown.status === 404 && unknown.json.error === 'code_not_found', unknown);
+const typed = `${myCode.slice(0, 3).toLowerCase()}-${myCode.slice(3).toLowerCase()}`;
+const applied = await call('POST', '/v1/referral/apply', { code: typed }, friend);
+check('referral: friend applies code (+welcome points)', applied.status === 200 && applied.json.points === 50 && applied.json.applied_status === 'pending' && applied.json.can_apply === false, applied);
+const twice = await call('POST', '/v1/referral/apply', { code: myCode }, friend);
+check('referral: only one code per account', twice.status === 409 && twice.json.error === 'already_applied', twice);
+const friendCode = (await call('GET', '/v1/referral', null, friend)).json.code;
+const mutual = await call('POST', '/v1/referral/apply', { code: friendCode }, inviter);
+check('referral: no inviting back', mutual.status === 422 && mutual.json.error === 'mutual_referral', mutual);
+const sameDevice = await signup('twin', 'dev-ref-inviter');
+const twin = await call('POST', '/v1/referral/apply', { code: myCode }, sameDevice);
+check('referral: second account on the same phone rejected', twin.status === 422 && twin.json.error === 'own_code', twin);
+
+const fBiz = uuid();
+await call('POST', '/v1/businesses/link', { id: fBiz, name: 'বন্ধুর দোকান', updated_at: t0 }, friend);
+const txN = (n) => Array.from({ length: n }, () => ({ id: uuid(), type: 'SALE', total_paisa: 5000, paid_paisa: 5000, method: 'CASH', occurred_at: t0, created_at: t0, device_id: 'dev-ref-friend' }));
+await call('POST', `/v1/businesses/${fBiz}/sync/push`, { device_id: 'dev-ref-friend', transactions: txN(4) }, friend);
+const notYet = await call('GET', '/v1/referral', null, inviter);
+check('referral: no reward before the friend is active', notYet.json.points === 0 && notYet.json.stats.pending === 1, notYet.json);
+await call('POST', `/v1/businesses/${fBiz}/sync/push`, { device_id: 'dev-ref-friend', transactions: txN(1) }, friend);
+const rewarded = await call('GET', '/v1/referral', null, inviter);
+check('referral: inviter rewarded after 5 entries', rewarded.json.points === 100 && rewarded.json.stats.qualified === 1 && rewarded.json.stats.pending === 0, rewarded.json);
+check('referral: reward paid once', (await call('GET', '/v1/referral', null, inviter)).json.points === 100);
+
+const tooMuch = await call('POST', '/v1/referral/redeem', { option: 'pro_365' }, inviter);
+check('redeem: not enough points', tooMuch.status === 422 && tooMuch.json.error === 'not_enough_points', tooMuch);
+const redeemed = await call('POST', '/v1/referral/redeem', { option: 'pro_30' }, inviter);
+const days = redeemed.json ? (redeemed.json.pro_until - Date.now()) / 86400000 : 0;
+check('redeem: 100 points = 30 days Pro', redeemed.status === 200 && redeemed.json.points === 0 && redeemed.json.pro_active === true && days > 29.9 && days <= 30, redeemed.json);
+const again2 = await call('POST', '/v1/referral/redeem', { option: 'pro_30' }, inviter);
+check('redeem: balance cannot go negative', again2.status === 422 && again2.json.error === 'not_enough_points', again2);
+const friendRedeem = await call('POST', '/v1/referral/redeem', { option: 'pro_30' }, friend);
+check('redeem: welcome points alone are not enough', friendRedeem.status === 422, friendRedeem);
+const badOption = await call('POST', '/v1/referral/redeem', { option: 'pro_forever' }, inviter);
+check('redeem: unknown option', badOption.status === 422 && badOption.json.error === 'invalid_option', badOption);
+const delFriend = await call('DELETE', '/v1/account', null, friend);
+check('referral: deleting the invited account works', delFriend.status === 200, delFriend);
+
 // Refresh rotation + reuse detection
 const r1 = await call('POST', '/v1/auth/refresh', { refresh_token: refresh });
 check('refresh works', r1.status === 200 && r1.json.refresh_token !== refresh, r1);
