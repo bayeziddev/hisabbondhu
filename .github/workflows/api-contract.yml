@@ -1,0 +1,38 @@
+name: API contract
+
+# Fails when the server's endpoints, the Android app's API calls, the website's calls
+# and the API table in README.md do not agree. Script: backend/scripts/check-api.mjs
+on:
+  push:
+    branches: [ main, 'claude/**' ]
+    paths:
+      - 'backend/src/**'
+      - 'backend/scripts/check-api.mjs'
+      - 'android/app/src/main/java/com/hisabbondhu/app/data/remote/HisabApi.kt'
+      - 'website/**'
+      - 'README.md'
+      - '.github/workflows/api-contract.yml'
+  pull_request:
+    paths:
+      - 'backend/src/**'
+      - 'backend/scripts/check-api.mjs'
+      - 'android/app/src/main/java/com/hisabbondhu/app/data/remote/HisabApi.kt'
+      - 'website/**'
+      - 'README.md'
+      - '.github/workflows/api-contract.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Server ↔ app ↔ website ↔ README
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - run: node backend/scripts/check-api.mjs

@@ -396,7 +396,6 @@
     <string name="use_other_email">Sign in with another email</string>
     <string name="whatsapp_us">WhatsApp us</string>
     <string name="whatsapp_greeting">Hello HisabBondhu team, I need help with: </string>
-    <!-- Referral programme & Hisab points -->
     <string name="referral_title">Invite friends, earn points</string>
     <string name="referral_menu_desc">Collect Hisab points and get Pro</string>
     <string name="referral_your_code">Your referral code</string>
