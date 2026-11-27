@@ -22,14 +22,17 @@ APP, ACCOUNT, DEV_COMMS, SECURITY, MARKETING = (
     "PSL_FRAUD_PREVENTION_SECURITY", "PSL_ADVERTISING",
 )
 # data type -> (category question, required?, collection purposes). Nothing is shared with third parties.
+# Mess/group ledgers are shown only to the group's approved members, who joined on purpose: a user-initiated
+# transfer the user expects, which Play does not count as "sharing".
 TYPES = {
     "PSL_NAME":         ("PSL_DATA_TYPES_PERSONAL", True,  [APP, ACCOUNT, DEV_COMMS, MARKETING]),
     "PSL_EMAIL":        ("PSL_DATA_TYPES_PERSONAL", True,  [APP, ACCOUNT, DEV_COMMS, SECURITY, MARKETING]),
     "PSL_PHONE":        ("PSL_DATA_TYPES_PERSONAL", True,  [APP, ACCOUNT, DEV_COMMS, MARKETING]),
     "PSL_ADDRESS":      ("PSL_DATA_TYPES_PERSONAL", False, [APP]),
     "PSL_USER_ACCOUNT": ("PSL_DATA_TYPES_PERSONAL", True,  [APP, ACCOUNT, SECURITY]),
-    "PSL_OTHER":        ("PSL_DATA_TYPES_FINANCIAL", True, [APP]),          # business ledger records
-    "PSL_CONTACTS":     ("PSL_DATA_TYPES_CONTACTS", False, [APP]),           # customers/suppliers the user adds
+    "PSL_OTHER":        ("PSL_DATA_TYPES_FINANCIAL", True, [APP]),          # shop, personal and mess ledger records
+    "PSL_CONTACTS":     ("PSL_DATA_TYPES_CONTACTS", False, [APP]),           # customers, suppliers, shops, lend/borrow people, mess members
+    "PSL_OTHER_APP_ACTIVITY": ("PSL_DATA_TYPES_APP_ACTIVITY", False, [APP, SECURITY]),  # referral codes, Hisab points, mess join requests
     "PSL_OTHER_MESSAGES": ("PSL_DATA_TYPES_EMAIL_AND_TEXT", False, [DEV_COMMS]),  # contact-form messages
     "PSL_DEVICE_ID":    ("PSL_DATA_TYPES_IDENTIFIERS", True, [APP, ACCOUNT, SECURITY]),
 }
